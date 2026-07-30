@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    @apply bg-canvas text-ink font-sans antialiased;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-line rounded-full;
+    border: 3px solid transparent;
+    background-clip: padding-box;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #b9c9dc;
+    background-clip: padding-box;
+  }
+}
+
+@layer components {
+  .eyebrow {
+    @apply text-[10px] font-extrabold uppercase tracking-[.08em] text-primary;
+  }
+
+  .field {
+    @apply w-full rounded-xl border border-line bg-white px-3 py-2.5 text-sm text-ink outline-none
+           transition focus:border-primary/50 focus:ring-4 focus:ring-primary/10;
+  }
+
+  .panel-scroll {
+    @apply min-h-0 overflow-y-auto;
+  }
+}
