@@ -29,11 +29,11 @@ Run đầu thu raw trace, tạo review template riêng, sau đó teammate điề
 - Produces: `resolve_review_path(run_id: str, explicit: Path | None, root: Path) -> Path`
 - Produces: `write_review_template(path: Path, results: list[dict]) -> bool`
 
-- [ ] Viết unit tests cho legacy run, run mới, explicit path và bảo vệ file review hiện có.
-- [ ] Chạy tests và xác nhận fail vì helper chưa tồn tại.
-- [ ] Cài đặt hai helper tối thiểu.
-- [ ] Tích hợp helper vào `main()`.
-- [ ] Chạy toàn bộ `eval/test_eval_runner.py` và xác nhận pass.
+- [x] Viết unit tests cho legacy run, run mới, explicit path và bảo vệ file review hiện có.
+- [x] Chạy tests và xác nhận fail vì helper chưa tồn tại.
+- [x] Cài đặt hai helper tối thiểu.
+- [x] Tích hợp helper vào `main()`.
+- [x] Chạy toàn bộ `eval/test_eval_runner.py` và xác nhận pass.
 
 ### Task 2: Teammate handoff
 
@@ -45,8 +45,8 @@ Run đầu thu raw trace, tạo review template riêng, sau đó teammate điề
 - Consumes: runner đã hỗ trợ review theo run.
 - Produces: quy trình local `run-02` có thể thực hiện mà không cần đoán.
 
-- [ ] Ghi failure clusters và file code cần đọc.
-- [ ] Ghi lệnh collect, review, reuse và so sánh kết quả.
-- [ ] Ghi rõ các test chưa tự động đánh giá được.
-- [ ] Chạy unit tests, backend compile, frontend build và secret scan.
-- [ ] Commit, push branch và tạo PR.
+- [x] Ghi failure clusters và file code cần đọc.
+- [x] Ghi lệnh collect, review, reuse và so sánh kết quả.
+- [x] Ghi rõ các test chưa tự động đánh giá được.
+- [x] Chạy unit tests, backend compile, frontend build và secret scan.
+- [x] Commit implementation và chuẩn bị PR.
