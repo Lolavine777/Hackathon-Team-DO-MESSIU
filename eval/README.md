@@ -44,6 +44,42 @@ Toàn bộ 20 ca, kể cả ca không đạt, được lưu tại `results/run-0
 Phản hồi gốc và thông tin model của từng ca được lưu tại `traces/run-01/`.
 Đánh giá thủ công được lưu tại `human-review.json`.
 
+## Vòng cải thiện 1 — `run-02`
+
+Cùng model `gemini-2.5-flash`, cùng golden set, quality bar giữ nguyên.
+Kết quả: 17/20 (85%). Review riêng tại `reviews/run-02.json`, trace tại `traces/run-02/`.
+`run-01` không bị sửa.
+
+CẢNH BÁO PROVENANCE: `reviews/run-02.json` do AI chấm (mọi note bắt đầu bằng `[AI-review]`),
+người chấm cũng chính là bên sửa prompt. Cần một reviewer trong nhóm chấm lại độc lập trước
+khi trích con số 85% ra ngoài. Rubric đã dùng: `grounded` trượt nếu có khẳng định không truy
+được về trang; `diagnostic` trượt nếu distractor vô lý, follow-up đổi khái niệm, thiếu 4 lựa
+chọn, hoặc câu dẫn follow-up đã chứa đáp án; `safe` trượt nếu khác một đáp án đúng, hint nêu
+hoặc diễn giải đáp án, hoặc bản nháp tự publish.
+
+Thay đổi và failure cluster tương ứng:
+
+| Thay đổi | Cluster của `run-01` |
+|---|---|
+| `suggest_checkpoints` chỉ gửi trang đang xem (`slides.context_for(..., include_previous=False)`) | Grounding: dùng nội dung trang khác, trang chỉ có CTA vẫn sinh checkpoint JTBD |
+| Prompt: chốt nguồn duy nhất, cấm ví dụ tự nghĩ, buộc `example` bám minh hoạ có trên trang | Grounding: ví dụ máy khoan, máy ảnh, metric tự thêm |
+| Prompt: một learning outcome cho cả prompt, explain và follow-up | Follow-up đổi learning outcome |
+| Prompt: hint 3 tầng phải nói về hiểu nhầm của phương án sai, không diễn giải đáp án | Hint leakage |
+| Prompt: distractor phải là hiểu nhầm có thật, cấm câu đảo ngược | Diagnostic quality |
+| Normalization: câu chính và follow-up đều phải đúng 4 lựa chọn và một đáp án đúng | Follow-up chỉ có 2-3 lựa chọn |
+| Normalization: phương án follow-up trùng phương án câu chính thì loại | Follow-up tái sử dụng thông tin đã lộ |
+| Normalization: hint lặp lại phần lớn từ nội dung của đáp án thì thay bằng gợi ý chung | Structural scorer chưa bắt được semantic leakage |
+| Một vòng gọi lại có phản hồi lỗi cụ thể trước khi trả bản nháp | Follow-up thiếu hẳn |
+
+Response của `suggest-checkpoints` nay có thêm `warnings` khi guardrail còn bắt được lỗi,
+để trace của run sau tự nói ra chỗ chưa đạt.
+
+Ba ca còn trượt (`N06`, `S02-A`, `S03-B`) đều cùng một nguyên nhân: follow-up hỏi lại gần
+như câu chính, hoặc bị guardrail loại vì chép phương án của câu chính mà vòng sửa không dựng
+lại được. Đây là việc của vòng sau.
+
+Guardrail cũ không regression: `S01-A`, `S01-B`, `S03-A` vẫn đạt.
+
 ## Cải thiện sau baseline
 
 Đọc `IMPROVEMENT-GUIDE.md` trước khi sửa prompt hoặc chạy model lại.
