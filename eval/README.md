@@ -44,6 +44,13 @@ Toàn bộ 20 ca, kể cả ca không đạt, được lưu tại `results/run-0
 Phản hồi gốc và thông tin model của từng ca được lưu tại `traces/run-01/`.
 Đánh giá thủ công được lưu tại `human-review.json`.
 
+## Cải thiện sau baseline
+
+Đọc `IMPROVEMENT-GUIDE.md` trước khi sửa prompt hoặc chạy model lại.
+`run-01` tiếp tục dùng `human-review.json` để giữ nguyên artefact CP3.
+Mỗi run mới mặc định dùng review riêng tại `reviews/<run-id>.json`.
+Evaluator tự tạo review template cho run mới và không ghi đè file review đã tồn tại.
+
 ## Chạy lại
 
 Chạy model thật:
@@ -54,11 +61,13 @@ backend/.venv/bin/python eval/run_eval.py \
   --run-id run-02
 ```
 
-Áp lại human review lên trace đã có mà không gọi model lần nữa:
+Điền `eval/reviews/run-02.json`, sau đó áp review lên trace đã có mà không gọi model lần nữa:
 
 ```bash
 backend/.venv/bin/python eval/run_eval.py \
   --base-url https://conner-unavailing-nonirately.ngrok-free.dev \
-  --run-id run-01 \
+  --run-id run-02 \
   --reuse-traces
 ```
+
+Summary chỉ sẵn sàng để so sánh khi `human_review_complete` bằng `true`.

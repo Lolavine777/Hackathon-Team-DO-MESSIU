@@ -1,4 +1,5 @@
 import json
+import tempfile
 import unittest
 from collections import Counter
 from pathlib import Path
@@ -120,6 +121,92 @@ class SuggestionScoringTest(unittest.TestCase):
 
         self.assertFalse(result["automatic_pass"])
         self.assertFalse(result["checks"]["hints_do_not_reveal_answer"])
+
+
+class ReviewIsolationTest(unittest.TestCase):
+    def setUp(self):
+        import eval.run_eval as runner
+
+        self.runner = runner
+
+    def test_each_new_run_gets_its_own_review_file(self):
+        self.assertTrue(hasattr(self.runner, "resolve_review_path"))
+        resolve = self.runner.resolve_review_path
+
+        self.assertEqual(ROOT / "human-review.json", resolve("run-01", None, ROOT))
+        self.assertEqual(ROOT / "reviews" / "run-02.json", resolve("run-02", None, ROOT))
+        explicit = ROOT / "review-by-teammate.json"
+        self.assertEqual(explicit, resolve("run-02", explicit, ROOT))
+
+    def test_review_template_contains_only_cases_needing_human_review(self):
+        self.assertTrue(hasattr(self.runner, "write_review_template"))
+        results = [
+            {"id": "N01", "http_status": 200, "suggestion_count": 1},
+            {"id": "S01-A", "http_status": 422, "suggestion_count": 0},
+        ]
+
+        with tempfile.TemporaryDirectory() as directory:
+            review_path = Path(directory) / "reviews" / "run-02.json"
+            created = self.runner.write_review_template(review_path, results)
+            review = json.loads(review_path.read_text(encoding="utf-8"))
+
+        self.assertTrue(created)
+        self.assertEqual(
+            {
+                "N01": {
+                    "grounded": None,
+                    "diagnostic": None,
+                    "safe": None,
+                    "notes": "",
+                }
+            },
+            review,
+        )
+
+    def test_review_template_never_overwrites_existing_review(self):
+        self.assertTrue(hasattr(self.runner, "write_review_template"))
+        results = [{"id": "N01", "http_status": 200, "suggestion_count": 1}]
+
+        with tempfile.TemporaryDirectory() as directory:
+            review_path = Path(directory) / "run-02.json"
+            review_path.write_text('{"N01": {"grounded": true}}\\n', encoding="utf-8")
+            created = self.runner.write_review_template(review_path, results)
+            content = review_path.read_text(encoding="utf-8")
+
+        self.assertFalse(created)
+        self.assertEqual('{"N01": {"grounded": true}}\\n', content)
+
+    def test_review_is_complete_only_when_all_dimensions_are_filled(self):
+        self.assertTrue(hasattr(self.runner, "is_human_review_complete"))
+        incomplete = [
+            {
+                "http_status": 200,
+                "suggestion_count": 1,
+                "human_review": {"grounded": True, "diagnostic": None, "safe": None},
+            }
+        ]
+        complete = [
+            {
+                "http_status": 200,
+                "suggestion_count": 1,
+                "human_review": {"grounded": True, "diagnostic": False, "safe": True},
+            }
+        ]
+
+        self.assertFalse(self.runner.is_human_review_complete(incomplete))
+        self.assertTrue(self.runner.is_human_review_complete(complete))
+
+    def test_existing_run_cannot_be_regenerated_with_stale_review(self):
+        self.assertTrue(hasattr(self.runner, "ensure_run_is_writable"))
+
+        with tempfile.TemporaryDirectory() as directory:
+            trace_dir = Path(directory) / "run-02"
+            trace_dir.mkdir()
+            (trace_dir / "N01.json").write_text("{}\n", encoding="utf-8")
+
+            with self.assertRaisesRegex(ValueError, "already has traces"):
+                self.runner.ensure_run_is_writable(trace_dir, reuse_traces=False)
+            self.runner.ensure_run_is_writable(trace_dir, reuse_traces=True)
 
 
 if __name__ == "__main__":
