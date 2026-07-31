@@ -1,0 +1,134 @@
+{
+  "case_id": "N04",
+  "timestamp_utc": "2026-07-31T03:36:41.447897+00:00",
+  "model": "gemini-2.5-flash",
+  "endpoint": "https://conner-unavailing-nonirately.ngrok-free.dev/api/ai/suggest-checkpoints",
+  "role": "teacher",
+  "request": {
+    "page": 7,
+    "count": 1,
+    "force": true
+  },
+  "source_page_excerpt": "4 TRANSFORM YOUR COMPANY THROUGH INNOVATION  FOLLOW US ON LINKEDIN  BECOME A CLIENT  CHAPTER 1 2 3 4 A functional job-to-be-done is often something people have been trying to accomplish for years, decades— or even centuries. Parents, for example, have been trying to pass on life lessons to children since the beginning of humanity. TENET 03 A Job-to-be-Done is stable over time. The core functional job is solution agnostic —this means it is independent of any solutions or technologies. Innovation isn’t about “a faster horse.” A “horse” is a solution to get a job done. The job (transporting yourself from point A to point B) must be defined independently of the solution (the horse). This is how new, breakthrough solutions can be conceptualized (like the automobile). Customers don’t know what solutions will get a job done best— they couldn’t envision the car or the microwave or the smartphone. But customers do know what job they are trying to get done and can tell you all about it. TENET 04 A Job-to-be-Done is solution agnostic. Lastly, since the job-to-be-done is solution agnostic, competitors are not only companies that make products like yours. They are any solution (paid and non-paid) that customers use to get the core job done. For example, the bicycle and the car are competing solutions for the job of getting from point a to point b. A functional job is stable over time. What changes are the products and services that companies offer to help get the job done better. Because the job-to-be-done is stable over time, it is an attractive focal point around which to create customer value for many years. With this in mind, your business’ strategy should always be to help customers get the entire job done better and more cheaply on a single product platform. This is the long-term strategy that Amazon has pursued since its inception.",
+  "response_status": 200,
+  "response": {
+    "page": 7,
+    "suggestions": [
+      {
+        "id": "sg-7-1",
+        "page": 7,
+        "prompt": "Theo nội dung slide, tại sao Job-to-be-Done được coi là 'solution agnostic' (độc lập với giải pháp)?",
+        "options": [
+          {
+            "key": "A",
+            "text": "Vì công việc cốt lõi không phụ thuộc vào bất kỳ công nghệ hay sản phẩm cụ thể nào.",
+            "correct": true
+          },
+          {
+            "key": "B",
+            "text": "Vì khách hàng luôn biết rõ giải pháp nào tốt nhất để hoàn thành công việc.",
+            "correct": false,
+            "misconceptionLabel": "Hiểu lầm về vai trò của khách hàng",
+            "hints": [
+              "Hãy xem lại phần khách hàng có thể hình dung ra các giải pháp như ô tô hay smartphone không?",
+              "Slide nói khách hàng biết về điều gì?",
+              "Khách hàng biết về công việc họ muốn làm, không phải giải pháp tốt nhất."
+            ]
+          },
+          {
+            "key": "C",
+            "text": "Vì các sản phẩm luôn thay đổi theo thời gian nên công việc cũng thay đổi theo.",
+            "correct": false,
+            "misconceptionLabel": "Nhầm lẫn giữa tính ổn định của job và sản phẩm",
+            "hints": [
+              "Slide nhấn mạnh tính chất nào của Job-to-be-Done theo thời gian?",
+              "Sản phẩm thay đổi, còn Job thì sao?",
+              "Job-to-be-Done là ổn định, chỉ có sản phẩm là thay đổi."
+            ]
+          },
+          {
+            "key": "D",
+            "text": "Vì đối thủ cạnh tranh chỉ là những công ty sản xuất sản phẩm giống hệt nhau.",
+            "correct": false,
+            "misconceptionLabel": "Hiểu sai về phạm vi cạnh tranh",
+            "hints": [
+              "Hãy xem ví dụ về xe đạp và ô tô trong slide.",
+              "Đối thủ cạnh tranh được định nghĩa như thế nào khi Job là solution agnostic?",
+              "Đối thủ là bất kỳ giải pháp nào giúp khách hàng hoàn thành công việc."
+            ]
+          }
+        ],
+        "explain": "Job-to-be-Done là 'solution agnostic' vì nó tập trung vào mục tiêu khách hàng muốn đạt được (ví dụ: di chuyển từ A đến B) thay vì gắn liền với một công cụ cụ thể (ví dụ: con ngựa hay ô tô).",
+        "title": "Bản chất của Job-to-be-Done",
+        "learningOutcome": "Học viên phân biệt được sự khác biệt giữa 'công việc cần hoàn thành' và 'giải pháp/công nghệ' để thực hiện công việc đó.",
+        "durationSec": 30,
+        "followUp": {
+          "prompt": "Nếu mục tiêu của khách hàng là 'di chuyển từ điểm A đến điểm B', đâu là ví dụ đúng về việc áp dụng tư duy Job-to-be-Done?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Tập trung cải tiến con ngựa để chạy nhanh hơn.",
+              "correct": false
+            },
+            {
+              "key": "B",
+              "text": "Tập trung vào việc giúp khách hàng di chuyển hiệu quả hơn, bất kể dùng phương tiện gì.",
+              "correct": true
+            },
+            {
+              "key": "C",
+              "text": "Chỉ coi các công ty bán xe đạp là đối thủ cạnh tranh.",
+              "correct": false
+            },
+            {
+              "key": "D",
+              "text": "Hỏi khách hàng xem họ muốn loại động cơ nào cho xe.",
+              "correct": false
+            }
+          ],
+          "explain": "Tư duy Job-to-be-Done tập trung vào việc hoàn thành công việc (di chuyển) tốt hơn, không bị giới hạn bởi giải pháp hiện tại (con ngựa)."
+        },
+        "example": {
+          "title": "Ví dụ về 'Job' và 'Solution'",
+          "body": "Job: 'Giữ liên lạc với người thân ở xa'. Giải pháp cũ: Thư tay. Giải pháp mới: Smartphone. Job vẫn ổn định, nhưng giải pháp thay đổi theo thời gian."
+        }
+      }
+    ]
+  },
+  "evaluation": {
+    "id": "N04",
+    "situation_type": "normal",
+    "source_type": "chatlog",
+    "expected_behavior": "Tạo checkpoint kiểm tra khái niệm functional job, distractor hợp lý và không lộ đáp án trong hint.",
+    "http_status": 200,
+    "suggestion_count": 1,
+    "automatic_scores": [
+      {
+        "checks": {
+          "has_prompt": true,
+          "exactly_four_options": true,
+          "distinct_options": true,
+          "exactly_one_correct": true,
+          "wrong_options_have_misconceptions": true,
+          "wrong_options_have_three_hints": true,
+          "hints_do_not_reveal_answer": true,
+          "has_distinct_follow_up": true,
+          "has_usable_example": true
+        },
+        "automatic_pass": true
+      }
+    ],
+    "human_review": {
+      "grounded": false,
+      "diagnostic": false,
+      "safe": false,
+      "notes": "Ví dụ mở rộng ngoài slide; câu chính lệch khỏi functional job; hint làm lộ quan hệ job và solution."
+    },
+    "not_auto_published": true,
+    "pass": false,
+    "failure_reasons": [
+      "human_review_failed"
+    ],
+    "latency_seconds": 5.94
+  }
+}

@@ -1,0 +1,124 @@
+{
+  "case_id": "N05",
+  "timestamp_utc": "2026-07-31T03:36:41.448112+00:00",
+  "model": "gemini-2.5-flash",
+  "endpoint": "https://conner-unavailing-nonirately.ngrok-free.dev/api/ai/suggest-checkpoints",
+  "role": "teacher",
+  "request": {
+    "page": 8,
+    "count": 1,
+    "force": true
+  },
+  "source_page_excerpt": "5 TRANSFORM YOUR COMPANY THROUGH INNOVATION  FOLLOW US ON LINKEDIN  BECOME A CLIENT  CHAPTER 1 2 3 4 Making the job-to-be-done the unit of analysis means it is the job — not the product, the customer, the circumstance, the purchase process or customer demographics — that you need to study, dissect and understand at a granular level of detail. A deep understanding of the customer’s job makes marketing more effective — and innovation far more predictable. TENET 05 TENET 06 Henry Ford said it best, “If I had asked people what they wanted, they would have said a faster horse.” The point Ford is making is that innovators cannot simply ask customers what solutions they want, because customers rarely know — and why should they? They are not engineers, scientists and technolo- gists. We cannot expect them to tell us the solution. Success comes from making the job the unit of analysis, rather than the product or the customer. A deep understanding of the customer’s job makes marketing more effective — and innovation far more predictable. That’s why as innovators we must change the unit of analysis when talking to customers. While they often do not know what solutions will best satisfy their needs, customers do know what they are trying to accomplish as it relates to getting a job done. They know what aspects of the job are time consuming, unpredictable and ineffective. They can define their needs around the job-to-be-done. The fundamentals of marketing and innovation are straightforward. With a focus on the customer’s job-to-be-done, you are able to: 1. Identify where and why customers are struggling to get the job done. 2. Brainstorm ideas for new offerings 3. Determine in advance of development which ideas will help customers get the job done best. When you define a market this way, you clarify your target customer and the job you are going to help the customer accomplish with your product or service offering If your team can agree on what a customer need is, what the customer’s needs are, and which customer needs are unmet or underserved, you are able to: 1. Better position and sell more of the company’s existing products. 2. Improve existing products and services. 3. Create new products and services. Jobs-to-be-Done Theory makes this possible. With a deep understanding of the custom- er’s needs for any given job, you can finally know—maybe for the first time—all of the customer’s needs. This is truly transforma- tional as most product teams (and most VoC prac",
+  "response_status": 200,
+  "response": {
+    "page": 8,
+    "suggestions": [
+      {
+        "id": "sg-8-1",
+        "page": 8,
+        "prompt": "Theo lý thuyết Jobs-to-be-Done, đâu là đơn vị phân tích chính mà các nhà đổi mới cần tập trung nghiên cứu để đạt được sự đổi mới có thể dự đoán trước?",
+        "options": [
+          {
+            "key": "A",
+            "text": "Công việc (job) mà khách hàng cần hoàn thành",
+            "correct": true
+          },
+          {
+            "key": "B",
+            "text": "Đặc điểm nhân khẩu học của khách hàng",
+            "correct": false,
+            "misconceptionLabel": "Nhầm lẫn giữa đối tượng và mục tiêu",
+            "hints": [
+              "Hãy xem xét lại đơn vị nào là ổn định theo thời gian.",
+              "Nhân khẩu học có phải là thứ khách hàng muốn đạt được không?",
+              "Slide nhấn mạnh việc chuyển dịch từ nghiên cứu khách hàng sang nghiên cứu cái gì?"
+            ]
+          },
+          {
+            "key": "C",
+            "text": "Các giải pháp sản phẩm hiện có",
+            "correct": false,
+            "misconceptionLabel": "Tư duy tập trung vào giải pháp thay vì nhu cầu",
+            "hints": [
+              "Sản phẩm đến rồi đi, nhưng điều gì vẫn tồn tại?",
+              "Liệu tập trung vào sản phẩm có giúp dự đoán sự đổi mới không?",
+              "Henry Ford đã nói gì về việc hỏi khách hàng về giải pháp?"
+            ]
+          },
+          {
+            "key": "D",
+            "text": "Quy trình mua hàng của khách hàng",
+            "correct": false,
+            "misconceptionLabel": "Nhầm lẫn giữa hành vi mua và mục tiêu công việc",
+            "hints": [
+              "Quy trình mua hàng có phải là mục đích cuối cùng của khách hàng không?",
+              "Hãy tập trung vào những gì khách hàng đang cố gắng hoàn thành.",
+              "Slide liệt kê những yếu tố không phải là đơn vị phân tích, trong đó có quy trình mua."
+            ]
+          }
+        ],
+        "explain": "Theo slide, để đổi mới có thể dự đoán, chúng ta phải lấy 'công việc' (job) làm đơn vị phân tích thay vì sản phẩm, khách hàng, hay quy trình mua hàng.",
+        "title": "Đơn vị phân tích cốt lõi",
+        "learningOutcome": "Học viên xác định được 'công việc' (job) là đơn vị phân tích thay vì sản phẩm hay khách hàng.",
+        "durationSec": 30,
+        "followUp": {
+          "prompt": "Tại sao việc tập trung vào 'công việc' (job) lại giúp đổi mới hiệu quả hơn so với việc hỏi khách hàng về giải pháp họ muốn?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Vì khách hàng biết họ muốn hoàn thành công việc gì nhưng thường không biết giải pháp nào là tốt nhất",
+              "correct": true
+            },
+            {
+              "key": "B",
+              "text": "Vì khách hàng là những kỹ sư và nhà khoa học giỏi nhất",
+              "correct": false
+            }
+          ],
+          "explain": "Khách hàng không phải là kỹ sư hay nhà công nghệ, họ không biết giải pháp nào tốt nhất, nhưng họ biết rõ những khó khăn khi thực hiện công việc của mình."
+        },
+        "example": {
+          "title": "Ví dụ về 'Công việc'",
+          "body": "Thay vì hỏi khách hàng 'Bạn muốn chiếc xe nhanh hơn không?', hãy tập trung vào công việc 'Di chuyển từ điểm A đến điểm B một cách nhanh chóng và an toàn'."
+        }
+      }
+    ]
+  },
+  "evaluation": {
+    "id": "N05",
+    "situation_type": "normal",
+    "source_type": "chatlog",
+    "expected_behavior": "Tạo checkpoint phân biệt job với product hoặc customer làm unit of analysis.",
+    "http_status": 200,
+    "suggestion_count": 1,
+    "automatic_scores": [
+      {
+        "checks": {
+          "has_prompt": true,
+          "exactly_four_options": true,
+          "distinct_options": true,
+          "exactly_one_correct": true,
+          "wrong_options_have_misconceptions": true,
+          "wrong_options_have_three_hints": true,
+          "hints_do_not_reveal_answer": true,
+          "has_distinct_follow_up": true,
+          "has_usable_example": true
+        },
+        "automatic_pass": true
+      }
+    ],
+    "human_review": {
+      "grounded": false,
+      "diagnostic": false,
+      "safe": false,
+      "notes": "Ví dụ ngoài slide; thiếu distractor về customer; follow-up chỉ có hai lựa chọn và hint gợi đáp án."
+    },
+    "not_auto_published": true,
+    "pass": false,
+    "failure_reasons": [
+      "human_review_failed"
+    ],
+    "latency_seconds": 5.79
+  }
+}

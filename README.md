@@ -2,6 +2,29 @@
 
 **SPEC → Prototype → Demo.** Đây không phải cuộc thi code — đây là cuộc thi **tư duy sản phẩm AI**.
 
+## Thông tin bài nộp của nhóm
+
+- Sản phẩm: VLearn Lecture Pulse.
+- Nhóm: ĐỘ MESSIU.
+- Lớp: D305.
+- Khóa: 4.
+- Zone: Chưa được ban tổ chức phân.
+- Nhóm trưởng: Nguyễn Đăng Long - 2A202601934.
+- Bản deploy: <https://conner-unavailing-nonirately.ngrok-free.dev>.
+
+| Thành viên | Mã HV | Vai trò | Deliverable và phần chịu trách nhiệm |
+|---|---|---|---|
+| Nguyễn Đăng Long | 2A202601934 | Nhóm trưởng, Backend & Eval Lead | Quản lý checkpoint và bài nộp; kết nối các workstream; backend, API, session và content pipeline; `spec.md`; golden set, evaluator, human review, báo cáo các eval run và validation log |
+| Đào Minh Chiến | 2A202601184 | AI/LLM Engineer | Tích hợp model; LLM client và cấu hình; prompt sinh checkpoint; rule engine; cải thiện chất lượng AI và chạy `run-02`; hoàn thiện slide 6 trang |
+| Lương Minh Quân | 2A202601308 | Product Manager, Frontend Lead | Chốt quyết định sản phẩm và phạm vi tính năng; điều phối triển khai; toàn bộ teacher flow, learner flow, frontend state và tích hợp API; rà soát E2E trước demo |
+| Lê Đăng Tấn | 2A202601916 | Project Manager | Phân tích đề bài và pain point; khảo sát, PRD và MVP; đề xuất thiết kế; điều phối công việc, dry run và demo cuối |
+
+Prototype hiện nằm trong `frontend/` và `backend/`.
+AI Spec nằm tại `spec.md`.
+Bộ kiểm thử, kết quả các lần chạy và hướng dẫn cải thiện nằm tại `eval/`.
+Feedback từ vòng user test nằm tại `validation/`.
+Slide demo sẽ được thêm dưới tên `demo-slides.pdf`.
+
 - Thời lượng: **1,5 ngày** (một ngày build + một buổi demo)
 - Nhóm: **4-5 người** · zone tối đa 5 nhóm · thi theo lớp
 
