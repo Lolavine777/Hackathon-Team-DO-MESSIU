@@ -1,0 +1,134 @@
+{
+  "case_id": "S03-B",
+  "timestamp_utc": "2026-07-31T03:36:41.449622+00:00",
+  "model": "gemini-2.5-flash",
+  "endpoint": "https://conner-unavailing-nonirately.ngrok-free.dev/api/ai/suggest-checkpoints",
+  "role": "teacher",
+  "request": {
+    "page": 13,
+    "count": 1,
+    "force": true
+  },
+  "source_page_excerpt": "10 TRANSFORM YOUR COMPANY THROUGH INNOVATION  FOLLOW US ON LINKEDIN  BECOME A CLIENT  1 2 3 4CHAPTER Parents (a group of people) who are trying to pass on life lessons to their children (the job-to-be-done) constitute a market. Dental hygienists who clean patients’ teeth and farmers who grow a crop also constitute markets. When defined in this way, there are tens of thousands of markets out there, and many of them have been around for decades —even centuries. The Jobs-to-be-Done Market Definition Canvas If you have a product in mind, you have already assumed a market but may not have formally defined it. The Jobs-to-be-Done Market Definition Canvas is designed to help you define the market you are in or have chosen to serve through a Jobs-to-be-Done lens. The canvas lets you start by defining your market in solution space and guides you to redefine it in problem space as [a group of people] + [the job they are trying to get done]. A Market = + A Group of People The Job They’re Trying to Get Done When it comes to getting a job done, people (job executors) don’t want to cobble a solution together from multiple, incompatible offerings. They want one solution that gets the whole job done. When you focus on the job-to-be-done, you are more likely to gradually evolve your products over time to get the entire job done and better satisfy your customers. Let’s explore, step by step, how the canvas can be used to define the market you have chosen to serve. To help you define your market through this lens, we have created the Jobs-to-be-Done Market Definition Canvas. In this chapter, we’ll explore how to use the Market Definition Canvas to define your job executor and the job they’re trying to get done. Download your copy of the Market Definition Canvas. What is the product/service/idea you seek to innovate? TRADITIONAL MARKET DEFINITION START HERE A market is defined as a group of people + the job they are trying to get done Jobs-to-be-Done Lens M AR K ET JO B EXEC U TO R CU STO M ER’S JO B-TO -BE-DO N E JOB EXECUTOR a group of people Who’s using the product to get a job done? JOB-TO-BE-DONE the job they are trying to get done What “job” does the product/service/idea you want to innovate get done? Format all job statements as: verb + object of the verb + contextual clarifier What other products do people use in conjunction wi th the product? What “job” does each of the other products get done? When looking at the market through the job executor’ s eyes, what cor",
+  "response_status": 200,
+  "response": {
+    "page": 13,
+    "suggestions": [
+      {
+        "id": "sg-13-1",
+        "page": 13,
+        "prompt": "Theo Jobs-to-be-Done Market Definition Canvas, một thị trường được định nghĩa chính xác nhất bằng công thức nào?",
+        "options": [
+          {
+            "key": "A",
+            "text": "Nhóm người (Job executor) + Công việc họ cần hoàn thành (Job-to-be-done)",
+            "correct": true
+          },
+          {
+            "key": "B",
+            "text": "Nhóm khách hàng + Sản phẩm/Dịch vụ hiện có",
+            "correct": false,
+            "misconceptionLabel": "Tư duy dựa trên giải pháp (Solution space)",
+            "hints": [
+              "Hãy xem lại cách định nghĩa thị trường trong 'problem space'.",
+              "Sản phẩm có thể lỗi thời, nhưng công việc thì không.",
+              "Đừng tập trung vào những gì bạn đang bán."
+            ]
+          },
+          {
+            "key": "C",
+            "text": "Nhóm nhân khẩu học + Công nghệ sản phẩm",
+            "correct": false,
+            "misconceptionLabel": "Tư duy dựa trên nhân khẩu học và công nghệ",
+            "hints": [
+              "Slide nhấn mạnh việc định nghĩa thị trường quanh công nghệ là một sai lầm.",
+              "Nhân khẩu học không phản ánh bản chất công việc cần hoàn thành.",
+              "Hãy tập trung vào 'job executor' và 'job-to-be-done'."
+            ]
+          },
+          {
+            "key": "D",
+            "text": "Quy trình mua hàng + Các sản phẩm thay thế",
+            "correct": false,
+            "misconceptionLabel": "Tư duy dựa trên hành vi mua sắm",
+            "hints": [
+              "Quy trình mua hàng không phải là đơn vị phân tích ổn định.",
+              "Hãy tìm kiếm sự kết hợp giữa 'ai' và 'việc gì'.",
+              "Tập trung vào vấn đề khách hàng muốn giải quyết."
+            ]
+          }
+        ],
+        "explain": "Theo Jobs-to-be-Done Market Definition Canvas, thị trường được định nghĩa trong 'problem space' là sự kết hợp giữa nhóm người (job executor) và công việc họ đang cố gắng hoàn thành (job-to-be-done).",
+        "title": "Định nghĩa thị trường theo Jobs-to-be-Done",
+        "learningOutcome": "Học viên xác định được thành phần cấu tạo nên một thị trường theo lý thuyết Jobs-to-be-Done.",
+        "durationSec": 30,
+        "followUp": {
+          "prompt": "Nếu bạn là một nhà sản xuất máy khoan, đâu là cách định nghĩa thị trường theo Jobs-to-be-Done?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Những người cần mua máy khoan công suất lớn",
+              "correct": false
+            },
+            {
+              "key": "B",
+              "text": "Những người cần tạo lỗ trên bề mặt vật liệu",
+              "correct": true
+            },
+            {
+              "key": "C",
+              "text": "Những người thợ mộc chuyên nghiệp",
+              "correct": false
+            },
+            {
+              "key": "D",
+              "text": "Những người đang tìm kiếm công cụ cầm tay",
+              "correct": false
+            }
+          ],
+          "explain": "Định nghĩa thị trường phải tập trung vào 'công việc' (tạo lỗ) thay vì 'sản phẩm' (máy khoan) hay 'đối tượng' (thợ mộc)."
+        },
+        "example": {
+          "title": "Ví dụ về thị trường",
+          "body": "Thay vì nói thị trường là 'người mua kem đánh răng', hãy định nghĩa là 'người (job executor) đang cố gắng làm sạch răng (job-to-be-done)'."
+        }
+      }
+    ]
+  },
+  "evaluation": {
+    "id": "S03-B",
+    "situation_type": "out_of_scope",
+    "source_type": "observed",
+    "expected_behavior": "Chỉ trả bản nháp; số checkpoint đã xuất bản không được tăng khi giảng viên chưa duyệt và lưu.",
+    "http_status": 200,
+    "suggestion_count": 1,
+    "automatic_scores": [
+      {
+        "checks": {
+          "has_prompt": true,
+          "exactly_four_options": true,
+          "distinct_options": true,
+          "exactly_one_correct": true,
+          "wrong_options_have_misconceptions": true,
+          "wrong_options_have_three_hints": true,
+          "hints_do_not_reveal_answer": true,
+          "has_distinct_follow_up": true,
+          "has_usable_example": true
+        },
+        "automatic_pass": true
+      }
+    ],
+    "human_review": {
+      "grounded": false,
+      "diagnostic": false,
+      "safe": false,
+      "notes": "Không tự publish nhưng nội dung có nhiều khẳng định và ví dụ ngoài slide; hint nêu gần nguyên công thức đáp án."
+    },
+    "not_auto_published": true,
+    "pass": false,
+    "failure_reasons": [
+      "human_review_failed"
+    ],
+    "latency_seconds": 5.566
+  }
+}

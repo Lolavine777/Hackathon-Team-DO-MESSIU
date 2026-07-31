@@ -1,0 +1,129 @@
+{
+  "case_id": "N07",
+  "timestamp_utc": "2026-07-31T03:36:41.448533+00:00",
+  "model": "gemini-2.5-flash",
+  "endpoint": "https://conner-unavailing-nonirately.ngrok-free.dev/api/ai/suggest-checkpoints",
+  "role": "teacher",
+  "request": {
+    "page": 10,
+    "count": 1,
+    "force": true
+  },
+  "source_page_excerpt": "7 TRANSFORM YOUR COMPANY THROUGH INNOVATION  FOLLOW US ON LINKEDIN  BECOME A CLIENT  CHAPTER 1 2 3 4 TENET 09 People seek out products and services that enable them to get the entire job done on a single platform. There are many products and services available in the market that only get part of a job done. Customers are left to cobble together solutions in order to get the entire job done. But customers don’t want to cobble together the solution. They want a complete solution presented to them. Your goal should therefore always be to help your customers get their entire job done on a single platform. And you can accelerate this process once you know exactly what steps the customer goes through to complete the job. Nespresso is a great example. The company worked for years with a single strategy in mind: to enable customers to get the job of “preparing a hot beverage for consumption” done on a single platform. “We started to see results from our new messaging and positioning strategy almost immediately. It contributed to an outstanding year. In the end, we grew greater than 30%…. Every one of our products had double-digit growth. We far outpaced our competitors.” Let’s jump back to the animal nutrition team at Arm & Hammer. This business provides animal nutrition, animal productivity, food processing, and safety solutions. Just like other businesses in the industry, they had been relying on animal nutrition consultants to inform their product innovations. But when they applied Jobs Theory , they realized they were looking at their market and customers all wrong. First, their real customer was the dairy producer, not the nutritionist. By shifting the focus to this customer, Arm & Hammer was able to understand the “job” the dairy producer was trying to get done had little to do with nutrition — and was squarely focused on optimizing dairy herd productivity. The market they were in was dairy producers (a group of people) trying to optimize dairy herd productivity (job-to-be-done). CAS E S T U DY E X A M P L E : Arm & Hammer Animal Nutrition Grows Y2Y Revenue 30%+ With this new insight, Arm & Hammer interviewed a dozen dairy producers and uncovered 165 unique desired outcome statements the dairy producer was trying to satisfy. The team then surveyed more dairy herd producers to quantify the degree to which each outcome was under- or overserved by existing products in the market. This was the data they needed to guide their decision making around their new p",
+  "response_status": 200,
+  "response": {
+    "page": 10,
+    "suggestions": [
+      {
+        "id": "sg-10-1",
+        "page": 10,
+        "prompt": "Theo TENET 09, mục tiêu của doanh nghiệp khi thiết kế sản phẩm là gì để đạt hiệu quả cao nhất?",
+        "options": [
+          {
+            "key": "A",
+            "text": "Giúp khách hàng hoàn thành toàn bộ công việc trên một nền tảng duy nhất.",
+            "correct": true
+          },
+          {
+            "key": "B",
+            "text": "Tạo ra nhiều sản phẩm nhỏ để khách hàng tự kết hợp.",
+            "correct": false,
+            "misconceptionLabel": "Hiểu sai về trải nghiệm khách hàng",
+            "hints": [
+              "Xem lại quan điểm của khách hàng về việc 'cobble together' (chắp vá) các giải pháp.",
+              "Khách hàng có muốn tự mình tìm kiếm và lắp ghép các phần của giải pháp không?",
+              "Slide đề cập đến việc khách hàng mong muốn điều gì thay vì phải tự chắp vá?"
+            ]
+          },
+          {
+            "key": "C",
+            "text": "Tập trung vào việc cải tiến từng tính năng riêng lẻ của sản phẩm.",
+            "correct": false,
+            "misconceptionLabel": "Tư duy sản phẩm thay vì tư duy công việc",
+            "hints": [
+              "Liệu việc cải tiến tính năng đơn lẻ có giải quyết được toàn bộ nhu cầu của khách hàng không?",
+              "Đơn vị phân tích cốt lõi là 'công việc' hay là 'sản phẩm'?",
+              "Mục tiêu là giúp khách hàng hoàn thành công việc hay chỉ là cải tiến sản phẩm?"
+            ]
+          },
+          {
+            "key": "D",
+            "text": "Chỉ tập trung vào một phần của công việc để giảm chi phí.",
+            "correct": false,
+            "misconceptionLabel": "Tư duy tối ưu hóa cục bộ",
+            "hints": [
+              "Các sản phẩm chỉ làm được một phần việc thường khiến khách hàng gặp khó khăn gì?",
+              "Khách hàng có hài lòng với việc chỉ giải quyết được một phần công việc không?",
+              "Slide nhấn mạnh việc cung cấp giải pháp như thế nào để đạt hiệu quả?"
+            ]
+          }
+        ],
+        "explain": "TENET 09 khẳng định khách hàng không muốn chắp vá các giải pháp. Doanh nghiệp cần giúp khách hàng hoàn thành toàn bộ công việc trên một nền tảng duy nhất để tạo ra giải pháp hoàn chỉnh.",
+        "title": "Mục tiêu của giải pháp hoàn chỉnh",
+        "learningOutcome": "Học viên xác định được tầm quan trọng của việc cung cấp giải pháp trọn gói trên một nền tảng duy nhất.",
+        "durationSec": 30,
+        "followUp": {
+          "prompt": "Tại sao việc cung cấp giải pháp trên một nền tảng duy nhất lại là chiến lược hiệu quả?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Vì nó loại bỏ nhu cầu chắp vá giải pháp của khách hàng.",
+              "correct": true
+            },
+            {
+              "key": "B",
+              "text": "Vì nó giúp giảm số lượng khách hàng mục tiêu.",
+              "correct": false
+            },
+            {
+              "key": "C",
+              "text": "Vì nó giúp thay đổi công việc của khách hàng theo thời gian.",
+              "correct": false
+            }
+          ],
+          "explain": "Việc cung cấp giải pháp trên một nền tảng duy nhất giúp khách hàng hoàn thành công việc một cách trọn vẹn, thay vì phải tự tìm kiếm và kết hợp nhiều sản phẩm khác nhau."
+        },
+        "example": {
+          "title": "Ví dụ về Nespresso",
+          "body": "Nespresso không chỉ bán máy pha cà phê, họ cung cấp một nền tảng hoàn chỉnh để khách hàng thực hiện công việc 'chuẩn bị đồ uống nóng để tiêu thụ' một cách dễ dàng, thay vì khách hàng phải tự tìm mua hạt, máy xay và máy pha riêng lẻ."
+        }
+      }
+    ]
+  },
+  "evaluation": {
+    "id": "N07",
+    "situation_type": "normal",
+    "source_type": "chatlog",
+    "expected_behavior": "Tạo checkpoint bám nội dung trang 10 và giữ job tách khỏi solution.",
+    "http_status": 200,
+    "suggestion_count": 1,
+    "automatic_scores": [
+      {
+        "checks": {
+          "has_prompt": true,
+          "exactly_four_options": true,
+          "distinct_options": true,
+          "exactly_one_correct": true,
+          "wrong_options_have_misconceptions": true,
+          "wrong_options_have_three_hints": true,
+          "hints_do_not_reveal_answer": true,
+          "has_distinct_follow_up": true,
+          "has_usable_example": true
+        },
+        "automatic_pass": true
+      }
+    ],
+    "human_review": {
+      "grounded": false,
+      "diagnostic": false,
+      "safe": false,
+      "notes": "Ví dụ Nespresso có chi tiết không nằm trong slide; distractor yếu; hint gợi trực tiếp complete job."
+    },
+    "not_auto_published": true,
+    "pass": false,
+    "failure_reasons": [
+      "human_review_failed"
+    ],
+    "latency_seconds": 5.944
+  }
+}

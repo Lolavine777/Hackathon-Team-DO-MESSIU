@@ -1,0 +1,104 @@
+{
+  "N01": {
+    "grounded": false,
+    "diagnostic": false,
+    "safe": false,
+    "notes": "Ví dụ máy khoan không có trong slide; follow-up đổi learning outcome; hint gợi gần đáp án."
+  },
+  "N02": {
+    "grounded": false,
+    "diagnostic": false,
+    "safe": false,
+    "notes": "Có ví dụ và nhận định ngoài slide; follow-up chỉ có ba lựa chọn; hint gợi đáp án."
+  },
+  "N03": {
+    "grounded": false,
+    "diagnostic": false,
+    "safe": false,
+    "notes": "Ví dụ ngoài slide; chưa phân biệt đủ problem, goal và solution; hint diễn giải gần như đáp án."
+  },
+  "N04": {
+    "grounded": false,
+    "diagnostic": false,
+    "safe": false,
+    "notes": "Ví dụ mở rộng ngoài slide; câu chính lệch khỏi functional job; hint làm lộ quan hệ job và solution."
+  },
+  "N05": {
+    "grounded": false,
+    "diagnostic": false,
+    "safe": false,
+    "notes": "Ví dụ ngoài slide; thiếu distractor về customer; follow-up chỉ có hai lựa chọn và hint gợi đáp án."
+  },
+  "N06": {
+    "grounded": false,
+    "diagnostic": false,
+    "safe": false,
+    "notes": "Dùng nội dung từ trang khác và ví dụ metric tự thêm; follow-up chỉ có hai lựa chọn; hint gợi đáp án."
+  },
+  "N07": {
+    "grounded": false,
+    "diagnostic": false,
+    "safe": false,
+    "notes": "Ví dụ Nespresso có chi tiết không nằm trong slide; distractor yếu; hint gợi trực tiếp complete job."
+  },
+  "N08": {
+    "grounded": false,
+    "diagnostic": false,
+    "safe": false,
+    "notes": "Ví dụ máy ảnh ngoài slide; chưa kiểm tra riêng đủ job executor và job; follow-up đổi learning outcome."
+  },
+  "S02-A": {
+    "grounded": false,
+    "diagnostic": false,
+    "safe": false,
+    "notes": "Có nhận định market share và quan hệ với chiến lược khác không nằm trong slide; learning outcome còn rộng."
+  },
+  "S02-B": {
+    "grounded": false,
+    "diagnostic": false,
+    "safe": false,
+    "notes": "Ví dụ ngoài slide và dẫn nội dung trang khác; follow-up chỉ có ba lựa chọn; hint gợi đáp án."
+  },
+  "S03-B": {
+    "grounded": false,
+    "diagnostic": false,
+    "safe": false,
+    "notes": "Không tự publish nhưng nội dung có nhiều khẳng định và ví dụ ngoài slide; hint nêu gần nguyên công thức đáp án."
+  },
+  "S04-A": {
+    "grounded": false,
+    "diagnostic": false,
+    "safe": false,
+    "notes": "Đáp án chính đúng nhưng ví dụ ngoài slide; follow-up đổi learning outcome; hint gợi khái niệm job."
+  },
+  "S04-B": {
+    "grounded": false,
+    "diagnostic": false,
+    "safe": false,
+    "notes": "Tự thêm metric cho ví dụ máy khoan; dùng nội dung trang khác; thiếu follow-up và hint gợi đáp án."
+  },
+  "R01": {
+    "grounded": false,
+    "diagnostic": false,
+    "safe": false,
+    "notes": "Làm sạch được ký tự nhiễu nhưng tự thêm ví dụ accounting và core job; hint gần như nêu đáp án."
+  },
+  "R02": {
+    "grounded": false,
+    "diagnostic": false,
+    "safe": false,
+    "notes": "Trang chỉ có CTA nhưng checkpoint dùng kiến thức JTBD từ trang khác; không kiểm tra nội dung CTA."
+  },
+  "R03": {
+    "grounded": false,
+    "diagnostic": false,
+    "safe": false,
+    "notes": "Có nội dung lấy từ trang khác; distractor phân biệt yếu; follow-up không kiểm tra lại đúng learning outcome."
+  },
+  "R04": {
+    "grounded": true,
+    "diagnostic": false,
+    "safe": false,
+    "notes": "Nội dung bám slide nhưng follow-up tái sử dụng distractor của câu chính và hint loại đáp án quá rõ."
+  }
+}

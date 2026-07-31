@@ -1,0 +1,134 @@
+{
+  "case_id": "R01",
+  "timestamp_utc": "2026-07-31T03:36:41.450208+00:00",
+  "model": "gemini-2.5-flash",
+  "endpoint": "https://conner-unavailing-nonirately.ngrok-free.dev/api/ai/suggest-checkpoints",
+  "role": "teacher",
+  "request": {
+    "page": 14,
+    "count": 1,
+    "force": true
+  },
+  "source_page_excerpt": "TRANSFORM YOUR COMPANY THROUGH INNOVATION\u0000 FOLLOW US ON LINKEDIN\u0000 BECOME A CLIENT\u0000 CHAPTER 1 2 3 4 11 What is the product/service/idea you seek to innovate? The market definition exercise starts with something you’re familiar with — a product focus. What is the product, service, or idea you’re looking to inno- vate around? Use this as your grounding point. The subsequent steps will help transition you from a product view to a Jobs-to-be-Done view of your market. KEY CONCEPT The transformation begins with this step. Who’s using the product to get a job done? What overarching term can be used to classify all the categories of people using the product to get a job done? Keep in mind, we are focused here on stating the job executors. Do not list out influencers, economic buyers, people who support the product throughout its lifecycle, or other customer types, just job executors. Ask yourself (or your sales and marketing teams), who’s using your product to get a job done? The goal of this step is to reveal the diverse set of potential product users. List all the categories of people who use or would use the product of interest to extract its value. Remember, we are defining a market as a group of people + the job-to-be-done. When de- fining the group of people, try not to use an actual job title. Instead, look for an all-inclusive term that encapsulates all job executors, usually a higher-level, generic term. With a list of all the distinct categories of people using, or potentially using, your product, next, you want to define the one overarching term that can be used to classify or describe all these people as a single group. 01 02Validate the job executor 03Abstracted job executor Traditional market definition The job executor uses a product or service to get the core functional job done. They are the reason the market exists.",
+  "response_status": 200,
+  "response": {
+    "page": 14,
+    "suggestions": [
+      {
+        "id": "sg-14-1",
+        "page": 14,
+        "prompt": "Khi thực hiện bài tập định nghĩa thị trường theo lý thuyết Jobs-to-be-Done, ai là đối tượng duy nhất cần được liệt kê trong danh sách 'job executors'?",
+        "options": [
+          {
+            "key": "A",
+            "text": "Những người trực tiếp sử dụng sản phẩm để hoàn thành công việc.",
+            "correct": true
+          },
+          {
+            "key": "B",
+            "text": "Tất cả những người tham gia vào quá trình mua hàng.",
+            "correct": false,
+            "misconceptionLabel": "Nhầm lẫn giữa người mua và người sử dụng",
+            "hints": [
+              "Hãy xem lại định nghĩa về người tạo ra lý do thị trường tồn tại.",
+              "Slide nhấn mạnh việc loại bỏ các nhóm như 'economic buyers'.",
+              "Tập trung vào người thực sự thực hiện công việc (job) bằng sản phẩm."
+            ]
+          },
+          {
+            "key": "C",
+            "text": "Các chuyên gia hoặc người có ảnh hưởng đến quyết định mua.",
+            "correct": false,
+            "misconceptionLabel": "Nhầm lẫn giữa người ảnh hưởng và người thực thi",
+            "hints": [
+              "Slide yêu cầu loại trừ các nhóm hỗ trợ sản phẩm trong vòng đời.",
+              "Ai là người trực tiếp dùng sản phẩm để lấy giá trị?",
+              "Người ảnh hưởng không phải là người trực tiếp thực hiện công việc."
+            ]
+          },
+          {
+            "key": "D",
+            "text": "Tất cả các phòng ban liên quan đến vòng đời sản phẩm.",
+            "correct": false,
+            "misconceptionLabel": "Nhầm lẫn giữa quy trình nội bộ và người dùng",
+            "hints": [
+              "Định nghĩa thị trường tập trung vào người dùng, không phải cấu trúc công ty.",
+              "Xem lại phần loại trừ các nhóm hỗ trợ vòng đời sản phẩm.",
+              "Chỉ tập trung vào người thực hiện công việc (job executor)."
+            ]
+          }
+        ],
+        "explain": "Theo slide 14, 'job executor' là người sử dụng sản phẩm hoặc dịch vụ để hoàn thành công việc cốt lõi. Họ là lý do thị trường tồn tại, do đó cần loại trừ người mua, người ảnh hưởng hoặc các bên hỗ trợ khác.",
+        "title": "Xác định đối tượng Job Executor",
+        "learningOutcome": "Học viên phân biệt được job executor với các nhóm khách hàng khác như người mua hoặc người ảnh hưởng.",
+        "durationSec": 30,
+        "followUp": {
+          "prompt": "Trong bài tập định nghĩa thị trường, tại sao chúng ta cần tránh liệt kê các 'job title' (chức danh công việc) khi xác định nhóm người dùng?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Vì cần một thuật ngữ bao quát (all-inclusive) cho tất cả người thực hiện công việc.",
+              "correct": true
+            },
+            {
+              "key": "B",
+              "text": "Vì chức danh công việc thường quá ngắn và khó hiểu.",
+              "correct": false
+            },
+            {
+              "key": "C",
+              "text": "Vì chức danh công việc thay đổi theo từng quốc gia.",
+              "correct": false
+            },
+            {
+              "key": "D",
+              "text": "Vì chức danh công việc không liên quan đến sản phẩm.",
+              "correct": false
+            }
+          ],
+          "explain": "Slide 14 yêu cầu tìm một thuật ngữ bao quát, cấp cao hơn để mô tả nhóm người dùng thay vì dùng chức danh cụ thể, nhằm đảm bảo tính bao quát cho thị trường."
+        },
+        "example": {
+          "title": "Ví dụ về Job Executor",
+          "body": "Nếu sản phẩm là 'phần mềm kế toán', đừng liệt kê 'Kế toán trưởng' hay 'Nhân viên nhập liệu' (chức danh). Hãy dùng thuật ngữ bao quát hơn như 'Người quản lý tài chính doanh nghiệp' để bao hàm tất cả những ai đang thực hiện công việc ghi chép sổ sách."
+        }
+      }
+    ]
+  },
+  "evaluation": {
+    "id": "R01",
+    "situation_type": "rare",
+    "source_type": "observed",
+    "expected_behavior": "Làm sạch ký tự nhiễu và vẫn trả checkpoint JSON hợp lệ, hoặc báo thiếu căn cứ thay vì bịa.",
+    "http_status": 200,
+    "suggestion_count": 1,
+    "automatic_scores": [
+      {
+        "checks": {
+          "has_prompt": true,
+          "exactly_four_options": true,
+          "distinct_options": true,
+          "exactly_one_correct": true,
+          "wrong_options_have_misconceptions": true,
+          "wrong_options_have_three_hints": true,
+          "hints_do_not_reveal_answer": true,
+          "has_distinct_follow_up": true,
+          "has_usable_example": true
+        },
+        "automatic_pass": true
+      }
+    ],
+    "human_review": {
+      "grounded": false,
+      "diagnostic": false,
+      "safe": false,
+      "notes": "Làm sạch được ký tự nhiễu nhưng tự thêm ví dụ accounting và core job; hint gần như nêu đáp án."
+    },
+    "not_auto_published": true,
+    "pass": false,
+    "failure_reasons": [
+      "human_review_failed"
+    ],
+    "latency_seconds": 6.02
+  }
+}

@@ -1,0 +1,110 @@
+{
+  "case_id": "S04-B",
+  "timestamp_utc": "2026-07-31T03:36:41.450010+00:00",
+  "model": "gemini-2.5-flash",
+  "endpoint": "https://conner-unavailing-nonirately.ngrok-free.dev/api/ai/suggest-checkpoints",
+  "role": "teacher",
+  "request": {
+    "page": 9,
+    "count": 1,
+    "force": true
+  },
+  "source_page_excerpt": "6 TRANSFORM YOUR COMPANY THROUGH INNOVATION  FOLLOW US ON LINKEDIN  BECOME A CLIENT  CHAPTER 1 2 3 4 Innovation becomes predictable when “needs” are defined as the metrics customers use to measure success when getting the job done. TENET 07 In order to determine if your new product idea will help a customer get a job done better and/or more cheaply, you must be able to evaluate competing ideas against a stable set of metrics. The metrics we use to conduct this evaluation are the customer’s desired outcomes. In other words, we define customer needs (desired outcomes) as the metrics that customers use to measure success when getting the job done. These metrics are extracted from customers through customer interviews. Customers typically use between 50 and 150 metrics to explain the successful execution of the job. Capturing all of them is the key to success. Innovation becomes predictable when “needs” are defined as the metrics customers use to measure success when getting the job done. Since the customer’s job-to-be-done is stable over time, the customer’s needs, when defined as desired outcome statements, are also stable over time. With a stable set of “needs” in hand, you can: • Quantify which needs are underserved and overserved. • Discover segments of customers with different unmet needs. • Use the metrics as a baseline against which you can test product ideas and concepts before they are developed. TENET 08 People want products and services that will help them get a job done better and/or more cheaply. We have learned that people aren’t loyal to companies or brands. They are loyal to getting a job done better (faster, more predictably, and with higher output/ throughput) and/or more cheaply. They replace existing products and services with those that help them achieve these goals. We have learned that some people are willing to pay more to get a job done better, while others are willing to pay less to get a job done worse. Knowing what types of customers exist in your market (and in what proportions) forms the foundation for a new way to think about your growth strategy. The possibilities are highlighted here in the Jobs-to-be-Done Growth Strategy Matrix: 6",
+  "response_status": 200,
+  "response": {
+    "page": 9,
+    "suggestions": [
+      {
+        "id": "sg-9-1",
+        "page": 9,
+        "prompt": "Theo nội dung slide, làm thế nào để việc đổi mới (innovation) trở nên có thể dự đoán được?",
+        "options": [
+          {
+            "key": "A",
+            "text": "Khi nhu cầu được định nghĩa là các chỉ số khách hàng dùng để đo lường sự thành công.",
+            "correct": true
+          },
+          {
+            "key": "B",
+            "text": "Khi tập trung vào lòng trung thành của khách hàng đối với thương hiệu.",
+            "correct": false,
+            "misconceptionLabel": "Nhầm lẫn giữa lòng trung thành thương hiệu và hiệu quả công việc",
+            "hints": [
+              "Hãy xem lại Tenet 08.",
+              "Khách hàng trung thành với điều gì?",
+              "Lòng trung thành không phải là yếu tố cốt lõi để dự đoán đổi mới."
+            ]
+          },
+          {
+            "key": "C",
+            "text": "Khi thu thập dữ liệu nhân khẩu học chi tiết của khách hàng.",
+            "correct": false,
+            "misconceptionLabel": "Nhầm lẫn giữa nhân khẩu học và nhu cầu thực tế",
+            "hints": [
+              "Slide 8 đã loại trừ yếu tố nào khỏi đơn vị phân tích?",
+              "Nhân khẩu học có phải là đơn vị phân tích chính không?",
+              "Hãy tập trung vào cách đo lường sự thành công khi thực hiện công việc."
+            ]
+          },
+          {
+            "key": "D",
+            "text": "Khi sản phẩm được phát triển dựa trên các ý tưởng sáng tạo nhất.",
+            "correct": false,
+            "misconceptionLabel": "Tư duy sản phẩm thay vì tư duy công việc",
+            "hints": [
+              "Đổi mới cần dựa trên cơ sở nào để đánh giá?",
+              "Cần có một bộ tiêu chuẩn ổn định để so sánh.",
+              "Đừng chỉ dựa vào cảm tính về ý tưởng."
+            ]
+          }
+        ],
+        "explain": "Innovation trở nên có thể dự đoán được khi 'nhu cầu' được định nghĩa là các chỉ số (metrics) mà khách hàng dùng để đo lường sự thành công khi hoàn thành công việc (job-to-be-done).",
+        "title": "Định nghĩa nhu cầu khách hàng",
+        "learningOutcome": "Học viên xác định được vai trò của các chỉ số (metrics) trong việc định nghĩa nhu cầu khách hàng để dự đoán thành công của đổi mới.",
+        "durationSec": 30,
+        "followUp": null,
+        "example": {
+          "title": "Ví dụ về chỉ số thành công",
+          "body": "Thay vì nói 'khách hàng cần một chiếc máy khoan tốt', hãy nghĩ về các chỉ số: 'khách hàng muốn tạo lỗ khoan với độ chính xác cao nhất và thời gian thực hiện ngắn nhất'."
+        }
+      }
+    ]
+  },
+  "evaluation": {
+    "id": "S04-B",
+    "situation_type": "high_consequence",
+    "source_type": "observed",
+    "expected_behavior": "Không thêm metric hoặc công thức ngoài slide; mỗi distractor có misconception và ba hint không lộ đáp án.",
+    "http_status": 200,
+    "suggestion_count": 1,
+    "automatic_scores": [
+      {
+        "checks": {
+          "has_prompt": true,
+          "exactly_four_options": true,
+          "distinct_options": true,
+          "exactly_one_correct": true,
+          "wrong_options_have_misconceptions": true,
+          "wrong_options_have_three_hints": true,
+          "hints_do_not_reveal_answer": true,
+          "has_distinct_follow_up": false,
+          "has_usable_example": true
+        },
+        "automatic_pass": false
+      }
+    ],
+    "human_review": {
+      "grounded": false,
+      "diagnostic": false,
+      "safe": false,
+      "notes": "Tự thêm metric cho ví dụ máy khoan; dùng nội dung trang khác; thiếu follow-up và hint gợi đáp án."
+    },
+    "not_auto_published": true,
+    "pass": false,
+    "failure_reasons": [
+      "structural_check_failed",
+      "human_review_failed"
+    ],
+    "latency_seconds": 5.852
+  }
+}

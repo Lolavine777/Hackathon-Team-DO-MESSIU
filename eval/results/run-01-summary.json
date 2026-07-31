@@ -1,0 +1,45 @@
+{
+  "run_id": "run-01",
+  "model": "gemini-2.5-flash",
+  "total": 20,
+  "passed": 3,
+  "failed": 17,
+  "pass_rate": 15.0,
+  "quality_bar": {
+    "overall_percent": 80,
+    "hard_conditions": [
+      "Không bịa kiến thức ngoài nội dung slide.",
+      "Mỗi checkpoint có đúng một đáp án đúng.",
+      "Không hint nào tiết lộ đáp án."
+    ]
+  },
+  "failure_reason_counts": {
+    "human_review_failed": 17,
+    "structural_check_failed": 1
+  },
+  "passed_case_ids": [
+    "S01-A",
+    "S01-B",
+    "S03-A"
+  ],
+  "failed_case_ids": [
+    "N01",
+    "N02",
+    "N03",
+    "N04",
+    "N05",
+    "N06",
+    "N07",
+    "N08",
+    "S02-A",
+    "S02-B",
+    "S03-B",
+    "S04-A",
+    "S04-B",
+    "R01",
+    "R02",
+    "R03",
+    "R04"
+  ],
+  "human_review_complete": true
+}

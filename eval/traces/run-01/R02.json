@@ -1,0 +1,134 @@
+{
+  "case_id": "R02",
+  "timestamp_utc": "2026-07-31T03:36:41.450448+00:00",
+  "model": "gemini-2.5-flash",
+  "endpoint": "https://conner-unavailing-nonirately.ngrok-free.dev/api/ai/suggest-checkpoints",
+  "role": "teacher",
+  "request": {
+    "page": 48,
+    "count": 1,
+    "force": true
+  },
+  "source_page_excerpt": "45 TRANSFORM YOUR COMPANY THROUGH INNOVATION  FOLLOW US ON LINKEDIN  BECOME A CLIENT  TRANSFORM YOUR COMPANY THROUGH INNOVATION  • FOLLOW US ON LINKEDIN  • BECOME A CLIENT ",
+  "response_status": 200,
+  "response": {
+    "page": 48,
+    "suggestions": [
+      {
+        "id": "sg-48-1",
+        "page": 48,
+        "prompt": "Theo nội dung đã học, việc áp dụng Jobs-to-be-Done và job map mang lại lợi ích gì chính yếu cho doanh nghiệp?",
+        "options": [
+          {
+            "key": "A",
+            "text": "Tạo cách thức hiệu quả và đáng tin cậy để định nghĩa và thực thi lộ trình sản phẩm.",
+            "correct": true
+          },
+          {
+            "key": "B",
+            "text": "Tăng cường ngân sách cho các chiến dịch quảng cáo truyền thống.",
+            "correct": false,
+            "misconceptionLabel": "Nhầm lẫn giữa mục tiêu và công cụ",
+            "hints": [
+              "Xem xét lại mục đích của việc thấu hiểu khách hàng.",
+              "Jobs-to-be-Done tập trung vào giá trị khách hàng thay vì chi phí.",
+              "Tập trung vào việc giúp khách hàng hoàn thành công việc."
+            ]
+          },
+          {
+            "key": "C",
+            "text": "Thay thế hoàn toàn các công nghệ hiện có bằng công nghệ mới.",
+            "correct": false,
+            "misconceptionLabel": "Nhầm lẫn giữa công nghệ và công việc",
+            "hints": [
+              "Công nghệ có thể thay đổi nhưng công việc thì ổn định.",
+              "Jobs-to-be-Done không ép buộc thay đổi công nghệ.",
+              "Trọng tâm là giúp khách hàng hoàn thành công việc tốt hơn."
+            ]
+          },
+          {
+            "key": "D",
+            "text": "Loại bỏ vai trò của đội ngũ marketing trong doanh nghiệp.",
+            "correct": false,
+            "misconceptionLabel": "Hiểu sai về sự phối hợp chức năng",
+            "hints": [
+              "Các bộ phận cần phối hợp cùng nhau.",
+              "Jobs-to-be-Done giúp các bộ phận hiểu chung về khách hàng.",
+              "Mục tiêu là sự đồng nhất trong tổ chức."
+            ]
+          }
+        ],
+        "explain": "Jobs-to-be-Done cung cấp một cách tiếp cận nhất quán để định nghĩa và thực thi lộ trình sản phẩm, giúp doanh nghiệp tập trung vào việc giúp khách hàng hoàn thành công việc của họ.",
+        "title": "Lợi ích của Jobs-to-be-Done",
+        "learningOutcome": "Học viên xác định được vai trò cốt lõi của Jobs-to-be-Done trong việc định hướng chiến lược sản phẩm.",
+        "durationSec": 30,
+        "followUp": {
+          "prompt": "Mục tiêu duy nhất của doanh nghiệp khi áp dụng Jobs-to-be-Done là gì?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Giúp khách hàng hoàn thành công việc của họ.",
+              "correct": true
+            },
+            {
+              "key": "B",
+              "text": "Tối đa hóa số lượng tính năng sản phẩm.",
+              "correct": false
+            },
+            {
+              "key": "C",
+              "text": "Tăng cường quyền lực cho đội ngũ R&D.",
+              "correct": false
+            },
+            {
+              "key": "D",
+              "text": "Thay đổi hoàn toàn quy trình vận hành nội bộ.",
+              "correct": false
+            }
+          ],
+          "explain": "Mục tiêu cốt lõi là tập trung vào việc hỗ trợ khách hàng hoàn thành công việc (job) mà họ đang cố gắng thực hiện."
+        },
+        "example": {
+          "title": "Ví dụ về sự tập trung",
+          "body": "Thay vì tranh cãi xem tính năng nào 'kêu to nhất', đội ngũ sử dụng job map để xem tính năng nào giúp khách hàng hoàn thành các bước trong công việc của họ hiệu quả hơn."
+        }
+      }
+    ]
+  },
+  "evaluation": {
+    "id": "R02",
+    "situation_type": "rare",
+    "source_type": "observed",
+    "expected_behavior": "Nếu sinh checkpoint thì chỉ hỏi nội dung CTA có trên trang; không tự thêm kiến thức JTBD từ trang trước.",
+    "http_status": 200,
+    "suggestion_count": 1,
+    "automatic_scores": [
+      {
+        "checks": {
+          "has_prompt": true,
+          "exactly_four_options": true,
+          "distinct_options": true,
+          "exactly_one_correct": true,
+          "wrong_options_have_misconceptions": true,
+          "wrong_options_have_three_hints": true,
+          "hints_do_not_reveal_answer": true,
+          "has_distinct_follow_up": true,
+          "has_usable_example": true
+        },
+        "automatic_pass": true
+      }
+    ],
+    "human_review": {
+      "grounded": false,
+      "diagnostic": false,
+      "safe": false,
+      "notes": "Trang chỉ có CTA nhưng checkpoint dùng kiến thức JTBD từ trang khác; không kiểm tra nội dung CTA."
+    },
+    "not_auto_published": true,
+    "pass": false,
+    "failure_reasons": [
+      "human_review_failed"
+    ],
+    "latency_seconds": 5.755
+  }
+}
