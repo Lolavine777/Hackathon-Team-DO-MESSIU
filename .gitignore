@@ -7,3 +7,6 @@ frontend/dist/
 backend/.venv/
 __pycache__/
 *.pyc
+
+
+bash.exe.stackdump
