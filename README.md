@@ -23,7 +23,7 @@ Prototype hiện nằm trong `frontend/` và `backend/`.
 AI Spec nằm tại `spec.md`.
 Bộ kiểm thử, kết quả các lần chạy và hướng dẫn cải thiện nằm tại `eval/`.
 Feedback từ vòng user test nằm tại `validation/`.
-Slide demo sẽ được thêm dưới tên `demo-slides.pdf`.
+Slide demo nằm ở `demo-slides.pptx` và `demo-slides.pdf`.
 
 - Thời lượng: **1,5 ngày** (một ngày build + một buổi demo)
 - Nhóm: **4-5 người** · zone tối đa 5 nhóm · thi theo lớp
@@ -41,7 +41,7 @@ Slide demo sẽ được thêm dưới tên `demo-slides.pdf`.
 | `02-guide.md` | Hướng dẫn 5 giai đoạn: khám phá → spec → build → đo & validate → demo |
 | `03-template-ai-spec.md` | Template AI Spec (nộp 23:59 ngày 1) |
 | `04-rubric.md` | Rubric 100 điểm (25 nộp checkpoint + 75 chấm bài) + checklist xác minh 6 mốc |
-| `data/` | Dữ liệu thật đã ẩn danh: chatlog VLearn tutor + 6 transcript bài giảng + 2 bộ slide bản hackathon — dùng để tìm bằng chứng và xây golden set |
+| `data/` | Không commit data pack trong bản nộp; bằng chứng đã tổng hợp trong `spec.md`, `docs/problem-space/` và `eval/` |
 | `tham-khao/` | JTBD Playbook (PDF) + worksheet JTBD đầy đủ — đọc khi muốn đào sâu |
 
 ## Lịch — 6 mốc
@@ -66,8 +66,10 @@ Một repo nhóm, cấu trúc như sau. Spec chốt lúc 23:59 ngày 1; bản ho
 repo/
 ├── README.md          ← thành viên (mã HV + tên) + phân công có tên từng phần
 ├── spec.md            ← AI Spec theo 03-template-ai-spec.md
-├── demo-slides.pdf    ← slide 6 trang theo 02-guide.md §5.1
-├── codebase/          ← prototype (ghi rõ phần nào mock)
+├── demo-slides.pptx  ← deck có thể chỉnh sửa, 6 trang
+├── demo-slides.pdf   ← bản nộp 6 trang theo 02-guide.md §5.1
+├── backend/          ← FastAPI prototype và AI/rule engine
+├── frontend/         ← React/Vite teacher + learner UI
 ├── eval/              ← golden set + bảng kết quả các lượt chạy
 ├── validation/        ← feedback log từ vòng user test
 └── reflection/        ← mỗi người 1 file
@@ -87,7 +89,7 @@ Tổng **100 điểm = 25 điểm nộp checkpoint + 75 điểm chấm bài nộ
 | R2 · Lát cắt & thiết kế | 15 | `spec.md` §4 |
 | R3 · Chỗ khó & kịch bản rủi ro | 11 | `spec.md` §5-§6 |
 | R4 · Kiểm thử | 15 | `spec.md` §7 + `eval/` |
-| R5 · Prototype chạy được | 8 | `codebase/` + demo |
+| R5 · Prototype chạy được | 8 | `backend/` + `frontend/` + demo |
 | R6 · Validation với user | 8 | `validation/` |
 | R7 · Quy trình & repo | 3 | cấu trúc repo |
 

@@ -30,7 +30,7 @@ Loại: [ ] Tối ưu tính năng có sẵn  [x] Tính năng mới
 - Giới hạn bằng chứng: mẫu được thu thập thuận tiện và câu hỏi tập trung nhiều vào giờ thực hành, nên chưa đại diện cho toàn bộ học viên hoặc mọi phiên lecture trên VLearn.
 - Cơ sở mining: chatlog có số đếm và ví dụ nguyên văn nhưng phản ánh hành vi hỏi tutor, vì vậy chỉ được dùng làm bằng chứng gián tiếp cho nhu cầu tín hiệu hiểu bài trong lecture.
 
-Nguồn đầy đủ nằm tại `docs/problem-space/servey_learner.txt`, `docs/problem-space/servey_teacher.txt`, `docs/problem-space/lms-du-lieu-khong-hanh-dong.md` và `data/vlearn-pack/chatlog/DATA_DICTIONARY.md`.
+Nguồn đầy đủ nằm tại `docs/problem-space/servey_learner.txt`, `docs/problem-space/servey_teacher.txt` và `docs/problem-space/lms-du-lieu-khong-hanh-dong.md`.
 
 ## §2. Impact & quyết định chọn
 
@@ -81,16 +81,16 @@ Tỷ lệ đúng, Class Pulse, trạng thái lớp và đề xuất can thiệp 
   - Không để LLM tính tỷ lệ, trạng thái Class Pulse hoặc recovery.
 - Mức prototype nhắm tới: [ ] Sketch [ ] Mock [x] Working.
 - Phần thật: gọi `gemini-2.5-flash`, tạo checkpoint, duyệt bản nháp, vòng đời checkpoint, gửi phản hồi, Class Pulse, intervention, follow-up và báo cáo.
-- Phần mock: roster và phản hồi của khoảng 152 học viên do simulator tạo; dữ liệu phiên nằm trong RAM; xác thực mới dựa trên role header.
+- Phần mock: dữ liệu phiên nằm trong RAM; presence và phản hồi chỉ đến từ client thực sự kết nối; xác thực hiện mới dựa trên role header, chưa có auth/roster LMS thật.
 - Automation: [x] augment [ ] conditional [ ] automate.
 - Lý do: câu hỏi, đáp án hoặc giải thích sai có thể làm cả lớp học sai, nên AI chỉ soạn bản nháp và giảng viên giữ quyền sửa, bỏ hoặc kích hoạt.
 
 ### Hợp đồng nguồn cho AI
 
 - Checkpoint phải kiểm tra đúng một learning outcome thuộc slide hiện tại.
-- Model nhận toàn bộ phần chữ của slide hiện tại và ngữ cảnh giới hạn từ các slide trước để hiểu thuật ngữ và mạch bài.
+- Model nhận phần chữ của đúng slide hiện tại để tạo checkpoint; đây là hợp đồng nguồn của flow chính trong prototype.
 - Nội dung factual trong prompt, đáp án, giải thích, distractor, follow-up và ví dụ phải có căn cứ trong gói ngữ cảnh slide được cấp.
-- Slide trước chỉ hỗ trợ diễn giải mạch bài; checkpoint không được chuyển trọng tâm sang learning outcome của slide trước.
+- Các tính năng phụ có thể đọc ngữ cảnh giới hạn từ slide trước để hỗ trợ diễn giải, nhưng checkpoint không được chuyển trọng tâm sang learning outcome của slide trước.
 - Nếu trang nằm ngoài tài liệu hoặc gần như không có chữ, hệ thống trả lỗi rõ ràng và không gọi model để bịa nội dung.
 
 ### §4b. Nguyên tắc đã áp dụng
