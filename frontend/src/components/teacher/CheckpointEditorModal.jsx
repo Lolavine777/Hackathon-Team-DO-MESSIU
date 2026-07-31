@@ -12,12 +12,32 @@ import { IconAdd, IconCheck } from '../../lib/icons.js'
 const MAX_OPTIONS = 6
 const blank = () => ({ text: '', correct: false, misconceptionLabel: '', hints: [] })
 
+// Trợ lý chỉ gắn nhãn hiểu nhầm và hint cho phương án sai của câu chính, còn phương án
+// của câu kiểm tra lại thì không có hai khoá đó — mọi phương án phải qua đây trước khi
+// vào form, nếu không lúc lưu sẽ đọc `.trim()` trên `undefined`.
+const toOption = (option) => ({ ...blank(), ...option })
+
+// Bản nháp do LLM sinh ra nên không khoá nào là chắc chắn có: đọc thẳng `.trim()` là hỏng cả
+// lượt lưu, mà giảng viên thì không sửa lại được gì từ thông báo đó.
+const text = (value) => (typeof value === 'string' ? value.trim() : '')
+
 const toPayload = (option) => ({
-  text: option.text.trim(),
+  text: text(option.text),
   correct: Boolean(option.correct),
-  misconception_label: option.correct ? '' : option.misconceptionLabel.trim(),
+  misconception_label: option.correct ? '' : text(option.misconceptionLabel),
   hints: option.hints ?? [],
 })
+
+const usable = (options) =>
+  options.length >= 2 && options.filter((option) => option.correct).length === 1
+
+/** Câu kiểm tra lại là tuỳ chọn: nháp hỏng thì bỏ đi để server hỏi lại chính câu chính. */
+const toFollowUp = (followUp) => {
+  if (!text(followUp?.prompt)) return null
+  const options = (followUp.options ?? []).map(toPayload).filter((option) => option.text)
+  if (!usable(options)) return null
+  return { prompt: text(followUp.prompt), explain: text(followUp.explain), options }
+}
 
 /**
  * Trình soạn checkpoint. Bản nháp có thể đến từ trợ lý hoặc từ một checkpoint đã có;
@@ -37,8 +57,14 @@ export default function CheckpointEditorModal({ draft, onClose, onSaved }) {
       learningOutcome: draft.learningOutcome ?? '',
       durationSec: draft.durationSec ?? 30,
       explain: draft.explain ?? '',
-      options: (draft.options ?? []).map((option) => ({ ...blank(), ...option })),
-      followUp: draft.followUp ?? null,
+      options: (draft.options ?? []).map(toOption),
+      followUp: draft.followUp
+        ? {
+            prompt: draft.followUp.prompt ?? '',
+            explain: draft.followUp.explain ?? '',
+            options: (draft.followUp.options ?? []).map(toOption),
+          }
+        : null,
       example: draft.example ?? null,
     })
   }, [draft])
@@ -50,9 +76,9 @@ export default function CheckpointEditorModal({ draft, onClose, onSaved }) {
     patch({ options: form.options.map((o, i) => (i === index ? { ...o, ...changes } : o)) })
 
   const save = async () => {
-    const options = form.options.filter((option) => option.text.trim())
-    if (!form.title.trim() || !form.prompt.trim()) return toast('Cần cả tiêu đề và nội dung câu hỏi.')
-    if (!form.learningOutcome.trim()) return toast('Hãy ghi learning outcome cho checkpoint này.')
+    const options = form.options.map(toPayload).filter((option) => option.text)
+    if (!text(form.title) || !text(form.prompt)) return toast('Cần cả tiêu đề và nội dung câu hỏi.')
+    if (!text(form.learningOutcome)) return toast('Hãy ghi learning outcome cho checkpoint này.')
     if (options.length < 2) return toast('Cần ít nhất 2 phương án có nội dung.')
     if (options.filter((option) => option.correct).length !== 1)
       return toast('Hãy đánh dấu đúng một phương án là đáp án đúng.')
@@ -61,19 +87,13 @@ export default function CheckpointEditorModal({ draft, onClose, onSaved }) {
     try {
       const created = await createCheckpoint({
         page: draft.page ?? page,
-        title: form.title.trim(),
-        prompt: form.prompt.trim(),
-        learning_outcome: form.learningOutcome.trim(),
+        title: text(form.title),
+        prompt: text(form.prompt),
+        learning_outcome: text(form.learningOutcome),
         duration_sec: Number(form.durationSec) || 30,
-        explain: form.explain.trim(),
-        options: options.map(toPayload),
-        follow_up: form.followUp?.prompt
-          ? {
-              prompt: form.followUp.prompt.trim(),
-              explain: form.followUp.explain ?? '',
-              options: (form.followUp.options ?? []).map(toPayload),
-            }
-          : null,
+        explain: text(form.explain),
+        options,
+        follow_up: toFollowUp(form.followUp),
         example: form.example,
       })
       toast(`Đã tạo Checkpoint #${created.order}, sẵn sàng kích hoạt.`)
