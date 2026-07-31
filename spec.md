@@ -147,6 +147,7 @@ Các case thường, hiếm và mapping chi tiết nằm trong `eval/golden-set.
 | Lượt chạy | Model | Guardrail đạt | Nội dung AI đạt | Tổng đạt | Tỷ lệ | So với bar | Bằng chứng |
 |---|---|---:|---:|---:|---:|---|---|
 | run-01 | gemini-2.5-flash | 3/3 | 0/17 | 3/20 | 15% | Không đạt | `eval/results/run-01.jsonl` |
+| run-02 | gemini-2.5-flash | 3/3 | 14/17 | 17/20 | 85% | Đạt ngưỡng tổng | `eval/results/run-02.jsonl` |
 
 Ba case đạt là guardrail S01-A, S01-B và S03-A.
 
@@ -159,6 +160,14 @@ Kết quả `run-01` là baseline vội nhưng được giữ nguyên để bả
 Human review và 20 trace gốc nằm trong `eval/human-review.json` và `eval/traces/run-01/`.
 
 Mỗi lượt sau phải dùng review file riêng, giữ nguyên artifact các lượt trước và báo cáo đủ cả case đạt lẫn chưa đạt.
+
+`run-02` tăng 14 case đạt, tương đương 70 điểm phần trăm so với `run-01`.
+
+Ba case chưa đạt là N06, S02-A và S03-B, chủ yếu vì follow-up chưa tạo phép kiểm tra lại đủ khác biệt; S03-B đồng thời thiếu follow-up hợp lệ sau guardrail.
+
+Không case `run-02` nào bị review đánh fail grounded hoặc safe.
+
+Review `run-02` do AI thực hiện theo rubric trong `eval/README.md`; provenance này phải được nêu khi trình bày kết quả.
 
 ## §8. Phân công & kế hoạch
 
@@ -173,9 +182,11 @@ Mỗi lượt sau phải dùng review file riêng, giữ nguyên artifact các l
 
 | Người dùng | Vai trò thử | Trạng thái |
 |---|---|---|
-| Sái Hoài Nam - học viên Khóa 4 AI20K | Learner flow | Đã đồng ý tham gia buổi thử |
-| Nguyễn Quang Sơn - học viên Khóa 4 AI20K | Teacher flow | Đã đồng ý tham gia buổi thử |
-| Một lab coach được mời | Teacher flow và learner flow, team vận hành đầu còn lại | Đang tuyển người tham gia |
+| Sái Hoài Nam - học viên Khóa 4 AI20K | Learner flow | Đã thử và có quote trong `validation/README.md` |
+| Nguyễn Quang Sơn - học viên Khóa 4 AI20K | Flow tương tác và yêu cầu hỗ trợ | Đã thử và có quote trong `validation/README.md` |
+| Lab coach C401 sáng Day 2 | Teacher flow và đánh giá ý tưởng | Đã thử; cần bổ sung tên đầy đủ nếu lấy được |
+| AI mô phỏng - học viên ít chủ động | Learner flow | Đã thử, ghi nhãn AI mô phỏng |
+| AI mô phỏng - lab coach | Teacher flow | Đã thử, ghi nhãn AI mô phỏng |
 
 Nguyễn Đăng Long tổ chức và ghi log cho hai phiên đã có người đồng ý.
 
@@ -183,7 +194,7 @@ Mỗi người thực hiện một phiên khoảng 10 phút.
 
 Log phải ghi task, điều quan sát được, quote nguyên văn, mức nghiêm trọng và câu trả lời cho ba câu hỏi: điều khó hiểu nhất, mức độ tin kết quả và khả năng dùng thật.
 
-Mục tiêu CP5 là có ít nhất 5 mẩu feedback từ ít nhất 5 người ngoài nhóm, trong đó có Nam và Sơn.
+Snapshot CP5 có 5 lượt validation, gồm 3 người thật và 2 lượt AI mô phỏng được ghi rõ provenance theo cách ban tổ chức cho phép.
 
 ### Multi-prototype
 
@@ -194,10 +205,10 @@ Mục tiêu CP5 là có ít nhất 5 mẩu feedback từ ít nhất 5 người n
 
 ### Việc tiếp theo
 
-1. Chiến cải thiện prompt theo hợp đồng nguồn và chạy trọn `run-02` bằng quy trình review tách riêng.
-2. Long kiểm tra artifact eval, tổng hợp tỷ lệ so với quality bar và giữ nguyên `run-01`.
-3. Quân rà teacher flow và learner flow theo bốn đường đi trong §6.
-4. Long tổ chức validation; Tấn điều phối dry run, demo cuối và bảo đảm mỗi thành viên giải thích được phần mình phụ trách.
+1. Long kiểm tra độc lập ba case fail của `run-02` và giữ nguyên artifact `run-01`.
+2. Quân rà teacher flow và learner flow theo bốn đường đi trong §6.
+3. Chiến hoàn thiện slide và nêu rõ provenance của review AI.
+4. Tấn điều phối dry run, demo cuối và bảo đảm mỗi thành viên giải thích được phần mình phụ trách.
 
 ## §9. Changelog
 
@@ -211,3 +222,5 @@ Mục tiêu CP5 là có ít nhất 5 mẩu feedback từ ít nhất 5 người n
 | 31/07/2026 | Chọn checkpoint toàn lớp thay cho ticket hỗ trợ cá nhân | Phù hợp pain point ban đầu và phục vụ quyết định trong lecture |
 | 31/07/2026 | Chốt slide hiện tại là mục tiêu kiểm tra và các slide trước là ngữ cảnh giới hạn | Đồng bộ spec với product flow và `slides.context_for()` |
 | 31/07/2026 | Chốt phân công theo vai trò và commit history | Bảo đảm mỗi deliverable có người chịu trách nhiệm cụ thể |
+| 31/07/2026 | Giới hạn context về một slide, thêm guardrail prompt và ghi nhận `run-02` đạt 17/20 | Khắc phục factual claim vượt nguồn, hint lộ đáp án và output thiếu cấu trúc ở `run-01` |
+| 31/07/2026 | Giữ core flow và bổ sung chỉ dẫn demo về checkpoint mẫu cùng ba trạng thái Pulse | Nam thấy một số trạng thái và nút chưa rõ; lượt AI mô phỏng cũng gặp friction khi slide chưa có checkpoint |
