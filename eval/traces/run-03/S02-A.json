@@ -1,0 +1,131 @@
+{
+  "case_id": "S02-A",
+  "timestamp_utc": "2026-07-31T06:37:30.099485+00:00",
+  "model": "gemini-2.5-flash",
+  "endpoint": "https://conner-unavailing-nonirately.ngrok-free.dev/api/ai/suggest-checkpoints",
+  "role": "teacher",
+  "request": {
+    "page": 3,
+    "count": 1,
+    "force": true
+  },
+  "source_page_excerpt": "TRANSFORM YOUR COMPANY THROUGH INNOVATION  FOLLOW US ON LINKEDIN  BECOME A CLIENT  This playbook will teach you the tenets of Jobs-to-be-Done and how to apply them in your own organization, whatever your position — just like Arm & Hammer did to grow year-over-year revenue by more than 30%. Or like Microsoft did to turn around a flailing business and double revenue.  And how Bosch entered a new market with a top-selling and top-rated circular saw.  Or how Cox Automotive increased its product install base by 20X.  You get the picture. A R E Y O U R E A D Y T O S E E R E S U LT S L I K E T H E S E F O R Y O U R O W N B U S I N E S S ? THEN IT’S TIME TO DIVE INTO JOBS-TO-BE-DONE CHAPTER 01 CHAPTER 02 CHAPTER 03 CHAPTER 04 1 9 18 31 What is Jobs-to-be-Done? Define Your Market Build Your Job Map & Visualize What Your Customers Want Product, Marketing, & Executives put JTBD into Practice Table of Contents TRANSFORM YOUR COMPANY THROUGH INNOVATION  FOLLOW US ON LINKEDIN  BECOME A CLIENT ",
+  "response_status": 200,
+  "response": {
+    "page": 3,
+    "suggestions": [
+      {
+        "id": "sg-3-1",
+        "page": 3,
+        "prompt": "Playbook này hướng dẫn người học thực hiện điều gì trong tổ chức của mình?",
+        "options": [
+          {
+            "key": "A",
+            "text": "Áp dụng các nguyên tắc Jobs-to-be-Done để chuyển đổi công ty",
+            "correct": true
+          },
+          {
+            "key": "B",
+            "text": "Tăng doanh thu hàng năm lên hơn 30%",
+            "correct": false,
+            "misconceptionLabel": "Nhầm lẫn kết quả với phương pháp",
+            "hints": [
+              "Bạn đang tập trung vào con số cụ thể.",
+              "Con số này là kết quả của một trường hợp cụ thể hay là mục tiêu của playbook?",
+              "Hãy xem lại phần giới thiệu về nội dung playbook dạy bạn điều gì."
+            ]
+          },
+          {
+            "key": "C",
+            "text": "Xây dựng bản đồ công việc cho khách hàng",
+            "correct": false,
+            "misconceptionLabel": "Nhầm lẫn một phần với toàn bộ",
+            "hints": [
+              "Bạn đang chọn một bước cụ thể trong quy trình.",
+              "Đây có phải là toàn bộ nội dung mà playbook hướng dẫn không?",
+              "Hãy xem lại danh sách các chương trong mục lục."
+            ]
+          },
+          {
+            "key": "D",
+            "text": "Gia nhập thị trường mới với sản phẩm bán chạy",
+            "correct": false,
+            "misconceptionLabel": "Nhầm lẫn ví dụ với mục tiêu",
+            "hints": [
+              "Bạn đang mô tả một ví dụ thành công.",
+              "Đây có phải là mục đích chung của playbook không?",
+              "Hãy xem lại phần mô tả về những gì playbook sẽ dạy bạn."
+            ]
+          }
+        ],
+        "explain": "Playbook dạy các nguyên tắc của Jobs-to-be-Done và cách áp dụng chúng trong tổ chức để chuyển đổi công ty.",
+        "title": "Mục tiêu của Jobs-to-be-Done",
+        "learningOutcome": "Xác định được mục đích chính của việc áp dụng Jobs-to-be-Done trong tổ chức.",
+        "durationSec": 30,
+        "followUp": {
+          "prompt": "Việc áp dụng Jobs-to-be-Done trong tổ chức nhằm mục đích gì?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Để chuyển đổi công ty thông qua đổi mới",
+              "correct": true
+            },
+            {
+              "key": "B",
+              "text": "Để tăng gấp đôi doanh thu ngay lập tức",
+              "correct": false
+            },
+            {
+              "key": "C",
+              "text": "Để thực hiện các chương từ 1 đến 4",
+              "correct": false
+            },
+            {
+              "key": "D",
+              "text": "Để trở thành khách hàng của tổ chức",
+              "correct": false
+            }
+          ],
+          "explain": "Mục tiêu của việc áp dụng Jobs-to-be-Done là để chuyển đổi công ty thông qua đổi mới."
+        },
+        "example": {
+          "title": "Mục tiêu của playbook",
+          "body": "Playbook dạy các nguyên tắc của Jobs-to-be-Done và cách áp dụng chúng trong tổ chức để chuyển đổi công ty."
+        }
+      }
+    ]
+  },
+  "evaluation": {
+    "id": "S02-A",
+    "situation_type": "ambiguous",
+    "source_type": "observed",
+    "expected_behavior": "Chọn một learning outcome rõ từ trang 3 thay vì trộn nhiều khái niệm vào một câu.",
+    "http_status": 200,
+    "suggestion_count": 1,
+    "automatic_scores": [
+      {
+        "checks": {
+          "has_prompt": true,
+          "exactly_four_options": true,
+          "distinct_options": true,
+          "exactly_one_correct": true,
+          "wrong_options_have_misconceptions": true,
+          "wrong_options_have_three_hints": true,
+          "hints_do_not_reveal_answer": true,
+          "has_distinct_follow_up": true,
+          "has_usable_example": true
+        },
+        "automatic_pass": true
+      }
+    ],
+    "human_review": {
+      "status": "pending"
+    },
+    "not_auto_published": true,
+    "pass": false,
+    "failure_reasons": [
+      "human_review_incomplete"
+    ],
+    "latency_seconds": 4.503
+  }
+}

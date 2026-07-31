@@ -1,0 +1,104 @@
+{
+  "N01": {
+    "grounded": null,
+    "diagnostic": null,
+    "safe": null,
+    "notes": ""
+  },
+  "N02": {
+    "grounded": null,
+    "diagnostic": null,
+    "safe": null,
+    "notes": ""
+  },
+  "N03": {
+    "grounded": null,
+    "diagnostic": null,
+    "safe": null,
+    "notes": ""
+  },
+  "N04": {
+    "grounded": null,
+    "diagnostic": null,
+    "safe": null,
+    "notes": ""
+  },
+  "N05": {
+    "grounded": null,
+    "diagnostic": null,
+    "safe": null,
+    "notes": ""
+  },
+  "N06": {
+    "grounded": null,
+    "diagnostic": null,
+    "safe": null,
+    "notes": ""
+  },
+  "N07": {
+    "grounded": null,
+    "diagnostic": null,
+    "safe": null,
+    "notes": ""
+  },
+  "N08": {
+    "grounded": null,
+    "diagnostic": null,
+    "safe": null,
+    "notes": ""
+  },
+  "S02-A": {
+    "grounded": null,
+    "diagnostic": null,
+    "safe": null,
+    "notes": ""
+  },
+  "S02-B": {
+    "grounded": null,
+    "diagnostic": null,
+    "safe": null,
+    "notes": ""
+  },
+  "S03-B": {
+    "grounded": null,
+    "diagnostic": null,
+    "safe": null,
+    "notes": ""
+  },
+  "S04-A": {
+    "grounded": null,
+    "diagnostic": null,
+    "safe": null,
+    "notes": ""
+  },
+  "S04-B": {
+    "grounded": null,
+    "diagnostic": null,
+    "safe": null,
+    "notes": ""
+  },
+  "R01": {
+    "grounded": null,
+    "diagnostic": null,
+    "safe": null,
+    "notes": ""
+  },
+  "R02": {
+    "grounded": null,
+    "diagnostic": null,
+    "safe": null,
+    "notes": ""
+  },
+  "R03": {
+    "grounded": null,
+    "diagnostic": null,
+    "safe": null,
+    "notes": ""
+  },
+  "R04": {
+    "grounded": null,
+    "diagnostic": null,
+    "safe": null,
+    "notes": ""
+  }
+}

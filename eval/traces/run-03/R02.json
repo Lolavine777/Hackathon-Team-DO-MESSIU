@@ -1,0 +1,131 @@
+{
+  "case_id": "R02",
+  "timestamp_utc": "2026-07-31T06:38:08.396574+00:00",
+  "model": "gemini-2.5-flash",
+  "endpoint": "https://conner-unavailing-nonirately.ngrok-free.dev/api/ai/suggest-checkpoints",
+  "role": "teacher",
+  "request": {
+    "page": 48,
+    "count": 1,
+    "force": true
+  },
+  "source_page_excerpt": "45 TRANSFORM YOUR COMPANY THROUGH INNOVATION  FOLLOW US ON LINKEDIN  BECOME A CLIENT  TRANSFORM YOUR COMPANY THROUGH INNOVATION  • FOLLOW US ON LINKEDIN  • BECOME A CLIENT ",
+  "response_status": 200,
+  "response": {
+    "page": 48,
+    "suggestions": [
+      {
+        "id": "sg-48-1",
+        "page": 48,
+        "prompt": "Trang 48 yêu cầu người đọc thực hiện hành động nào?",
+        "options": [
+          {
+            "key": "A",
+            "text": "Chuyển đổi công ty thông qua đổi mới",
+            "correct": true
+          },
+          {
+            "key": "B",
+            "text": "Đăng ký khóa học chuyên sâu",
+            "correct": false,
+            "misconceptionLabel": "Nhầm lẫn về nội dung đào tạo",
+            "hints": [
+              "Bạn đang giả định trang này chứa thông tin về khóa học.",
+              "Trang này có nhắc đến từ khóa nào liên quan đến đào tạo không?",
+              "Hãy đọc lại các cụm từ xuất hiện trên trang 48."
+            ]
+          },
+          {
+            "key": "C",
+            "text": "Liên hệ trực tiếp với giảng viên",
+            "correct": false,
+            "misconceptionLabel": "Nhầm lẫn về kênh liên lạc",
+            "hints": [
+              "Bạn đang giả định có thông tin liên hệ cá nhân.",
+              "Trang này có đề cập đến giảng viên không?",
+              "Hãy kiểm tra lại các hành động được liệt kê trên trang 48."
+            ]
+          },
+          {
+            "key": "D",
+            "text": "Tải xuống tài liệu hướng dẫn",
+            "correct": false,
+            "misconceptionLabel": "Nhầm lẫn về định dạng tài liệu",
+            "hints": [
+              "Bạn đang giả định có tài liệu để tải về.",
+              "Trang này có nhắc đến việc tải tài liệu không?",
+              "Hãy xem lại các mục tiêu hành động trên trang 48."
+            ]
+          }
+        ],
+        "explain": "Trang 48 nêu rõ mục tiêu là chuyển đổi công ty thông qua đổi mới.",
+        "title": "Mục tiêu của trang 48",
+        "learningOutcome": "Xác định được các hành động được đề xuất trên trang 48.",
+        "durationSec": 30,
+        "followUp": {
+          "prompt": "Hành động nào sau đây được liệt kê trên trang 48?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Trở thành khách hàng",
+              "correct": true
+            },
+            {
+              "key": "B",
+              "text": "Gửi email phản hồi",
+              "correct": false
+            },
+            {
+              "key": "C",
+              "text": "Tham gia hội thảo trực tuyến",
+              "correct": false
+            },
+            {
+              "key": "D",
+              "text": "Đăng ký nhận bản tin",
+              "correct": false
+            }
+          ],
+          "explain": "Trang 48 đề xuất hành động trở thành khách hàng."
+        },
+        "example": {
+          "title": "Ví dụ về hành động",
+          "body": "Chuyển đổi công ty thông qua đổi mới là hành động chính được đề cập."
+        }
+      }
+    ]
+  },
+  "evaluation": {
+    "id": "R02",
+    "situation_type": "rare",
+    "source_type": "observed",
+    "expected_behavior": "Nếu sinh checkpoint thì chỉ hỏi nội dung CTA có trên trang; không tự thêm kiến thức JTBD từ trang trước.",
+    "http_status": 200,
+    "suggestion_count": 1,
+    "automatic_scores": [
+      {
+        "checks": {
+          "has_prompt": true,
+          "exactly_four_options": true,
+          "distinct_options": true,
+          "exactly_one_correct": true,
+          "wrong_options_have_misconceptions": true,
+          "wrong_options_have_three_hints": true,
+          "hints_do_not_reveal_answer": true,
+          "has_distinct_follow_up": true,
+          "has_usable_example": true
+        },
+        "automatic_pass": true
+      }
+    ],
+    "human_review": {
+      "status": "pending"
+    },
+    "not_auto_published": true,
+    "pass": false,
+    "failure_reasons": [
+      "human_review_incomplete"
+    ],
+    "latency_seconds": 4.5
+  }
+}

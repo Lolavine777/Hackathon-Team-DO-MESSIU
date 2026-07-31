@@ -1,0 +1,131 @@
+{
+  "case_id": "N02",
+  "timestamp_utc": "2026-07-31T06:36:47.703587+00:00",
+  "model": "gemini-2.5-flash",
+  "endpoint": "https://conner-unavailing-nonirately.ngrok-free.dev/api/ai/suggest-checkpoints",
+  "role": "teacher",
+  "request": {
+    "page": 5,
+    "count": 1,
+    "force": true
+  },
+  "source_page_excerpt": "2 TRANSFORM YOUR COMPANY THROUGH INNOVATION  FOLLOW US ON LINKEDIN  BECOME A CLIENT  CHAPTER 1 2 3 4 When you think about your market from this perspective, you are much more likely to create and deliver extraordinary products and services. Why? Products come and go, but the customer’s job-to-be-done is stable over time. With a stable unit of analysis, you can define customer needs that are stable over time, too, which gives you unique, robust targets for value creation. In short, using a Jobs-to-be-Done lens, you can take your understanding of customer needs to the next level. And with the right customer inputs, you can orchestrate the systematic creation of customer value across the organization. This chapter explains nine tenets of Jobs-to-be-Done Theory and prepares you for applying these tenets to grow your own business. You’ll also find out how Arm & Hammer used these tenets to turn around a streak of lackluster product launches — and grow 30%+ year-over-year. What is Jobs-to-be-Done Theory? 01 People buy products and services to get a “job” done. 02 Jobs are functional—with emotional and social components. 03 A Job-to-be-Done is stable over time. 04 A Job-to-be-Done is solution agnostic. 05 Success comes from making the job the unit of analysis, rather than the product or the customer. 06 A deep understanding of the customer’s job makes marketing more effective — and innovation far more predictable. 07 Innovation becomes predictable when “needs” are defined as the metrics cus- tomers use to measure success when getting the job done. 08 People want products and services that will help them get a job done better and/or more cheaply. 09 People seek out products and services that enable them to get the entire job done on a single platform. You can confidently rely on these nine tenets as the building blocks for predictable growth: When looking at marketing and innovation through a jobs-to-be-done lens, a theory begins to emerge. Jobs to be Done theory consists of a group of principles or tenets that form a foundation for making marketing more effective and innovation more predictable by focusing on the customer’s job-to-be-done. The theory is based on the notion that people buy products and services to get a “job” done. Jobs Theory goes on to say that by understanding in detail what that “job” entails, you are far more likely to create and market solutions that will win in the marketplace. Each of these tenets brings new insights into your company’s ",
+  "response_status": 200,
+  "response": {
+    "page": 5,
+    "suggestions": [
+      {
+        "id": "sg-5-1",
+        "page": 5,
+        "prompt": "Theo Jobs-to-be-Done Theory, đâu là đơn vị phân tích giúp tạo ra giá trị bền vững?",
+        "options": [
+          {
+            "key": "A",
+            "text": "Công việc khách hàng cần thực hiện (Job-to-be-done)",
+            "correct": true
+          },
+          {
+            "key": "B",
+            "text": "Sản phẩm hoặc dịch vụ cụ thể",
+            "correct": false,
+            "misconceptionLabel": "Nhầm lẫn giữa giải pháp và mục tiêu",
+            "hints": [
+              "Bạn đang tập trung vào vật thể thay vì mục đích.",
+              "Sản phẩm có thể thay đổi, nhưng điều gì vẫn ổn định theo thời gian?",
+              "Xem lại tenet số 05 trên slide."
+            ]
+          },
+          {
+            "key": "C",
+            "text": "Nhu cầu của khách hàng cá nhân",
+            "correct": false,
+            "misconceptionLabel": "Nhầm lẫn giữa đối tượng và công việc",
+            "hints": [
+              "Bạn đang tập trung vào người mua thay vì hành động.",
+              "Đơn vị nào giúp xác định nhu cầu ổn định theo thời gian?",
+              "Xem lại tenet số 05 trên slide."
+            ]
+          },
+          {
+            "key": "D",
+            "text": "Các tính năng của nền tảng",
+            "correct": false,
+            "misconceptionLabel": "Nhầm lẫn giữa công cụ và công việc",
+            "hints": [
+              "Bạn đang tập trung vào phương tiện thực hiện.",
+              "Liệu nền tảng có phải là đơn vị phân tích ổn định nhất?",
+              "Xem lại tenet số 05 trên slide."
+            ]
+          }
+        ],
+        "explain": "Success comes from making the job the unit of analysis, rather than the product or the customer.",
+        "title": "Đơn vị phân tích cốt lõi",
+        "learningOutcome": "Xác định đúng đơn vị phân tích trong Jobs-to-be-Done Theory để tạo giá trị.",
+        "durationSec": 30,
+        "followUp": {
+          "prompt": "Tại sao Jobs-to-be-done lại là đơn vị phân tích hiệu quả?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Vì nó ổn định theo thời gian",
+              "correct": true
+            },
+            {
+              "key": "B",
+              "text": "Vì nó giúp thay đổi khách hàng",
+              "correct": false
+            },
+            {
+              "key": "C",
+              "text": "Vì nó loại bỏ các thành phần cảm xúc",
+              "correct": false
+            },
+            {
+              "key": "D",
+              "text": "Vì nó tập trung vào giá thành sản phẩm",
+              "correct": false
+            }
+          ],
+          "explain": "A Job-to-be-Done is stable over time, which gives you unique, robust targets for value creation."
+        },
+        "example": {
+          "title": "Ví dụ về đơn vị phân tích",
+          "body": "Thay vì tập trung vào sản phẩm hay khách hàng, hãy lấy công việc khách hàng cần thực hiện làm đơn vị phân tích để tạo ra giá trị."
+        }
+      }
+    ]
+  },
+  "evaluation": {
+    "id": "N02",
+    "situation_type": "normal",
+    "source_type": "chatlog",
+    "expected_behavior": "Tạo checkpoint kiểm tra nội dung chính của trang 5, không biến tên sản phẩm thành job.",
+    "http_status": 200,
+    "suggestion_count": 1,
+    "automatic_scores": [
+      {
+        "checks": {
+          "has_prompt": true,
+          "exactly_four_options": true,
+          "distinct_options": true,
+          "exactly_one_correct": true,
+          "wrong_options_have_misconceptions": true,
+          "wrong_options_have_three_hints": true,
+          "hints_do_not_reveal_answer": true,
+          "has_distinct_follow_up": true,
+          "has_usable_example": true
+        },
+        "automatic_pass": true
+      }
+    ],
+    "human_review": {
+      "status": "pending"
+    },
+    "not_auto_published": true,
+    "pass": false,
+    "failure_reasons": [
+      "human_review_incomplete"
+    ],
+    "latency_seconds": 4.503
+  }
+}
