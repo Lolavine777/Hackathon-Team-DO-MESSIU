@@ -37,6 +37,10 @@ class FeedbackRequest(BaseModel):
 
 class PulseRequest(BaseModel):
     value: PulseValue
+    # Thiếu `user_id` thì server không biết phiếu nào là phiếu cũ của máy này nên
+    # không thay được; thiếu `page` thì phiếu rơi về trang lớp đang dạy.
+    user_id: str | None = None
+    page: int | None = Field(default=None, ge=1)
 
 
 class QuestionRequest(BaseModel):
