@@ -11,13 +11,17 @@ from .config import settings
 from .models import (
     ActionRequest,
     AnswerQuestionRequest,
+    BroadcastRequest,
     ClarificationRequest,
     DraftCheckpointRequest,
+    EchoRequest,
     ExtendRequest,
     FeedbackRequest,
+    GroupQuestionsRequest,
     LoginRequest,
     PulseRequest,
     QuestionRequest,
+    ResolveQuestionRequest,
     ResponseRequest,
     SelfTestRequest,
     SuggestRequest,
@@ -55,11 +59,12 @@ async def _generate(coro):
 
 @router.post("/auth/login")
 def login(payload: LoginRequest):
-    account = content.ACCOUNTS.get(payload.role)
-    if account is None:
+    """Không có tài khoản dựng sẵn: người dùng chọn vai trò và tự nhập tên hiển thị."""
+    label = content.ROLE_LABELS.get(payload.role)
+    if label is None:
         raise HTTPException(400, "Vai trò không hợp lệ")
     user_id = payload.user_id or f"{payload.role[:3]}_{uuid.uuid4().hex[:6]}"
-    return {**account, "id": user_id}
+    return {"role": payload.role, "name": (payload.name or "").strip() or label, "id": user_id}
 
 
 def _checkpoint_payload(cp: dict, role: str) -> dict:
@@ -106,6 +111,7 @@ def get_session(x_vlearn_role: str | None = Header(default="learner")):
         "confidenceLevels": content.CONFIDENCE_LEVELS,
         "actionCatalog": content.ACTION_CATALOG,
         "thresholds": rules.THRESHOLDS,
+        "helpCategories": content.HELP_CATEGORIES,
         "ai": settings.public(),
     }
 
@@ -278,7 +284,7 @@ def report(x_vlearn_role: str | None = Header(default=None)):
 
 @router.get("/pulse")
 def get_pulse():
-    return {"pulse": live.pulse, "topics": live.topics}
+    return {"pulse": live.pulse}
 
 
 @router.post("/pulse")
@@ -292,11 +298,6 @@ def reset_pulse(x_vlearn_role: str | None = Header(default=None)):
     return live.reset_pulse()
 
 
-@router.post("/topics/{topic_id}/vote")
-def vote_topic(topic_id: str):
-    return live.vote_topic(topic_id)
-
-
 @router.get("/questions")
 def list_questions():
     return live.questions
@@ -304,7 +305,7 @@ def list_questions():
 
 @router.post("/questions")
 def ask_question(payload: QuestionRequest):
-    return live.ask(payload.text, payload.page, payload.scope)
+    return live.ask(payload.text, payload.page, payload.scope, payload.category, payload.user_id)
 
 
 @router.post("/questions/{question_id}/answer")
@@ -318,6 +319,59 @@ def answer_question(
         raise HTTPException(404, "Không tìm thấy câu hỏi") from None
 
 
+@router.post("/questions/{question_id}/claim")
+def claim_question(question_id: str, x_vlearn_role: str | None = Header(default=None)):
+    """Trợ giảng bấm 'Nhận hỗ trợ' — câu hỏi có người phụ trách, tránh trả lời trùng."""
+    require_teacher(x_vlearn_role)
+    try:
+        return live.claim_question(question_id)
+    except KeyError:
+        raise HTTPException(404, "Không tìm thấy câu hỏi") from None
+    except ValueError as exc:
+        raise HTTPException(409, str(exc)) from None
+
+
+@router.post("/questions/{question_id}/resolve")
+def resolve_question(question_id: str, payload: ResolveQuestionRequest):
+    """Học viên chốt 'Đã hiểu' hoặc 'Vẫn kẹt'. Vẫn kẹt thì câu hỏi lên giảng viên."""
+    try:
+        return live.resolve_question(question_id, payload.understood, payload.user_id)
+    except KeyError:
+        raise HTTPException(404, "Không tìm thấy câu hỏi") from None
+    except PermissionError as exc:
+        raise HTTPException(403, str(exc)) from None
+
+
+# --- gom câu hỏi tương tự ------------------------------------------------
+
+
+@router.post("/ai/group-questions")
+async def group_questions(payload: GroupQuestionsRequest, x_vlearn_role: str | None = Header(default=None)):
+    """Gom câu hỏi mở thành nhóm cùng vấn đề. Chạy theo yêu cầu, không nằm trong snapshot."""
+    require_teacher(x_vlearn_role)
+    open_ids = live.open_question_ids()
+    pending = [q for q in live.questions if q["id"] in open_ids]
+    if not pending:
+        live.set_clusters([], set())
+        return {"clusters": [], "questionCount": 0}
+
+    result = await _generate(ai.group_questions(pending, live.page, payload.force))
+    live.set_clusters(result["clusters"], open_ids)
+    return result
+
+
+@router.post("/clusters/{cluster_id}/broadcast")
+def broadcast_cluster(
+    cluster_id: str, payload: BroadcastRequest, x_vlearn_role: str | None = Header(default=None)
+):
+    """Trả lời một lần cho cả nhóm: đăng lên màn hình lớp và đóng mọi câu trong nhóm."""
+    require_teacher(x_vlearn_role)
+    try:
+        return live.broadcast_cluster(cluster_id, payload.title, payload.body, payload.page or live.page)
+    except KeyError:
+        raise HTTPException(404, "Không tìm thấy nhóm câu hỏi") from None
+
+
 @router.get("/clarifications")
 def list_clarifications():
     return live.clarifications
@@ -327,3 +381,43 @@ def list_clarifications():
 def publish_clarification(payload: ClarificationRequest, x_vlearn_role: str | None = Header(default=None)):
     require_teacher(x_vlearn_role)
     return live.publish_clarification(payload.title, payload.body, payload.page)
+
+
+# --- ghim lên slide ------------------------------------------------------
+
+
+@router.get("/pins")
+def list_pins():
+    return live.pinned()
+
+
+@router.post("/questions/{question_id}/pin")
+def pin_question(question_id: str, x_vlearn_role: str | None = Header(default=None)):
+    """Đưa vướng mắc của một bạn lên slide cho cả lớp cùng nhìn."""
+    require_teacher(x_vlearn_role)
+    try:
+        return live.pin_question(question_id)
+    except KeyError:
+        raise HTTPException(404, "Không tìm thấy câu hỏi") from None
+    except ValueError as exc:
+        raise HTTPException(409, str(exc)) from None
+
+
+@router.delete("/pins/{pin_id}")
+def unpin(pin_id: str, x_vlearn_role: str | None = Header(default=None)):
+    require_teacher(x_vlearn_role)
+    try:
+        return live.unpin(pin_id)
+    except KeyError:
+        raise HTTPException(404, "Ghim này không còn trên slide") from None
+
+
+@router.post("/questions/{question_id}/echo")
+def echo_question(question_id: str, payload: EchoRequest):
+    """'Tôi cũng gặp' — học viên xác nhận mình cũng đang vướng đúng chỗ đó."""
+    try:
+        return live.echo_question(question_id, payload.user_id)
+    except KeyError:
+        raise HTTPException(404, "Không tìm thấy câu hỏi") from None
+    except ValueError as exc:
+        raise HTTPException(409, str(exc)) from None

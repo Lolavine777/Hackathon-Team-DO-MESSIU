@@ -2,9 +2,7 @@
 
 import time
 
-from . import content, rules, simulator
-
-DELIVERY_SEC = 1.5  # thời gian ước lượng để mọi client nhận được sự kiện
+from . import content, rules
 
 
 class QuizRun:
@@ -29,9 +27,11 @@ class QuizRun:
         self.client_keys: dict[str, str] = {}  # idempotency_key -> user_id
         self.actions: list[dict] = []
         self.feedback: bool | None = None
-        self.schedule = simulator.build_schedule(
-            self.question, self.correct_key, self.duration_sec, seed=f"{run_id}:{question_id}"
-        )
+
+        # Mẫu số của tỷ lệ tham gia: số học viên thực sự đang trong lớp lúc câu hỏi mở.
+        # Lấy mức cao nhất quan sát được — ai có mặt lúc mở đề thì vẫn được tính, kể cả
+        # khi họ đóng máy trước lúc đóng đề.
+        self.audience = 0
 
     # --- thời gian ------------------------------------------------------
 
@@ -50,11 +50,10 @@ class QuizRun:
     def expired(self) -> bool:
         return self.status == "running" and self.elapsed() >= self.window_sec
 
-    def received(self) -> int:
-        online = content.SESSION["online"]
-        return min(online, int(online * min(1.0, self.elapsed() / DELIVERY_SEC)))
-
     # --- vòng đời -------------------------------------------------------
+
+    def note_audience(self, present: int) -> None:
+        self.audience = max(self.audience, present)
 
     def extend(self, seconds: int) -> None:
         if self.status != "running":
@@ -94,13 +93,10 @@ class QuizRun:
     # --- số liệu --------------------------------------------------------
 
     def collected(self) -> list[dict]:
-        cutoff = min(self.elapsed(), self.window_sec)
-        simulated = [r for r in self.schedule if r["at"] <= cutoff]
-        return simulated + list(self.responses.values())
+        return list(self.responses.values())
 
     def aggregate(self) -> dict:
-        audience = content.SESSION["enrolled"]
-        return rules.aggregate(self.question, self.collected(), audience)
+        return rules.aggregate(self.question, self.collected(), self.audience)
 
     def decision(self, agg: dict | None = None) -> dict:
         return rules.evaluate(
@@ -145,8 +141,6 @@ class QuizRun:
             "remainingSec": self.remaining_sec(),
             "status": self.status,
             "revealed": revealed,
-            "receivedCount": self.received(),
-            "onlineCount": content.SESSION["online"],
             "question": self._question_payload(revealed, for_teacher),
             "myResponse": self.my_response(user_id),
             "actions": self.actions,

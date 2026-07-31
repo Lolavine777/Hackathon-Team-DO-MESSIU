@@ -1,5 +1,6 @@
 """VLearn — Trợ lý hỗ trợ tương tác Lecture (backend MVP)."""
 
+import mimetypes
 from contextlib import asynccontextmanager
 from pathlib import Path
 
@@ -21,7 +22,7 @@ async def lifespan(_: FastAPI):
 
 app = FastAPI(
     title="VLearn Interaction API",
-    description="API mock cho trợ lý tương tác lecture tích hợp LMS.",
+    description="API cho trợ lý tương tác lecture tích hợp LMS.",
     version="0.1.0",
     lifespan=lifespan,
 )
@@ -51,6 +52,20 @@ def health():
 
 
 # --- phục vụ frontend đã build (single-origin, dùng chung 1 domain ngrok) ---
+
+# Trên Windows, mimetypes đọc bảng MIME từ registry: `.mjs` gần như không bao giờ có ở đó
+# nên rơi về text/plain. Trình duyệt chặn module worker và dynamic import có MIME không phải
+# JavaScript, khiến worker của pdf.js không khởi động được -> không xem được PDF.
+# Khai báo tường minh trước khi mount StaticFiles để không phụ thuộc vào máy chạy server.
+for _suffix, _mime in (
+    (".mjs", "text/javascript"),
+    (".js", "text/javascript"),
+    (".css", "text/css"),
+    (".json", "application/json"),
+    (".svg", "image/svg+xml"),
+    (".wasm", "application/wasm"),
+):
+    mimetypes.add_type(_mime, _suffix)
 
 DIST = Path(__file__).resolve().parents[2] / "frontend" / "dist"
 

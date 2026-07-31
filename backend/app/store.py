@@ -6,8 +6,19 @@ import uuid
 from . import content, events, rules
 from .run import QuizRun
 
+# Slide là chỗ để nhìn nội dung bài học, không phải bảng tin: mỗi trang chỉ giữ vài ghim.
+MAX_PINS_PER_PAGE = 3
+
+# Client SSE đọc lại snapshot ít nhất 5 giây một lần; quá ngưỡng này mà không thấy
+# tăm hơi thì coi như máy đó đã rời lớp.
+PRESENCE_TTL_SEC = 20
+
+EMPTY_PULSE = {"understand": 0, "unclear": 0, "stuck": 0}
+
 
 class LectureSession:
+    """Phiên bắt đầu rỗng: mọi con số dưới đây chỉ lớn lên khi có người thật tương tác."""
+
     def __init__(self) -> None:
         self.started_at = time.time()
         self.page = 1
@@ -18,11 +29,21 @@ class LectureSession:
         self.order: list[str] = []
         self.recoveries: dict[str, dict] = {}  # primary_run_id -> recovery result
 
-        self.pulse = dict(content.PULSE)
-        self.topics = [dict(t) for t in content.TOPICS]
-        self.questions = [dict(q) for q in content.QUESTIONS]
-        self.clarifications = [dict(c) for c in content.CLARIFICATIONS]
+        self.seen: dict[str, float] = {}  # user_id học viên -> lần cuối máy còn nói chuyện
+        self.pulse = dict(EMPTY_PULSE)
+        self.questions: list[dict] = []
+        self.clarifications: list[dict] = []
         self.hints: list[dict] = []  # hint gửi tới nhóm chọn cùng một đáp án sai
+
+        # Những mục đang dán trực tiếp lên slide: giải thích của trợ giảng và
+        # vướng mắc của một bạn được đưa lên cho cả lớp cùng soi.
+        self.pins: list[dict] = []
+        self.echoes: dict[str, set[str]] = {}  # question_id -> ai đã bấm "tôi cũng gặp"
+
+        # Nhóm câu hỏi do trợ lý gom lại. `cluster_source_ids` ghi nhớ đúng tập câu hỏi
+        # đã dùng để gom, nhờ đó biết được kết quả có còn khớp hiện tại hay không.
+        self.clusters: list[dict] = []
+        self.cluster_source_ids: set[str] = set()
 
     # --- hạ tầng --------------------------------------------------------
 
@@ -31,9 +52,24 @@ class LectureSession:
         self.last_event = event
         events.notify()
 
+    # --- ai đang thực sự ở trong lớp -------------------------------------
+
+    def touch(self, role: str, user_id: str | None) -> None:
+        """Ghi nhận một học viên còn đang mở lớp. Giảng viên không tính vào sĩ số."""
+        if role == "learner" and user_id:
+            self.seen[user_id] = time.time()
+
+    def online(self) -> int:
+        cutoff = time.time() - PRESENCE_TTL_SEC
+        self.seen = {uid: at for uid, at in self.seen.items() if at >= cutoff}
+        return len(self.seen)
+
     def tick(self) -> None:
         """Đóng checkpoint đã hết giờ (được gọi lazily trước mỗi lần đọc state)."""
+        present = self.online()
         for run in self.runs.values():
+            if run.status == "running":
+                run.note_audience(present)
             if run.expired():
                 run.close(at=run.opened_at + run.window_sec)
                 self._finalize(run)
@@ -71,6 +107,7 @@ class LectureSession:
             raise ValueError("Đang có checkpoint mở — hãy đóng trước khi mở checkpoint mới.")
 
         run = QuizRun(f"run_{uuid.uuid4().hex[:8]}", checkpoint, kind=kind, parent_id=parent_id)
+        run.note_audience(self.online())  # chốt sĩ số ngay, phòng khi đề đóng trước tick kế tiếp
         self.runs[run.id] = run
         self.order.append(run.id)
         self.page = checkpoint["page"]
@@ -107,6 +144,9 @@ class LectureSession:
     def respond(self, run_id: str, user_id: str, option_key: str, confidence: str, client_key: str | None) -> dict:
         run = self.get_run(run_id)
         entry = run.submit(user_id, option_key, confidence, client_key)
+        # Người vừa trả lời chắc chắn đang trong lớp, kể cả khi snapshot chưa kịp ghi nhận.
+        self.touch("learner", user_id)
+        run.note_audience(self.online())
         self._emit("response.count.updated")
         return entry
 
@@ -130,14 +170,8 @@ class LectureSession:
         if action_code == "SHOW_APPROVED_EXAMPLE":
             example = content.APPROVED_EXAMPLES.get(run.checkpoint["example_id"])
             if example:
-                self.clarifications.insert(
-                    0,
-                    {
-                        "id": f"cl_{uuid.uuid4().hex[:8]}",
-                        "page": run.checkpoint["page"],
-                        "title": f"Ví dụ đã duyệt · {example['title']}",
-                        "body": example["body"],
-                    },
+                self.publish_clarification(
+                    f"Ví dụ đã duyệt · {example['title']}", example["body"], run.checkpoint["page"]
                 )
         elif action_code == "SEND_HINT_GROUP":
             cluster = run.decision()["cluster"]
@@ -177,23 +211,25 @@ class LectureSession:
         return self.pulse
 
     def reset_pulse(self) -> dict:
-        self.pulse = {"understand": 0, "unclear": 0, "stuck": 0}
+        self.pulse = dict(EMPTY_PULSE)
         self._emit("pulse.reset")
         return self.pulse
 
-    def vote_topic(self, topic_id: str) -> list[dict]:
-        for topic in self.topics:
-            if topic["id"] == topic_id:
-                topic["votes"] += 1
-        self._emit("topic.voted")
-        return self.topics
-
-    def ask(self, text: str, page: int, scope: str) -> dict:
+    def ask(
+        self,
+        text: str,
+        page: int,
+        scope: str,
+        category: str | None = None,
+        user_id: str | None = None,
+    ) -> dict:
         item = {
             "id": f"qs_{uuid.uuid4().hex[:8]}",
             "page": page,
             "scope": scope,
+            "category": category,
             "author": "Riêng tư" if scope == "private" else "Ẩn danh",
+            "authorId": user_id,
             "text": text,
             "echo": 0,
             "status": "pending",
@@ -203,19 +239,147 @@ class LectureSession:
         self._emit("question.asked")
         return item
 
-    def answer_question(self, question_id: str, text: str, share: bool) -> dict:
+    def _question(self, question_id: str) -> dict:
         for q in self.questions:
             if q["id"] == question_id:
-                q.update(status="answered", answer=text, shared=share)
-                self._emit("question.answered")
                 return q
         raise KeyError(question_id)
+
+    def claim_question(self, question_id: str, actor: str = "teacher") -> dict:
+        """Trợ giảng nhận hỗ trợ — để hai người không cùng trả lời một câu."""
+        question = self._question(question_id)
+        if question["status"] in ("answered", "resolved"):
+            raise ValueError("Câu hỏi này đã được xử lý xong.")
+        question.update(status="claimed", claimedBy=actor)
+        self._emit("question.claimed")
+        return question
+
+    def answer_question(self, question_id: str, text: str, share: bool) -> dict:
+        question = self._question(question_id)
+        question.update(status="answered", answer=text, shared=share)
+        self._emit("question.answered")
+        return question
+
+    def resolve_question(self, question_id: str, understood: bool, user_id: str | None = None) -> dict:
+        """Người hỏi tự chốt: đã hiểu thì đóng, vẫn kẹt thì đẩy lên giảng viên."""
+        question = self._question(question_id)
+        owner = question.get("authorId")
+        if owner and user_id and owner != user_id:
+            raise PermissionError("Chỉ người đã hỏi mới đóng được câu hỏi này.")
+        if understood:
+            question.update(status="resolved", escalated=False)
+        else:
+            question.update(status="escalated", escalated=True)
+        self._emit("question.resolved" if understood else "question.escalated")
+        return question
+
+    # --- gom câu hỏi tương tự ---------------------------------------------
+
+    def open_question_ids(self) -> set[str]:
+        """Các câu còn cần xử lý — đúng tập mà trợ lý được phép đem đi gom."""
+        return {q["id"] for q in self.questions if q["status"] in ("pending", "claimed", "escalated")}
+
+    def set_clusters(self, clusters: list[dict], source_ids: set[str]) -> list[dict]:
+        self.clusters = clusters
+        self.cluster_source_ids = set(source_ids)
+        self._emit("questions.grouped")
+        return clusters
+
+    def clusters_stale(self) -> bool:
+        """Có câu hỏi mới (hoặc vừa xử lý xong) kể từ lần gom gần nhất."""
+        return bool(self.clusters) and self.open_question_ids() != self.cluster_source_ids
+
+    def broadcast_cluster(self, cluster_id: str, title: str, body: str, page: int) -> dict:
+        """Trả lời một lần cho cả nhóm: đăng lên màn hình lớp và đóng mọi câu trong nhóm."""
+        cluster = next((c for c in self.clusters if c["id"] == cluster_id), None)
+        if cluster is None:
+            raise KeyError(cluster_id)
+
+        clarification = self.publish_clarification(title, body, page)
+        for question_id in cluster["questionIds"]:
+            try:
+                self._question(question_id).update(status="answered", answer=body, shared=True)
+            except KeyError:
+                continue  # câu hỏi đã bị xử lý ở đường khác — bỏ qua, không làm hỏng broadcast
+        cluster["answered"] = True
+        self._emit("cluster.broadcast")
+        return {"cluster": cluster, "clarification": clarification}
 
     def publish_clarification(self, title: str, body: str, page: int) -> dict:
         item = {"id": f"cl_{uuid.uuid4().hex[:8]}", "page": page, "title": title, "body": body}
         self.clarifications.insert(0, item)
+        # Giải thích chỉ có tác dụng khi học viên nhìn thấy ngay trên slide đang chiếu,
+        # nên đăng là ghim luôn — không bắt học viên đi tìm trong danh sách bên phải.
+        item["pinId"] = self._pin("clarification", page, title, body, item["id"])["id"]
         self._emit("clarification.published")
         return item
+
+    # --- ghim lên slide ---------------------------------------------------
+
+    def _pin(self, kind: str, page: int, title: str, body: str, ref_id: str | None = None) -> dict:
+        item = {
+            "id": f"pin_{uuid.uuid4().hex[:8]}",
+            "kind": kind,
+            "page": page,
+            "title": title,
+            "body": body,
+            "refId": ref_id,
+            "time": "Vừa xong",
+        }
+        self.pins.insert(0, item)
+        keep = [p["id"] for p in self.pins if p["page"] == page][:MAX_PINS_PER_PAGE]
+        self.pins = [p for p in self.pins if p["page"] != page or p["id"] in keep]
+        return item
+
+    def pin_question(self, question_id: str) -> dict:
+        """Đưa vướng mắc của một bạn lên slide để cả lớp soi xem mình có gặp giống không."""
+        question = self._question(question_id)
+        if any(p["refId"] == question_id for p in self.pins):
+            raise ValueError("Câu hỏi này đang được ghim rồi.")
+        question["pinned"] = True
+        item = self._pin(
+            "question", question["page"], "Vướng mắc của một bạn trong lớp", question["text"], question_id
+        )
+        self._emit("question.pinned")
+        return item
+
+    def unpin(self, pin_id: str) -> dict:
+        pin = next((p for p in self.pins if p["id"] == pin_id), None)
+        if pin is None:
+            raise KeyError(pin_id)
+        self.pins = [p for p in self.pins if p["id"] != pin_id]
+        if pin["kind"] == "question":
+            try:
+                self._question(pin["refId"])["pinned"] = False
+            except KeyError:
+                pass  # câu hỏi đã biến mất — gỡ ghim vẫn phải thành công
+        self._emit("pin.removed")
+        return pin
+
+    def echo_question(self, question_id: str, user_id: str | None = None) -> dict:
+        """Học viên bấm 'Tôi cũng gặp' — mỗi người chỉ được tính một lần cho mỗi câu."""
+        question = self._question(question_id)
+        voted = self.echoes.setdefault(question_id, set())
+        voter = user_id or "anon"
+        if voter in voted:
+            raise ValueError("Bạn đã đánh dấu câu này rồi.")
+        voted.add(voter)
+        question["echo"] = question.get("echo", 0) + 1
+        self._emit("question.echoed")
+        return question
+
+    def pinned(self) -> list[dict]:
+        """Ghim câu hỏi kèm số 'tôi cũng gặp' mới nhất, đọc thẳng từ câu hỏi gốc."""
+        out = []
+        for pin in self.pins:
+            if pin["kind"] != "question":
+                out.append(pin)
+                continue
+            try:
+                out.append({**pin, "echo": self._question(pin["refId"])["echo"]})
+            except KeyError:
+                out.append({**pin, "echo": 0})
+        return out
 
     # --- báo cáo ---------------------------------------------------------
 
@@ -278,7 +442,18 @@ class LectureSession:
                 visible.append(hint)
         return visible
 
+    def _visible_questions(self, role: str, user_id: str | None) -> list[dict]:
+        """Yêu cầu riêng chỉ người gửi và trợ giảng đọc được — cắt ở server, không ẩn ở UI."""
+        if role == "teacher":
+            return self.questions
+        return [
+            q
+            for q in self.questions
+            if q["scope"] != "private" or (user_id and q.get("authorId") == user_id)
+        ]
+
     def state(self, role: str, user_id: str | None) -> dict:
+        self.touch(role, user_id)  # mỗi lần đọc snapshot là một nhịp "tôi còn ở đây"
         self.tick()
         active = self.active_run()
         history = [
@@ -290,15 +465,21 @@ class LectureSession:
             "revision": self.revision,
             "lastEvent": self.last_event,
             "page": self.page,
+            # Sĩ số thật: số máy học viên còn đang mở lớp trong PRESENCE_TTL_SEC vừa rồi.
+            "online": self.online(),
             "activeRun": active.public(role, user_id) if active else None,
             "history": history,
             "recoveries": self.recoveries,
             "hints": self._visible_hints(role, user_id),
             "report": self.report() if role == "teacher" else None,
             "pulse": self.pulse,
-            "topics": self.topics,
-            "questions": self.questions,
+            "questions": self._visible_questions(role, user_id),
+            # Nhóm câu hỏi là công cụ của trợ giảng; không đẩy sang máy học viên.
+            "clusters": self.clusters if role == "teacher" else [],
+            "clustersStale": self.clusters_stale() if role == "teacher" else False,
             "clarifications": self.clarifications,
+            # Ghim nằm ngay trên slide nên cả lớp đều thấy, kể cả câu hỏi vốn riêng tư.
+            "pins": self.pinned(),
         }
 
 
