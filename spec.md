@@ -14,10 +14,10 @@ Loại: [ ] Tối ưu tính năng có sẵn  [x] Tính năng mới
 - Core JTBD: Khi vừa trình bày xong một khái niệm quan trọng, giảng viên muốn kiểm tra nhanh mức độ hiểu của cả lớp để biết nên tiếp tục hay giải thích lại.
 - Problem statement: Trong lớp khoảng 160 người nhưng thường chỉ 10-15 người chủ động phát biểu, nên giảng viên thiếu tín hiệu đại diện và có thể tiếp tục bài khi nhiều học viên đang bị bỏ lại.
 - Evidence:
-  - Khảo sát đợt 2 có `n=17`: 10/17 đồng ý giảng viên khó biết ai đang gặp khó khăn trong lớp đông.
-  - 10/17 đồng ý từng có phần chưa hiểu nhưng giảng viên vẫn tiếp tục bài.
-  - 15/17 dùng ChatGPT hoặc công cụ tương tự khi bị kẹt, làm tín hiệu hiểu bài rời khỏi phiên học.
-  - 6/17 chờ ít nhất 20 phút hoặc thường không nhận được hỗ trợ.
+  - Snapshot dùng cho CP4 có `n=31`: 19/31 (61,3%) đồng ý giảng viên khó biết ai đang gặp khó khăn trong lớp đông.
+  - 17/31 (54,8%) đồng ý từng có phần chưa hiểu nhưng giảng viên vẫn tiếp tục bài.
+  - 27/31 (87,1%) dùng ChatGPT hoặc công cụ tương tự khi bị kẹt, làm tín hiệu hiểu bài rời khỏi phiên học.
+  - 8/31 (25,8%) chờ trên 20 phút hoặc thường không nhận được hỗ trợ.
   - Chatlog thật có 1.261 lượt hỏi đáp, nhưng trường `misconceptions` không được dùng lần nào và tutor chỉ hỏi kiểm tra lại ở 3/2.515 message.
 - Quote hoặc ví dụ nguyên văn:
   - R1, Q5: `"Bỏ qua và chuyển sang phần khác, Không làm tiếp"`.
@@ -26,17 +26,18 @@ Loại: [ ] Tối ưu tính năng có sẵn  [x] Tính năng mới
   - T0649/M1149: `"tóm tắt nội dung chính trong slide này"`.
   - T1201/M2413: `"tóm tắt"`.
   - T0058/M2247: `"xem bài tập thực hành lab day 2 chiều nay ở đaau"`.
-- Giới hạn bằng chứng: khảo sát tập trung nhiều vào giờ thực hành và mới có `n=17`, nên chưa đạt chuẩn khảo sát A tối thiểu 20 người.
+- Chuẩn bằng chứng: snapshot 31 phản hồi vượt ngưỡng khảo sát A tối thiểu 20 người và cả hai pain trực tiếp đều được hơn 50% người trả lời xác nhận.
+- Giới hạn bằng chứng: mẫu được thu thập thuận tiện và câu hỏi tập trung nhiều vào giờ thực hành, nên chưa đại diện cho toàn bộ học viên hoặc mọi phiên lecture trên VLearn.
 - Cơ sở mining: chatlog có số đếm và ví dụ nguyên văn nhưng phản ánh hành vi hỏi tutor, vì vậy chỉ được dùng làm bằng chứng gián tiếp cho nhu cầu tín hiệu hiểu bài trong lecture.
 
-Nguồn đầy đủ nằm tại `docs/problem-space/lms-du-lieu-khong-hanh-dong.md` và `data/vlearn-pack/chatlog/DATA_DICTIONARY.md`.
+Nguồn đầy đủ nằm tại `docs/problem-space/servey_learner.txt`, `docs/problem-space/servey_teacher.txt`, `docs/problem-space/lms-du-lieu-khong-hanh-dong.md` và `data/vlearn-pack/chatlog/DATA_DICTIONARY.md`.
 
 ## §2. Impact & quyết định chọn
 
 | Ứng viên | Số người bị ảnh hưởng | Tần suất | Tốn gì mỗi lần | Khả thi trong hackathon | Điểm tham khảo | Quyết định |
 |---|---:|---:|---:|---:|---:|---|
 | Thiếu tín hiệu đại diện khiến giảng viên phân bổ sai thời gian trong lecture | Khoảng 145-150 người ít chủ động trong lớp 160 người | Mỗi khái niệm quan trọng | Một phần lớp tiếp tục học khi chưa hiểu | 4/5 | 12/15 | Chọn |
-| Người bị kẹt chuyển sang hỏi công cụ riêng nên lớp trông như đang ổn | 15/17 người khảo sát dùng ChatGPT hoặc công cụ tương tự | Khi gặp phần chưa hiểu | Giảng viên mất tín hiệu để can thiệp chung | 3/5 | 10/15 | Giữ làm rủi ro cần đo |
+| Người bị kẹt chuyển sang hỏi công cụ riêng nên lớp trông như đang ổn | 27/31 người khảo sát dùng ChatGPT hoặc công cụ tương tự | Khi gặp phần chưa hiểu | Giảng viên mất tín hiệu để can thiệp chung | 3/5 | 10/15 | Giữ làm rủi ro cần đo |
 | Cùng một misconception phải được giải thích riêng nhiều lần | Nhiều người có thể chọn cùng một phương án sai | Nhiều checkpoint trong buổi | Lặp lại thời gian hỗ trợ | 3/5 | 9/15 | Giữ làm cơ hội broadcast |
 | Phản hồi bài nộp đến muộn | Người đã nộp bài | Sau buổi học | Chậm sửa lỗi và có thể mất điểm | 2/5 | 8/15 | Loại |
 
@@ -140,7 +141,7 @@ Các case thường, hiếm và mapping chi tiết nằm trong `eval/golden-set.
 - Golden set: 20 case trong `eval/golden-set.jsonl`.
 - Cơ cấu: 8 case thường, 4 case hiếm và ít nhất 2 case cho mỗi lớp chỗ khó.
 - Nguồn thực tế: 10 case phát triển từ chatlog thật và 10 case từ tự dùng thử prototype.
-- Quality bar đã chốt: "Đạt khi ít nhất 80% câu thử đạt và AI không được tạo factual claim không có căn cứ trong nội dung slide được cấp dù chỉ một lần."
+- Quality bar đã chốt: "Đạt khi ít nhất 80% câu thử đạt và AI không được bịa kiến thức ngoài nội dung slide dù chỉ một lần."
 - Điều kiện an toàn bổ sung: mỗi checkpoint có đúng một đáp án đúng và hint không tiết lộ đáp án.
 
 | Lượt chạy | Model | Guardrail đạt | Nội dung AI đạt | Tổng đạt | Tỷ lệ | So với bar | Bằng chứng |

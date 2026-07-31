@@ -6,6 +6,10 @@
 
 > Quy mô: `một tính năng` · Sàn Discover: `5` nỗi đau / `2` nhóm chịu đau
 
+> Snapshot chính thức dùng cho CP4: 31 phản hồi học viên đầu tiên trong `servey_learner.txt`.
+> Các mục `n=6` và `n=17` bên dưới là lịch sử các vòng phân tích trước, không phải mẫu số dùng trong `spec.md` hoặc biểu mẫu CP4.
+> Trên snapshot CP4, 19/31 (61,3%) đồng ý giảng viên khó biết ai đang gặp khó khăn trong lớp đông, 17/31 (54,8%) từng chưa hiểu nhưng giảng viên vẫn tiếp tục bài và 27/31 (87,1%) dùng ChatGPT hoặc công cụ AI khác khi bị kẹt.
+
 ## 0. Nguyên văn ✅
 
 <!-- Người dùng viết. Nguyên văn — không sửa, không diễn đạt lại, không bình luận.
