@@ -9,7 +9,7 @@ import { useToast } from '../components/ui/Toast.jsx'
 import { IconLaunch, IconLive, IconSettings, IconStop } from '../lib/icons.js'
 
 export default function TeacherPage() {
-  const { session, page, run, checkpointsForPage, launchCheckpoint, closeRun, resetPulse } =
+  const { session, page, run, online, checkpointsForPage, launchCheckpoint, closeRun, resetPulse } =
     useSession()
   const toast = useToast()
   const running = run?.status === 'running'
@@ -33,8 +33,8 @@ export default function TeacherPage() {
           <Chip tone={running ? 'hot' : 'success'}>
             <LiveDot tone={running ? 'alert' : 'live'} />
             {running
-              ? `Đang thu ${run.aggregate.responded}/${session.enrolled} phản hồi · còn ${run.remainingSec}s`
-              : `Đang dạy trực tiếp · ${session.online}/${session.enrolled} online`}
+              ? `Đang thu ${run.aggregate.responded}/${run.aggregate.audience} phản hồi · còn ${run.remainingSec}s`
+              : `Đang dạy trực tiếp · ${online} học viên trong lớp`}
           </Chip>
         }
         actions={
@@ -46,7 +46,6 @@ export default function TeacherPage() {
 
       <main className="grid min-h-0 flex-1 grid-cols-1 gap-3.5 p-3.5 xl:grid-cols-[minmax(0,1.35fr)_minmax(400px,.9fr)]">
         <SlideViewer
-          showNote
           tools={
             running
               ? [
@@ -77,7 +76,7 @@ export default function TeacherPage() {
                     disabled: !next,
                     onClick: guard(
                       () => launchCheckpoint(next.id),
-                      `Đã mở checkpoint cho ${session.enrolled} học viên.`
+                      `Đã mở checkpoint cho ${online} học viên đang trong lớp.`
                     ),
                   },
                   {
@@ -88,7 +87,7 @@ export default function TeacherPage() {
                         Gửi Learning Pulse
                       </>
                     ),
-                    onClick: guard(resetPulse, `Đã gửi Learning Pulse tới ${session.enrolled} học viên.`),
+                    onClick: guard(resetPulse, `Đã gửi Learning Pulse tới ${online} học viên.`),
                   },
                 ]
           }

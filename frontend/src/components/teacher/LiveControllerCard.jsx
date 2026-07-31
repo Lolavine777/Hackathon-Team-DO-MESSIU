@@ -8,15 +8,15 @@ import { useSession } from '../../state/SessionContext.jsx'
 import { useToast } from '../ui/Toast.jsx'
 import { IconAdd, IconClose, IconLive, IconStop } from '../../lib/icons.js'
 
-/** Điều khiển checkpoint đang mở: đếm ngược, số client đã nhận, gia hạn, đóng. */
+/** Điều khiển checkpoint đang mở: đếm ngược, số phản hồi thu được, gia hạn, đóng. */
 export default function LiveControllerCard() {
-  const { run, extendRun, closeRun, cancelRun } = useSession()
+  const { run, online, extendRun, closeRun, cancelRun } = useSession()
   const toast = useToast()
 
   if (!run || run.status !== 'running') return null
 
-  const { aggregate, receivedCount, onlineCount } = run
-  const notReached = Math.max(0, onlineCount - receivedCount)
+  const { aggregate } = run
+  const waiting = Math.max(0, aggregate.audience - aggregate.responded)
 
   const guard = (fn, message) => async () => {
     try {
@@ -45,7 +45,7 @@ export default function LiveControllerCard() {
       <div className="mt-3 flex items-center gap-3 rounded-2xl bg-[#F8FAFD] p-3">
         <CountdownRing remaining={run.remainingSec} total={run.windowSec} size={72} />
         <div className="grid flex-1 grid-cols-3 gap-2">
-          <Metric tone="info" value={`${receivedCount}`} label="Đã nhận đề" hint={`/${onlineCount} online`} />
+          <Metric tone="info" value={`${online}`} label="Đang trong lớp" />
           <Metric tone="good" value={`${aggregate.responded}`} label="Đã trả lời" hint={`/${aggregate.audience}`} />
           <Metric
             tone={aggregate.participation >= 75 ? 'good' : aggregate.participation >= 60 ? 'mid' : 'bad'}
@@ -55,9 +55,9 @@ export default function LiveControllerCard() {
         </div>
       </div>
 
-      {notReached > 0 ? (
-        <Callout tone="warning" title="Đang phát đề:" className="mt-3">
-          {notReached} máy chưa xác nhận nhận được câu hỏi.
+      {waiting > 0 ? (
+        <Callout tone="warning" title="Đang chờ:" className="mt-3">
+          {waiting} học viên có mặt nhưng chưa trả lời.
         </Callout>
       ) : null}
 

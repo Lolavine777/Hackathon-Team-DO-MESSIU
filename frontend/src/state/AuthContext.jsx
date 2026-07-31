@@ -34,12 +34,12 @@ export function AuthProvider({ children }) {
     }
   })
 
-  /** Đăng nhập demo: backend cấp user_id để chống gửi trùng và xem lại bài của mình. */
-  const login = useCallback(async (role) => {
+  /** Vào lớp: backend cấp user_id để chống gửi trùng và xem lại bài của mình. */
+  const login = useCallback(async (role, name) => {
     const profile = await api('/auth/login', {
       method: 'POST',
       role,
-      body: { role, user_id: read(idKey(role)) || undefined },
+      body: { role, name: name?.trim() || undefined, user_id: read(idKey(role)) || undefined },
     })
     write(idKey(role), profile.id)
     write(STORAGE_KEY, JSON.stringify(profile))

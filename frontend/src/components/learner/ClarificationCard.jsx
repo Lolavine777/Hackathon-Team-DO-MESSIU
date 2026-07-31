@@ -8,7 +8,7 @@ export default function ClarificationCard({ item, onGoToSlide }) {
 
   return (
     <Card tone="highlight">
-      <CardTitle eyebrow="Ghim">Phản hồi từ trợ giảng</CardTitle>
+      <CardTitle eyebrow="Đã ghim lên slide">Phản hồi từ trợ giảng</CardTitle>
       <strong className="text-[14px]">{item.title}</strong>
       <p className="my-2.5 text-[13px] leading-relaxed text-[#425268]">{item.body}</p>
 

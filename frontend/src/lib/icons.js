@@ -54,6 +54,20 @@ export {
   MagicWand as IconAI,
   CircleNotch as IconSpinner,
 
+  // Yêu cầu hỗ trợ & gom câu hỏi
+  Lifebuoy as IconHelp,
+  Stack as IconCluster,
+  UsersThree as IconGroupSize,
+  Megaphone as IconBroadcast,
+  Handshake as IconClaim,
+  ArrowBendUpRight as IconEscalate,
+  PushPin as IconPin,
+  PushPinSlash as IconUnpin,
+  Users as IconMeToo,
+  Bug as IconCatCode,
+  Lightbulb as IconCatConcept,
+  Compass as IconCatStart,
+
   // Trạng thái rỗng
   Clock as IconWaiting,
   Target as IconNoCheckpoint,

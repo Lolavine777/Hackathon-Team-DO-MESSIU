@@ -30,7 +30,9 @@ export default function LearnerPage() {
       <main className="grid min-h-0 flex-1 grid-cols-1 overflow-y-auto lg:grid-cols-[minmax(0,1fr)_400px] lg:overflow-hidden xl:grid-cols-[300px_minmax(0,1fr)_420px]">
         <MaterialSidebar />
 
-        <section className="min-h-0 p-3 lg:overflow-hidden">
+        {/* `grid` chứ không để block: khung xem phải cao đúng bằng ô này thì bên trong
+            mới có chỗ để cuộn. Để block thì nó cao bằng cả 48 trang và không cuộn được. */}
+        <section className="grid min-h-0 p-3 lg:overflow-hidden">
           <SlideViewer
             tools={[
               {

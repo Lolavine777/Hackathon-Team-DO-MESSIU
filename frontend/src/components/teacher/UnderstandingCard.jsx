@@ -8,7 +8,7 @@ import { useToast } from '../ui/Toast.jsx'
 
 /** Tổng hợp mức độ hiểu bài theo pulse của lớp. */
 export default function UnderstandingCard() {
-  const { pulse, page, session, resetPulse } = useSession()
+  const { pulse, page, online, resetPulse } = useSession()
   const toast = useToast()
   const { total, struggling } = pulseSummary(pulse)
 
@@ -16,7 +16,7 @@ export default function UnderstandingCard() {
   const detail =
     total === 0
       ? 'Learning Pulse đã được gửi cho lớp. Kết quả sẽ cập nhật theo thời gian thực.'
-      : `${struggling}% học viên đang mơ hồ hoặc bị kẹt trên ${total} phản hồi (lớp ${session.enrolled} người). ` +
+      : `${struggling}% học viên đang mơ hồ hoặc bị kẹt trên ${total} phản hồi (${online} máy đang trong lớp). ` +
         (struggling >= 40
           ? 'Nên dừng lại, giải thích ngắn rồi mở quiz kiểm tra.'
           : struggling >= 25
@@ -43,7 +43,7 @@ export default function UnderstandingCard() {
         className="mt-3"
         onClick={() => {
           resetPulse()
-          toast(`Đã gửi Learning Pulse tới ${session.enrolled} học viên.`)
+          toast(`Đã gửi lại Learning Pulse tới ${online} học viên đang trong lớp.`)
         }}
       >
         Gửi lại Learning Pulse
