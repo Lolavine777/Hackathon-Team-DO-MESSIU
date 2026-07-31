@@ -15,9 +15,9 @@
 | Thành viên | Mã HV | Vai trò | Deliverable và phần chịu trách nhiệm |
 |---|---|---|---|
 | Nguyễn Đăng Long | 2A202601934 | Nhóm trưởng, Backend & Eval Lead | Quản lý checkpoint và bài nộp; kết nối các workstream; backend, API, session và content pipeline; `spec.md`; golden set, evaluator, human review, báo cáo các eval run và validation log |
-| Đào Minh Chiến | 2A202601184 | AI/LLM Engineer | Tích hợp model; LLM client và cấu hình; prompt sinh checkpoint; rule engine; cải thiện chất lượng AI và chạy `run-02` |
+| Đào Minh Chiến | 2A202601184 | AI/LLM Engineer | Tích hợp model; LLM client và cấu hình; prompt sinh checkpoint; rule engine; cải thiện chất lượng AI và chạy `run-02`; hoàn thiện slide 6 trang |
 | Lương Minh Quân | 2A202601308 | Product Manager, Frontend Lead | Chốt quyết định sản phẩm và phạm vi tính năng; điều phối triển khai; toàn bộ teacher flow, learner flow, frontend state và tích hợp API; rà soát E2E trước demo |
-| Lê Đăng Tấn | 2A202601916 | Project Manager | Phân tích đề bài và pain point; khảo sát, PRD và MVP; đề xuất thiết kế; điều phối công việc; slide 6 trang, dry run và demo cuối |
+| Lê Đăng Tấn | 2A202601916 | Project Manager | Phân tích đề bài và pain point; khảo sát, PRD và MVP; đề xuất thiết kế; điều phối công việc, dry run và demo cuối |
 
 Prototype hiện nằm trong `frontend/` và `backend/`.
 AI Spec nằm tại `spec.md`.
