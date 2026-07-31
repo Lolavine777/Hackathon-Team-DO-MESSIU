@@ -14,7 +14,7 @@ from pypdf import PdfReader
 ROOT = Path(__file__).resolve().parent
 PROJECT_ROOT = ROOT.parent
 GOLDEN_SET = ROOT / "golden-set.jsonl"
-PDF = PROJECT_ROOT / "frontend/public/materials/Strategyn_JTBD_Playbook.pdf"
+PDF = PROJECT_ROOT / "codebase/frontend/public/materials/Strategyn_JTBD_Playbook.pdf"
 
 
 def load_jsonl(path: Path) -> list[dict]:

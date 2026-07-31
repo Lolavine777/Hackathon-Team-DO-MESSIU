@@ -15,7 +15,7 @@ tính chỉ số, chạy rule engine và đẩy snapshot realtime qua SSE. Front
 **Backend** (FastAPI, in-memory, không cần DB)
 
 ```bash
-cd backend
+cd codebase/backend
 python -m venv .venv
 .venv/Scripts/python.exe -m pip install -r requirements.txt      # Windows
 .venv/Scripts/python.exe -m uvicorn app.main:app --reload        # http://127.0.0.1:8000
@@ -32,7 +32,7 @@ pnpm dev                                                         # http://localh
 **Trợ lý AI** (tuỳ chọn — không cấu hình thì mọi thứ còn lại vẫn chạy)
 
 ```bash
-cp backend/.env.example backend/.env      # rồi điền OPENAI_KEY và MODEL
+cp codebase/backend/.env.example codebase/backend/.env      # rồi điền OPENAI_KEY và MODEL
 ```
 
 Vite proxy sẵn `/api` → `127.0.0.1:8000`. Swagger UI: `http://127.0.0.1:8000/docs`.
@@ -63,7 +63,7 @@ Checkpoint đã soạn nằm ở **trang 1, 2, 3** của tài liệu.
 
 | Mục P0 | Trạng thái | Nơi cài đặt |
 |---|---|---|
-| P0.1 Quiz gắn nội dung (LO, đáp án đúng, misconception, follow-up, ungraded) | ✅ | `backend/app/content.py` |
+| P0.1 Quiz gắn nội dung (LO, đáp án đúng, misconception, follow-up, ungraded) | ✅ | `codebase/backend/app/content.py` |
 | P0.2 Live activation (1 click, gia hạn, đóng sớm, huỷ, khoá 2 checkpoint song song) | ✅ | `store.py`, `LiveControllerCard.jsx` |
 | P0.3 Student response (1 lựa chọn + confidence, idempotency, xác nhận đã ghi nhận) | ✅ | `run.py:submit`, `LiveQuizCard.jsx` |
 | P0.4 Realtime class pulse (đang trong lớp, đã trả lời, phân bố, confidence, misconception) | ✅ | `rules.py:aggregate`, SSE `/api/stream` |
@@ -75,13 +75,13 @@ Checkpoint đã soạn nằm ở **trang 1, 2, 3** của tài liệu.
 | Yêu cầu hỗ trợ 1-1 + gom câu hỏi tương tự bằng AI | ✅ | `store.py` ticket lifecycle → `QuestionClustersCard.jsx` |
 | Ghim giải thích / vướng mắc lên đúng slide, có "Tôi cũng gặp" | ✅ | `store.py:pin_question` → `SlidePinLayer.jsx` |
 
-Ngưỡng trong §9.2 nằm ở `backend/app/rules.py:THRESHOLDS` và được API trả về cho UI,
+Ngưỡng trong §9.2 nằm ở `codebase/backend/app/rules.py:THRESHOLDS` và được API trả về cho UI,
 nên đổi ngưỡng không phải sửa frontend.
 
 ## Kiến trúc
 
 ```
-frontend/src/
+codebase/frontend/src/
   lib/api.js               # fetch + SSE (tự rơi về polling nếu SSE bị chặn)
   lib/decision.js          # ánh xạ trạng thái rule engine → màu/nhãn
   lib/icons.js             # Phosphor Icons, đặt tên theo ý nghĩa (IconLaunch, IconStop, ...)
@@ -99,7 +99,7 @@ frontend/src/
                            # SuggestedCheckpointsCard, CheckpointEditorModal,
                            # QuestionClustersCard, QuestionClusterItem, BroadcastModal, ...
 
-backend/app/
+codebase/backend/app/
   content.py    # nội dung đã duyệt: checkpoint, LO, misconception taxonomy, action catalog
                 # + register_drafted_checkpoint() cho checkpoint giảng viên vừa duyệt
                 # + HELP_CATEGORIES: 3 loại vướng mắc học viên tự chọn
@@ -109,7 +109,7 @@ backend/app/
                 # + đếm sĩ số thật từ số máy học viên đang mở lớp (PRESENCE_TTL_SEC)
   events.py     # tín hiệu đánh thức các kết nối SSE
   routers.py    # REST + /api/stream
-  config.py     # đọc backend/.env (OPENAI_BASE_URL, OPENAI_KEY, MODEL)
+  config.py     # đọc codebase/backend/.env (OPENAI_BASE_URL, OPENAI_KEY, MODEL)
   llm.py        # client OpenAI-compatible bằng httpx, tự lùi tham số khi gateway từ chối
   slides.py     # PDF → text bằng pypdf, dựng ngữ cảnh "trang này + các trang trước"
   ai.py         # prompt, kiểm duyệt output của LLM, cache theo trang
@@ -124,7 +124,7 @@ nằm trong `lib/icons.js` nên đổi icon chỉ sửa một dòng.
 
 ## Trợ lý soạn câu hỏi
 
-Bật bằng `backend/.env` (`OPENAI_BASE_URL`, `OPENAI_KEY`, `MODEL`). Dùng endpoint
+Bật bằng `codebase/backend/.env` (`OPENAI_BASE_URL`, `OPENAI_KEY`, `MODEL`). Dùng endpoint
 `/chat/completions` nên chạy được với OpenAI, OpenRouter, Ollama hay bất kỳ gateway
 tương thích nào. Không có khoá thì `/api/session` trả `ai.enabled = false`, các nút AI
 hiện lý do và bị khoá — không có đường nào trong luồng cũ đổi hành vi.

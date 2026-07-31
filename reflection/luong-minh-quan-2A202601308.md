@@ -4,7 +4,7 @@
 
 Tôi phụ trách quyết định sản phẩm và frontend, gồm teacher flow, learner flow, trạng thái phiên học, tích hợp API và cách Class Pulse được hiển thị cho từng vai trò.
 
-Các artefact chính là toàn bộ thư mục `frontend/`, đặc biệt các trang `TeacherPage.jsx`, `LearnerPage.jsx`, các component checkpoint, Pulse và các state hook kết nối với API.
+Các artefact chính là toàn bộ thư mục `codebase/frontend/`, đặc biệt các trang `TeacherPage.jsx`, `LearnerPage.jsx`, các component checkpoint, Pulse và các state hook kết nối với API.
 
 Tôi cũng rà soát flow end-to-end để bảo đảm giảng viên có thể mở checkpoint, học viên trả lời, rồi teacher đọc được tín hiệu để can thiệp.
 

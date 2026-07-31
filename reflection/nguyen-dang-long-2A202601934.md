@@ -4,7 +4,7 @@
 
 Tôi là nhóm trưởng và phụ trách backend, API, session/content pipeline, eval và quản lý deliverable.
 
-Các artefact chính chứng minh phần tôi làm gồm `backend/app/routers.py`, `backend/app/store.py`, `backend/app/content.py`, `eval/`, `spec.md` và các báo cáo CP3, CP4, CP5 trong repo.
+Các artefact chính chứng minh phần tôi làm gồm `codebase/backend/app/routers.py`, `codebase/backend/app/store.py`, `codebase/backend/app/content.py`, `eval/`, `spec.md` và các báo cáo CP3, CP4, CP5 trong repo.
 
 Tôi cũng kết nối các workstream để thống nhất lát cắt sản phẩm, quality bar, validation log và nội dung demo cuối.
 

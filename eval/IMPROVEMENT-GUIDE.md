@@ -7,9 +7,9 @@ Không thay rule engine, Class Pulse, aggregation hoặc kết quả `run-01`.
 
 Code chính cần đọc:
 
-- `backend/app/ai.py`: prompt và normalization của checkpoint.
-- `backend/app/slides.py`: context slide được gửi vào model.
-- `backend/app/llm.py`: lời gọi model.
+- `codebase/backend/app/ai.py`: prompt và normalization của checkpoint.
+- `codebase/backend/app/slides.py`: context slide được gửi vào model.
+- `codebase/backend/app/llm.py`: lời gọi model.
 - `eval/golden-set.jsonl`: 20 case baseline.
 - `eval/human-review.json`: review đã chốt cho `run-01`.
 - `eval/traces/run-01/`: request và raw response của lần chạy đầu.
@@ -69,7 +69,7 @@ Muốn áp review lên output đã có phải dùng `--reuse-traces`.
 ### 1. Chạy test trước khi sửa
 
 ```bash
-backend/.venv/bin/python -m unittest eval/test_eval_runner.py -v
+codebase/backend/.venv/bin/python -m unittest eval/test_eval_runner.py -v
 ```
 
 ### 2. Chạy backend local với model đã cấu hình
@@ -81,13 +81,13 @@ cd backend
 
 ### 3. Sửa prompt hoặc normalization
 
-Ưu tiên thay đổi nhỏ trong `backend/app/ai.py`.
+Ưu tiên thay đổi nhỏ trong `codebase/backend/app/ai.py`.
 Không đổi quality bar hoặc expected result để làm điểm cao hơn.
 
 ### 4. Thu output mới
 
 ```bash
-backend/.venv/bin/python eval/run_eval.py \
+codebase/backend/.venv/bin/python eval/run_eval.py \
   --base-url http://127.0.0.1:8000 \
   --run-id run-02
 ```
@@ -116,7 +116,7 @@ Mỗi trường chỉ được đặt `true` khi reviewer có thể chỉ ra b�
 ### 6. Áp review mà không gọi model lại
 
 ```bash
-backend/.venv/bin/python eval/run_eval.py \
+codebase/backend/.venv/bin/python eval/run_eval.py \
   --base-url http://127.0.0.1:8000 \
   --run-id run-02 \
   --reuse-traces

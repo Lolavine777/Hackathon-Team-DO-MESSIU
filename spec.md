@@ -173,9 +173,9 @@ Review `run-02` do AI thực hiện theo rubric trong `eval/README.md`; provenan
 
 | Thành viên | Vai trò | Phần chịu trách nhiệm | Cơ sở trong repo |
 |---|---|---|---|
-| Nguyễn Đăng Long - 2A202601934 | Nhóm trưởng, Backend & Eval Lead | Quản lý deliverable; kết nối các bộ phận; backend, API, session và content pipeline; golden set, evaluator, human review và spec | `backend/app/routers.py`, `backend/app/store.py`, `eval/`, `spec.md` |
-| Đào Minh Chiến - 2A202601184 | AI/LLM Engineer | Tích hợp model; prompt checkpoint; LLM client, cấu hình và rule engine; cải thiện prompt và chạy `run-02` | `backend/app/ai.py`, `backend/app/llm.py`, `backend/app/config.py`, `backend/app/rules.py` |
-| Lương Minh Quân - 2A202601308 | Product Manager, Frontend Lead | Quyết định sản phẩm và phạm vi tính năng; điều phối triển khai; teacher flow, learner flow, frontend state và tích hợp API | `frontend/` |
+| Nguyễn Đăng Long - 2A202601934 | Nhóm trưởng, Backend & Eval Lead | Quản lý deliverable; kết nối các bộ phận; backend, API, session và content pipeline; golden set, evaluator, human review và spec | `codebase/backend/app/routers.py`, `codebase/backend/app/store.py`, `eval/`, `spec.md` |
+| Đào Minh Chiến - 2A202601184 | AI/LLM Engineer | Tích hợp model; prompt checkpoint; LLM client, cấu hình và rule engine; cải thiện prompt và chạy `run-02` | `codebase/backend/app/ai.py`, `codebase/backend/app/llm.py`, `codebase/backend/app/config.py`, `codebase/backend/app/rules.py` |
+| Lương Minh Quân - 2A202601308 | Product Manager, Frontend Lead | Quyết định sản phẩm và phạm vi tính năng; điều phối triển khai; teacher flow, learner flow, frontend state và tích hợp API | `codebase/frontend/` |
 | Lê Đăng Tấn - 2A202601916 | Project Manager | Phân tích đề bài và pain point; khảo sát; PRD và MVP; đề xuất thiết kế; điều phối workstream; điều phối demo cuối và dry run | `docs/problem-space/`, `docs/mvp/`, `docs/docs.md` |
 
 ### Validation CP5

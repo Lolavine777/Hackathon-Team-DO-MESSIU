@@ -92,7 +92,7 @@ Evaluator tự tạo review template cho run mới và không ghi đè file revi
 Chạy model thật:
 
 ```bash
-backend/.venv/bin/python eval/run_eval.py \
+codebase/backend/.venv/bin/python eval/run_eval.py \
   --base-url https://conner-unavailing-nonirately.ngrok-free.dev \
   --run-id run-02
 ```
@@ -100,7 +100,7 @@ backend/.venv/bin/python eval/run_eval.py \
 Điền `eval/reviews/run-02.json`, sau đó áp review lên trace đã có mà không gọi model lần nữa:
 
 ```bash
-backend/.venv/bin/python eval/run_eval.py \
+codebase/backend/.venv/bin/python eval/run_eval.py \
   --base-url https://conner-unavailing-nonirately.ngrok-free.dev \
   --run-id run-02 \
   --reuse-traces

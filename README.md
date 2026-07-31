@@ -19,7 +19,7 @@
 | Lương Minh Quân | 2A202601308 | Product Manager, Frontend Lead | Chốt quyết định sản phẩm và phạm vi tính năng; điều phối triển khai; toàn bộ teacher flow, learner flow, frontend state và tích hợp API; rà soát E2E trước demo |
 | Lê Đăng Tấn | 2A202601916 | Project Manager | Phân tích đề bài và pain point; khảo sát, PRD và MVP; đề xuất thiết kế; điều phối công việc, dry run và demo cuối |
 
-Prototype hiện nằm trong `frontend/` và `backend/`.
+Prototype hiện nằm trọn trong `codebase/`, gồm `codebase/backend/` và `codebase/frontend/`.
 AI Spec nằm tại `spec.md`.
 Bộ kiểm thử, kết quả các lần chạy và hướng dẫn cải thiện nằm tại `eval/`.
 Feedback từ vòng user test nằm tại `validation/`.
@@ -68,8 +68,9 @@ repo/
 ├── spec.md            ← AI Spec theo 03-template-ai-spec.md
 ├── demo-slides.pptx  ← deck có thể chỉnh sửa, 6 trang
 ├── demo-slides.pdf   ← bản nộp 6 trang theo 02-guide.md §5.1
-├── backend/          ← FastAPI prototype và AI/rule engine
-├── frontend/         ← React/Vite teacher + learner UI
+├── codebase/         ← toàn bộ prototype chạy được
+│   ├── backend/      ← FastAPI, AI/rule engine và API
+│   └── frontend/     ← React/Vite teacher + learner UI
 ├── eval/              ← golden set + bảng kết quả các lượt chạy
 ├── validation/        ← feedback log từ vòng user test
 └── reflection/        ← mỗi người 1 file
@@ -89,7 +90,7 @@ Tổng **100 điểm = 25 điểm nộp checkpoint + 75 điểm chấm bài nộ
 | R2 · Lát cắt & thiết kế | 15 | `spec.md` §4 |
 | R3 · Chỗ khó & kịch bản rủi ro | 11 | `spec.md` §5-§6 |
 | R4 · Kiểm thử | 15 | `spec.md` §7 + `eval/` |
-| R5 · Prototype chạy được | 8 | `backend/` + `frontend/` + demo |
+| R5 · Prototype chạy được | 8 | `codebase/` + demo |
 | R6 · Validation với user | 8 | `validation/` |
 | R7 · Quy trình & repo | 3 | cấu trúc repo |
 
