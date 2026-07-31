@@ -1,0 +1,134 @@
+{
+  "case_id": "R04",
+  "timestamp_utc": "2026-07-31T03:36:41.450854+00:00",
+  "model": "gemini-2.5-flash",
+  "endpoint": "https://conner-unavailing-nonirately.ngrok-free.dev/api/ai/suggest-checkpoints",
+  "role": "teacher",
+  "request": {
+    "page": 44,
+    "count": 1,
+    "force": true
+  },
+  "source_page_excerpt": "TRANSFORM YOUR COMPANY THROUGH INNOVATION  FOLLOW US ON LINKEDIN  BECOME A CLIENT  1 2 3 4CHAPTER Because each function has its own way of defining what value means for the customer, companies struggle to align around customer problems and solutions to these problems. But when you view your business through the lens of Jobs-to-be-Done, you can align your organization around its purpose, which is to help people get a job done. Breaking down the job map aligns the organization around the steps the customer goes through to get that job done. This allows your siloed teams to all view value creation—and communication —through the eyes of the customer. Coloplast offers a prime example. Their team was struggling to gain traction in the market, thanks to a lack of agreement between sales, marketing, and product development as to what they should create and communicate next in their line of wound care products. We already mentioned how under- standing their customer’s job helped Coloplast’s marketers make impactful changes to their value proposition and messaging. This simple alignment changed the trajectory of the firm for the long-term. Using Jobs-to-be-Done is a paradigm shift, helping the business to adopt an outside-in mindset that’s guided by the voice of the customer. It realigns the organization to believe that they should understand the external customer’s needs first and then work to solve them—rather than focusing internally and ideatnig around technology and solutions. This is real customer-centricity. By understanding the job map, your teams can focus on what will actually help the customer get the job done better—then go create and market these things. No failing fast necessary. Executives Benefits – 41 Most executives would claim that their businesses are customer-centric—but how many of them actually are? Most teams rely on an internally-focused approach to innovation and growth. Teams ideate around new technologies and solutions, creating prototypes, and testing them out to see how customers respond. This is not customer-centricity. It’s solution-centricity. Deliver on customer-centricity.2. But understanding their customer’s job and job map also helped the sales team to create new sales materials that pointed out exactly how their solutions addressed customer needs. The product development team knew exactly what products and features to create next in order to reinforce that new value proposition.",
+  "response_status": 200,
+  "response": {
+    "page": 44,
+    "suggestions": [
+      {
+        "id": "sg-44-1",
+        "page": 44,
+        "prompt": "Theo nội dung slide, việc áp dụng Jobs-to-be-Done giúp doanh nghiệp đạt được sự tập trung vào khách hàng (customer-centricity) bằng cách nào?",
+        "options": [
+          {
+            "key": "A",
+            "text": "Hiểu nhu cầu khách hàng trước rồi mới giải quyết, thay vì tập trung vào công nghệ và giải pháp nội bộ.",
+            "correct": true
+          },
+          {
+            "key": "B",
+            "text": "Tập trung vào việc tạo ra các nguyên mẫu công nghệ mới để khách hàng phản hồi nhanh chóng.",
+            "correct": false,
+            "misconceptionLabel": "Nhầm lẫn với solution-centricity",
+            "hints": [
+              "Xem lại định nghĩa về cách tiếp cận hướng nội.",
+              "Slide đề cập đến việc 'thử nghiệm nguyên mẫu' là biểu hiện của điều gì?",
+              "Đây là cách làm của tư duy tập trung vào giải pháp."
+            ]
+          },
+          {
+            "key": "C",
+            "text": "Ưu tiên việc 'thất bại nhanh' (fail fast) để tìm ra giải pháp phù hợp nhất cho khách hàng.",
+            "correct": false,
+            "misconceptionLabel": "Hiểu sai về mục tiêu của Jobs-to-be-Done",
+            "hints": [
+              "Slide có nhắc đến cụm từ 'No failing fast necessary'.",
+              "Jobs-to-be-Done giúp giảm bớt sự cần thiết của việc thử sai.",
+              "Mục tiêu là hiểu rõ công việc khách hàng cần làm trước khi tạo ra sản phẩm."
+            ]
+          },
+          {
+            "key": "D",
+            "text": "Yêu cầu các phòng ban Sales, Marketing và Product tự đưa ra định nghĩa riêng về giá trị khách hàng.",
+            "correct": false,
+            "misconceptionLabel": "Nhầm lẫn về sự đồng thuận",
+            "hints": [
+              "Slide nói về việc các phòng ban thường bị 'siloed' (chia tách).",
+              "Việc mỗi phòng ban tự định nghĩa giá trị gây ra khó khăn gì?",
+              "Cần sự đồng nhất thay vì mỗi bên một định nghĩa."
+            ]
+          }
+        ],
+        "explain": "Jobs-to-be-Done chuyển dịch tư duy từ 'solution-centricity' (tập trung vào công nghệ/giải pháp nội bộ) sang 'outside-in mindset' (hiểu nhu cầu khách hàng trước, sau đó mới tạo ra giải pháp).",
+        "title": "Tư duy hướng ngoại trong tổ chức",
+        "learningOutcome": "Học viên phân biệt được tư duy hướng ngoại (outside-in) dựa trên Jobs-to-be-Done và tư duy hướng nội (solution-centricity).",
+        "durationSec": 30,
+        "followUp": {
+          "prompt": "Đâu là đặc điểm của tư duy 'solution-centricity' (tập trung vào giải pháp) được nhắc đến trong slide?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Tập trung vào các bước trong job map của khách hàng.",
+              "correct": false
+            },
+            {
+              "key": "B",
+              "text": "Tập trung vào việc tạo nguyên mẫu và thử nghiệm công nghệ mới.",
+              "correct": true
+            },
+            {
+              "key": "C",
+              "text": "Ưu tiên sự đồng nhất giữa các phòng ban Sales và Marketing.",
+              "correct": false
+            },
+            {
+              "key": "D",
+              "text": "Dựa trên tiếng nói của khách hàng để định hướng tăng trưởng.",
+              "correct": false
+            }
+          ],
+          "explain": "Solution-centricity là cách tiếp cận hướng nội, tập trung vào việc tạo ra công nghệ và giải pháp rồi mới kiểm tra phản ứng của khách hàng, thay vì bắt đầu từ nhu cầu thực tế của họ."
+        },
+        "example": {
+          "title": "Ví dụ về sự đồng nhất tại Coloplast",
+          "body": "Thay vì mỗi phòng ban (Sales, Marketing, Product) tự làm theo ý mình, Coloplast đã dùng job map để thống nhất cách tạo ra và truyền thông giá trị, giúp thay đổi quỹ đạo phát triển của công ty."
+        }
+      }
+    ]
+  },
+  "evaluation": {
+    "id": "R04",
+    "situation_type": "rare",
+    "source_type": "observed",
+    "expected_behavior": "Không trộn nhiều đối tượng vào một câu; follow-up kiểm tra cùng learning outcome bằng cách hỏi khác.",
+    "http_status": 200,
+    "suggestion_count": 1,
+    "automatic_scores": [
+      {
+        "checks": {
+          "has_prompt": true,
+          "exactly_four_options": true,
+          "distinct_options": true,
+          "exactly_one_correct": true,
+          "wrong_options_have_misconceptions": true,
+          "wrong_options_have_three_hints": true,
+          "hints_do_not_reveal_answer": true,
+          "has_distinct_follow_up": true,
+          "has_usable_example": true
+        },
+        "automatic_pass": true
+      }
+    ],
+    "human_review": {
+      "grounded": true,
+      "diagnostic": false,
+      "safe": false,
+      "notes": "Nội dung bám slide nhưng follow-up tái sử dụng distractor của câu chính và hint loại đáp án quá rõ."
+    },
+    "not_auto_published": true,
+    "pass": false,
+    "failure_reasons": [
+      "human_review_failed"
+    ],
+    "latency_seconds": 6.424
+  }
+}

@@ -1,0 +1,134 @@
+{
+  "case_id": "N08",
+  "timestamp_utc": "2026-07-31T03:36:41.448731+00:00",
+  "model": "gemini-2.5-flash",
+  "endpoint": "https://conner-unavailing-nonirately.ngrok-free.dev/api/ai/suggest-checkpoints",
+  "role": "teacher",
+  "request": {
+    "page": 12,
+    "count": 1,
+    "force": true
+  },
+  "source_page_excerpt": "9 TRANSFORM YOUR COMPANY THROUGH INNOVATION  FOLLOW US ON LINKEDIN  BECOME A CLIENT  1 2 3 4CHAPTER CHAPTER 02 Companies often define the markets they serve around the technology in their product offerings— a technology that one day will become obsolete. Define Your Market Clearly, this is a mistake, but it’s one that has been repeated by hundreds of companies over the decades. And where are Blockbuster and Kodak now? Where are the companies that defined themselves around CDs? They spiraled to their death when MP3 technology came along. Many companies today find themselves in this same situation. A market, which is the focal point of everything a company does, should not be defined around something so unstable that it is only valid until the next product iteration. Instead, you should define your market around something that is stable for decades, making long-term strategic investments more attractive and providing the company with a vision for the future.. The customer’s job-to-be-done provides that stable focal point around which you can create value—and define your market. More specifically, you should define your market as a group of people and the job they are trying to get done TRANSFORM YOUR COMPANY THROUGH INNOVATION  FOLLOW US ON LINKEDIN  BECOME A CLIENT ",
+  "response_status": 200,
+  "response": {
+    "page": 12,
+    "suggestions": [
+      {
+        "id": "sg-12-1",
+        "page": 12,
+        "prompt": "Theo lý thuyết Jobs-to-be-Done, cách xác định thị trường nào sau đây là bền vững và hiệu quả nhất?",
+        "options": [
+          {
+            "key": "A",
+            "text": "Nhóm người và công việc họ đang cố gắng hoàn thành.",
+            "correct": true
+          },
+          {
+            "key": "B",
+            "text": "Loại công nghệ hoặc sản phẩm mà công ty đang cung cấp.",
+            "correct": false,
+            "misconceptionLabel": "Tư duy lấy sản phẩm làm trung tâm",
+            "hints": [
+              "Hãy xem xét điều gì sẽ xảy ra khi công nghệ đó trở nên lỗi thời.",
+              "Slide 12 cảnh báo về việc định nghĩa thị trường quanh công nghệ.",
+              "Sự ổn định lâu dài nằm ở mục tiêu của khách hàng, không phải công cụ."
+            ]
+          },
+          {
+            "key": "C",
+            "text": "Danh mục sản phẩm/dịch vụ hiện có trên thị trường.",
+            "correct": false,
+            "misconceptionLabel": "Tư duy phân loại theo ngành hàng",
+            "hints": [
+              "Các danh mục sản phẩm thường thay đổi theo sự phát triển của công nghệ.",
+              "Hãy nhớ lại ví dụ về Blockbuster và Kodak trong slide.",
+              "Định nghĩa thị trường cần một điểm tựa ổn định trong nhiều thập kỷ."
+            ]
+          },
+          {
+            "key": "D",
+            "text": "Dựa trên các xu hướng tiêu dùng mới nhất.",
+            "correct": false,
+            "misconceptionLabel": "Tư duy chạy theo xu hướng",
+            "hints": [
+              "Xu hướng là biến số, không phải là nền tảng chiến lược.",
+              "Slide 12 nhấn mạnh vào sự ổn định thay vì các yếu tố dễ thay đổi.",
+              "Tìm kiếm một đơn vị phân tích không bị ảnh hưởng bởi các vòng đời sản phẩm."
+            ]
+          }
+        ],
+        "explain": "Việc định nghĩa thị trường dựa trên công nghệ là sai lầm vì công nghệ sẽ trở nên lỗi thời. Jobs-to-be-Done cung cấp một điểm tựa ổn định trong nhiều thập kỷ bằng cách tập trung vào 'nhóm người' và 'công việc họ cần hoàn thành'.",
+        "title": "Cách xác định thị trường đúng",
+        "learningOutcome": "Học viên phân biệt được cách định nghĩa thị trường dựa trên công nghệ và dựa trên Jobs-to-be-Done.",
+        "durationSec": 30,
+        "followUp": {
+          "prompt": "Tại sao việc định nghĩa thị trường dựa trên công nghệ sản phẩm lại dẫn đến rủi ro cho doanh nghiệp?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Vì công nghệ sẽ trở nên lỗi thời theo thời gian.",
+              "correct": true
+            },
+            {
+              "key": "B",
+              "text": "Vì khách hàng không thích công nghệ mới.",
+              "correct": false
+            },
+            {
+              "key": "C",
+              "text": "Vì làm giảm giá trị của sản phẩm.",
+              "correct": false
+            },
+            {
+              "key": "D",
+              "text": "Vì khó quản lý quy trình sản xuất.",
+              "correct": false
+            }
+          ],
+          "explain": "Khi công nghệ thay đổi (như MP3 thay thế CD), các công ty định nghĩa mình theo công nghệ cũ sẽ mất đi thị trường và đối mặt với nguy cơ phá sản."
+        },
+        "example": {
+          "title": "Ví dụ về sự lỗi thời",
+          "body": "Hãy tưởng tượng một công ty sản xuất máy ảnh phim. Nếu họ định nghĩa thị trường là 'bán máy ảnh phim', họ sẽ sụp đổ khi máy ảnh kỹ thuật số ra đời. Nếu họ định nghĩa thị trường là 'giúp mọi người lưu giữ khoảnh khắc', họ có thể chuyển đổi sang công nghệ mới để tiếp tục phục vụ khách hàng."
+        }
+      }
+    ]
+  },
+  "evaluation": {
+    "id": "N08",
+    "situation_type": "normal",
+    "source_type": "chatlog",
+    "expected_behavior": "Tạo checkpoint chẩn đoán cách định nghĩa market theo job executor và job.",
+    "http_status": 200,
+    "suggestion_count": 1,
+    "automatic_scores": [
+      {
+        "checks": {
+          "has_prompt": true,
+          "exactly_four_options": true,
+          "distinct_options": true,
+          "exactly_one_correct": true,
+          "wrong_options_have_misconceptions": true,
+          "wrong_options_have_three_hints": true,
+          "hints_do_not_reveal_answer": true,
+          "has_distinct_follow_up": true,
+          "has_usable_example": true
+        },
+        "automatic_pass": true
+      }
+    ],
+    "human_review": {
+      "grounded": false,
+      "diagnostic": false,
+      "safe": false,
+      "notes": "Ví dụ máy ảnh ngoài slide; chưa kiểm tra riêng đủ job executor và job; follow-up đổi learning outcome."
+    },
+    "not_auto_published": true,
+    "pass": false,
+    "failure_reasons": [
+      "human_review_failed"
+    ],
+    "latency_seconds": 5.953
+  }
+}

@@ -1,0 +1,124 @@
+{
+  "case_id": "N06",
+  "timestamp_utc": "2026-07-31T03:36:41.448320+00:00",
+  "model": "gemini-2.5-flash",
+  "endpoint": "https://conner-unavailing-nonirately.ngrok-free.dev/api/ai/suggest-checkpoints",
+  "role": "teacher",
+  "request": {
+    "page": 9,
+    "count": 1,
+    "force": true
+  },
+  "source_page_excerpt": "6 TRANSFORM YOUR COMPANY THROUGH INNOVATION  FOLLOW US ON LINKEDIN  BECOME A CLIENT  CHAPTER 1 2 3 4 Innovation becomes predictable when “needs” are defined as the metrics customers use to measure success when getting the job done. TENET 07 In order to determine if your new product idea will help a customer get a job done better and/or more cheaply, you must be able to evaluate competing ideas against a stable set of metrics. The metrics we use to conduct this evaluation are the customer’s desired outcomes. In other words, we define customer needs (desired outcomes) as the metrics that customers use to measure success when getting the job done. These metrics are extracted from customers through customer interviews. Customers typically use between 50 and 150 metrics to explain the successful execution of the job. Capturing all of them is the key to success. Innovation becomes predictable when “needs” are defined as the metrics customers use to measure success when getting the job done. Since the customer’s job-to-be-done is stable over time, the customer’s needs, when defined as desired outcome statements, are also stable over time. With a stable set of “needs” in hand, you can: • Quantify which needs are underserved and overserved. • Discover segments of customers with different unmet needs. • Use the metrics as a baseline against which you can test product ideas and concepts before they are developed. TENET 08 People want products and services that will help them get a job done better and/or more cheaply. We have learned that people aren’t loyal to companies or brands. They are loyal to getting a job done better (faster, more predictably, and with higher output/ throughput) and/or more cheaply. They replace existing products and services with those that help them achieve these goals. We have learned that some people are willing to pay more to get a job done better, while others are willing to pay less to get a job done worse. Knowing what types of customers exist in your market (and in what proportions) forms the foundation for a new way to think about your growth strategy. The possibilities are highlighted here in the Jobs-to-be-Done Growth Strategy Matrix: 6",
+  "response_status": 200,
+  "response": {
+    "page": 9,
+    "suggestions": [
+      {
+        "id": "sg-9-1",
+        "page": 9,
+        "prompt": "Theo nội dung trang 9, làm thế nào để việc đổi mới (innovation) trở nên có thể dự đoán được?",
+        "options": [
+          {
+            "key": "A",
+            "text": "Định nghĩa nhu cầu là các số liệu khách hàng dùng để đo lường thành công khi thực hiện công việc.",
+            "correct": true
+          },
+          {
+            "key": "B",
+            "text": "Tập trung vào việc xây dựng lòng trung thành của khách hàng đối với thương hiệu.",
+            "correct": false,
+            "misconceptionLabel": "Nhầm lẫn giữa lòng trung thành thương hiệu và mục tiêu thực hiện công việc",
+            "hints": [
+              "Xem lại Tenet 08 về đối tượng khách hàng thực sự trung thành.",
+              "Khách hàng không trung thành với thương hiệu, họ trung thành với điều gì?",
+              "Lòng trung thành nằm ở việc hoàn thành công việc tốt hơn hoặc rẻ hơn."
+            ]
+          },
+          {
+            "key": "C",
+            "text": "Phân tích nhân khẩu học và quá trình mua hàng của khách hàng.",
+            "correct": false,
+            "misconceptionLabel": "Nhầm lẫn đơn vị phân tích",
+            "hints": [
+              "Xem lại trang 8 về đơn vị phân tích cần nghiên cứu.",
+              "Đơn vị phân tích không phải là nhân khẩu học hay quá trình mua hàng.",
+              "Cần tập trung vào chính 'công việc' (job) mà khách hàng cần thực hiện."
+            ]
+          },
+          {
+            "key": "D",
+            "text": "Tăng cường số lượng sản phẩm mới ra mắt thị trường.",
+            "correct": false,
+            "misconceptionLabel": "Nhầm lẫn giữa số lượng sản phẩm và chất lượng đổi mới",
+            "hints": [
+              "Số lượng sản phẩm không đảm bảo sự thành công.",
+              "Đổi mới cần dựa trên một tập hợp các số liệu ổn định.",
+              "Cần đánh giá ý tưởng sản phẩm dựa trên các 'desired outcomes'."
+            ]
+          }
+        ],
+        "explain": "Innovation trở nên có thể dự đoán được khi nhu cầu được định nghĩa là các số liệu (metrics) mà khách hàng dùng để đo lường thành công khi thực hiện công việc (job).",
+        "title": "Định nghĩa nhu cầu khách hàng",
+        "learningOutcome": "Xác định được mối quan hệ giữa 'nhu cầu khách hàng' và 'số liệu đo lường thành công' để dự đoán hiệu quả đổi mới.",
+        "durationSec": 30,
+        "followUp": {
+          "prompt": "Tại sao các 'nhu cầu' (desired outcomes) lại ổn định theo thời gian?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Vì công việc (job-to-be-done) của khách hàng ổn định theo thời gian.",
+              "correct": true
+            },
+            {
+              "key": "B",
+              "text": "Vì khách hàng luôn thay đổi sở thích theo xu hướng thị trường.",
+              "correct": false
+            }
+          ],
+          "explain": "Vì công việc (job-to-be-done) là đơn vị phân tích ổn định, nên các nhu cầu được định nghĩa là các số liệu đo lường thành công cũng ổn định theo thời gian."
+        },
+        "example": {
+          "title": "Ví dụ về số liệu đo lường",
+          "body": "Khi một người dùng phần mềm kế toán, họ không chỉ mua 'phần mềm'. Họ đo lường thành công bằng các số liệu như: 'giảm thời gian nhập liệu', 'giảm sai sót tính toán', 'tăng tốc độ xuất báo cáo'. Đây chính là các metrics (nhu cầu) cần thu thập."
+        }
+      }
+    ]
+  },
+  "evaluation": {
+    "id": "N06",
+    "situation_type": "normal",
+    "source_type": "chatlog",
+    "expected_behavior": "Tạo checkpoint kiểm tra outcome được định nghĩa như metric, không thêm công thức ngoài slide.",
+    "http_status": 200,
+    "suggestion_count": 1,
+    "automatic_scores": [
+      {
+        "checks": {
+          "has_prompt": true,
+          "exactly_four_options": true,
+          "distinct_options": true,
+          "exactly_one_correct": true,
+          "wrong_options_have_misconceptions": true,
+          "wrong_options_have_three_hints": true,
+          "hints_do_not_reveal_answer": true,
+          "has_distinct_follow_up": true,
+          "has_usable_example": true
+        },
+        "automatic_pass": true
+      }
+    ],
+    "human_review": {
+      "grounded": false,
+      "diagnostic": false,
+      "safe": false,
+      "notes": "Dùng nội dung từ trang khác và ví dụ metric tự thêm; follow-up chỉ có hai lựa chọn; hint gợi đáp án."
+    },
+    "not_auto_published": true,
+    "pass": false,
+    "failure_reasons": [
+      "human_review_failed"
+    ],
+    "latency_seconds": 5.444
+  }
+}

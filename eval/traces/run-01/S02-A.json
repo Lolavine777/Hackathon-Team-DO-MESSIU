@@ -1,0 +1,134 @@
+{
+  "case_id": "S02-A",
+  "timestamp_utc": "2026-07-31T03:36:41.449102+00:00",
+  "model": "gemini-2.5-flash",
+  "endpoint": "https://conner-unavailing-nonirately.ngrok-free.dev/api/ai/suggest-checkpoints",
+  "role": "teacher",
+  "request": {
+    "page": 3,
+    "count": 1,
+    "force": true
+  },
+  "source_page_excerpt": "TRANSFORM YOUR COMPANY THROUGH INNOVATION  FOLLOW US ON LINKEDIN  BECOME A CLIENT  This playbook will teach you the tenets of Jobs-to-be-Done and how to apply them in your own organization, whatever your position — just like Arm & Hammer did to grow year-over-year revenue by more than 30%. Or like Microsoft did to turn around a flailing business and double revenue.  And how Bosch entered a new market with a top-selling and top-rated circular saw.  Or how Cox Automotive increased its product install base by 20X.  You get the picture. A R E Y O U R E A D Y T O S E E R E S U LT S L I K E T H E S E F O R Y O U R O W N B U S I N E S S ? THEN IT’S TIME TO DIVE INTO JOBS-TO-BE-DONE CHAPTER 01 CHAPTER 02 CHAPTER 03 CHAPTER 04 1 9 18 31 What is Jobs-to-be-Done? Define Your Market Build Your Job Map & Visualize What Your Customers Want Product, Marketing, & Executives put JTBD into Practice Table of Contents TRANSFORM YOUR COMPANY THROUGH INNOVATION  FOLLOW US ON LINKEDIN  BECOME A CLIENT ",
+  "response_status": 200,
+  "response": {
+    "page": 3,
+    "suggestions": [
+      {
+        "id": "sg-3-1",
+        "page": 3,
+        "prompt": "Dựa trên các ví dụ về Arm & Hammer, Microsoft, Bosch và Cox Automotive, mục tiêu chính của việc áp dụng Jobs-to-be-Done là gì?",
+        "options": [
+          {
+            "key": "A",
+            "text": "Tạo ra kết quả kinh doanh vượt trội và tăng trưởng doanh thu.",
+            "correct": true
+          },
+          {
+            "key": "B",
+            "text": "Chỉ tập trung vào việc thay đổi quy trình nội bộ của công ty.",
+            "correct": false,
+            "misconceptionLabel": "Nhầm lẫn giữa công cụ và mục đích",
+            "hints": [
+              "Xem xét lại kết quả mà các công ty đã đạt được.",
+              "Các ví dụ đề cập đến doanh thu và thị phần.",
+              "Quy trình chỉ là phương tiện để đạt được kết quả."
+            ]
+          },
+          {
+            "key": "C",
+            "text": "Giảm thiểu số lượng sản phẩm mới được tung ra thị trường.",
+            "correct": false,
+            "misconceptionLabel": "Hiểu sai về mục tiêu tăng trưởng",
+            "hints": [
+              "Các công ty trong ví dụ đều phát triển mạnh mẽ.",
+              "Phương pháp này giúp sản phẩm thành công hơn.",
+              "Không có thông tin nào nói về việc cắt giảm sản phẩm."
+            ]
+          },
+          {
+            "key": "D",
+            "text": "Thay thế hoàn toàn các chiến lược marketing truyền thống.",
+            "correct": false,
+            "misconceptionLabel": "Phóng đại phạm vi áp dụng",
+            "hints": [
+              "Slide đề cập đến việc áp dụng các nguyên lý.",
+              "Đây là một playbook để hướng dẫn thực hiện.",
+              "Nó hỗ trợ chứ không phủ nhận các chiến lược khác."
+            ]
+          }
+        ],
+        "explain": "Jobs-to-be-Done là một playbook giúp các tổ chức đạt được kết quả kinh doanh thực tế như tăng doanh thu, mở rộng thị trường và tăng cơ sở cài đặt sản phẩm.",
+        "title": "Mục tiêu của Jobs-to-be-Done",
+        "learningOutcome": "Học viên xác định được giá trị cốt lõi của phương pháp Jobs-to-be-Done trong kinh doanh.",
+        "durationSec": 30,
+        "followUp": {
+          "prompt": "Theo nội dung slide, Jobs-to-be-Done giúp doanh nghiệp đạt được điều gì?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Tăng trưởng doanh thu và hiệu quả kinh doanh.",
+              "correct": true
+            },
+            {
+              "key": "B",
+              "text": "Chỉ tập trung vào phát triển kỹ thuật.",
+              "correct": false
+            },
+            {
+              "key": "C",
+              "text": "Giảm chi phí vận hành bộ máy.",
+              "correct": false
+            },
+            {
+              "key": "D",
+              "text": "Thay đổi hoàn toàn nhân sự công ty.",
+              "correct": false
+            }
+          ],
+          "explain": "Các ví dụ như Arm & Hammer (tăng 30% doanh thu) và Microsoft (gấp đôi doanh thu) minh chứng cho hiệu quả kinh doanh của phương pháp này."
+        },
+        "example": {
+          "title": "Ví dụ thực tế",
+          "body": "Giống như việc Bosch sử dụng Jobs-to-be-Done để thâm nhập thị trường mới với sản phẩm máy cưa đĩa đạt top bán chạy và đánh giá cao, giúp doanh nghiệp đạt kết quả kinh doanh thực tế."
+        }
+      }
+    ]
+  },
+  "evaluation": {
+    "id": "S02-A",
+    "situation_type": "ambiguous",
+    "source_type": "observed",
+    "expected_behavior": "Chọn một learning outcome rõ từ trang 3 thay vì trộn nhiều khái niệm vào một câu.",
+    "http_status": 200,
+    "suggestion_count": 1,
+    "automatic_scores": [
+      {
+        "checks": {
+          "has_prompt": true,
+          "exactly_four_options": true,
+          "distinct_options": true,
+          "exactly_one_correct": true,
+          "wrong_options_have_misconceptions": true,
+          "wrong_options_have_three_hints": true,
+          "hints_do_not_reveal_answer": true,
+          "has_distinct_follow_up": true,
+          "has_usable_example": true
+        },
+        "automatic_pass": true
+      }
+    ],
+    "human_review": {
+      "grounded": false,
+      "diagnostic": false,
+      "safe": false,
+      "notes": "Có nhận định market share và quan hệ với chiến lược khác không nằm trong slide; learning outcome còn rộng."
+    },
+    "not_auto_published": true,
+    "pass": false,
+    "failure_reasons": [
+      "human_review_failed"
+    ],
+    "latency_seconds": 5.752
+  }
+}

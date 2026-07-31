@@ -1,0 +1,134 @@
+{
+  "case_id": "N03",
+  "timestamp_utc": "2026-07-31T03:36:41.447666+00:00",
+  "model": "gemini-2.5-flash",
+  "endpoint": "https://conner-unavailing-nonirately.ngrok-free.dev/api/ai/suggest-checkpoints",
+  "role": "teacher",
+  "request": {
+    "page": 6,
+    "count": 1,
+    "force": true
+  },
+  "source_page_excerpt": "3 TRANSFORM YOUR COMPANY THROUGH INNOVATION  FOLLOW US ON LINKEDIN  BECOME A CLIENT  CHAPTER 1 2 3 4 People have underlying problems they are trying to resolve. They have goals they are trying to achieve and tasks and activities they are trying to complete. They may be faced with situations they are trying to avoid. In each of these cases, people often turn to products and services to help them get a “job” done. TENET 01 TENET 02 A job is not a description of what the customer is doing, the solution they are using, or the steps they are taking to get a job done. Rather, the job is what the customer is ultimately trying to accomplish. The core job-to-be-done is defined as a “functional job.” With this in mind, you can define your market as a group of people and the functional job they are trying to get done. • Parents (a group of people) who are trying to “pass on life lessons to children” (the functional job-to-be-done) constitute a market. • Surgeons (a group of people) who are trying to “repair a torn rotator cuff” (the functional job-to-be-done) constitute a market. • Music enthusiasts (a group of people) who are trying to “listen to music” (the functional job-to-be-done) constitute a market. When you define a market this way, you clarify your target customer and the job you are going to help the customer accomplish with your product or service offering People buy products and services to get a “job” done. Jobs are functional— with emotional and social components. As a customer uses a product or service to get a functional job done, they often want to feel a certain way or be perceived in a certain light by their peers, friends or others. The ways they want to feel and be perceived are called emotional and social jobs-to-be-done. For example, when parents are trying to pass on life lessons to children (the functional job-to-be-done), they may also want to feel like they are contributing to the advancement of society or want to be perceived as good parents by their peers. Understanding the emotional and social components of the functional job brings rich insights that can lead to the creation of a value proposition that highly resonates with customers — at both a functional and emotional level. For example:",
+  "response_status": 200,
+  "response": {
+    "page": 6,
+    "suggestions": [
+      {
+        "id": "sg-6-1",
+        "page": 6,
+        "prompt": "Theo nội dung trang 6, yếu tố nào sau đây được định nghĩa là 'functional job' (công việc chức năng) của khách hàng?",
+        "options": [
+          {
+            "key": "A",
+            "text": "Điều khách hàng cuối cùng muốn đạt được",
+            "correct": true
+          },
+          {
+            "key": "B",
+            "text": "Các bước khách hàng thực hiện để hoàn thành công việc",
+            "correct": false,
+            "misconceptionLabel": "Nhầm lẫn giữa quy trình và mục tiêu",
+            "hints": [
+              "Xem lại định nghĩa về 'job' trong slide.",
+              "Slide nêu rõ job không phải là các bước thực hiện.",
+              "Hãy tập trung vào kết quả cuối cùng mà khách hàng hướng tới."
+            ]
+          },
+          {
+            "key": "C",
+            "text": "Sản phẩm hoặc dịch vụ khách hàng đang sử dụng",
+            "correct": false,
+            "misconceptionLabel": "Nhầm lẫn giữa giải pháp và nhu cầu",
+            "hints": [
+              "Sản phẩm là công cụ, không phải là job.",
+              "Slide khẳng định job không phải là giải pháp khách hàng đang dùng.",
+              "Hãy nghĩ về lý do tại sao họ cần sản phẩm đó."
+            ]
+          },
+          {
+            "key": "D",
+            "text": "Cách khách hàng muốn được người khác nhìn nhận",
+            "correct": false,
+            "misconceptionLabel": "Nhầm lẫn giữa thành phần cảm xúc và chức năng",
+            "hints": [
+              "Đây là một thành phần khác được nhắc đến trong slide.",
+              "Định nghĩa này thuộc về emotional hoặc social job.",
+              "Functional job tập trung vào mục tiêu thực tế của công việc."
+            ]
+          }
+        ],
+        "explain": "Functional job là mục tiêu cuối cùng mà khách hàng muốn hoàn thành, không phải là giải pháp, các bước thực hiện hay cảm xúc đi kèm.",
+        "title": "Bản chất của Jobs-to-be-Done",
+        "learningOutcome": "Phân biệt được functional job với các bước thực hiện hoặc giải pháp cụ thể.",
+        "durationSec": 30,
+        "followUp": {
+          "prompt": "Trong ví dụ về bác sĩ phẫu thuật, đâu là 'functional job'?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Sử dụng bộ dụng cụ phẫu thuật hiện đại",
+              "correct": false
+            },
+            {
+              "key": "B",
+              "text": "Sửa chữa vết rách cơ chóp xoay",
+              "correct": true
+            },
+            {
+              "key": "C",
+              "text": "Cảm thấy tự hào về tay nghề của mình",
+              "correct": false
+            },
+            {
+              "key": "D",
+              "text": "Thực hiện các bước khâu vết thương",
+              "correct": false
+            }
+          ],
+          "explain": "Việc 'sửa chữa vết rách cơ chóp xoay' là mục tiêu chức năng (functional job) mà bác sĩ muốn hoàn thành."
+        },
+        "example": {
+          "title": "Ví dụ về Functional Job",
+          "body": "Khi bạn mua một chiếc máy khoan, 'functional job' không phải là việc cầm máy khoan (bước thực hiện) hay chiếc máy khoan (giải pháp), mà là 'tạo ra một lỗ trên tường' để treo tranh."
+        }
+      }
+    ]
+  },
+  "evaluation": {
+    "id": "N03",
+    "situation_type": "normal",
+    "source_type": "chatlog",
+    "expected_behavior": "Tạo checkpoint phân biệt vấn đề, mục tiêu và giải pháp theo nội dung trang 6.",
+    "http_status": 200,
+    "suggestion_count": 1,
+    "automatic_scores": [
+      {
+        "checks": {
+          "has_prompt": true,
+          "exactly_four_options": true,
+          "distinct_options": true,
+          "exactly_one_correct": true,
+          "wrong_options_have_misconceptions": true,
+          "wrong_options_have_three_hints": true,
+          "hints_do_not_reveal_answer": true,
+          "has_distinct_follow_up": true,
+          "has_usable_example": true
+        },
+        "automatic_pass": true
+      }
+    ],
+    "human_review": {
+      "grounded": false,
+      "diagnostic": false,
+      "safe": false,
+      "notes": "Ví dụ ngoài slide; chưa phân biệt đủ problem, goal và solution; hint diễn giải gần như đáp án."
+    },
+    "not_auto_published": true,
+    "pass": false,
+    "failure_reasons": [
+      "human_review_failed"
+    ],
+    "latency_seconds": 6.442
+  }
+}

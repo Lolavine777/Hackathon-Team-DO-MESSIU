@@ -1,0 +1,134 @@
+{
+  "case_id": "N01",
+  "timestamp_utc": "2026-07-31T03:36:41.447052+00:00",
+  "model": "gemini-2.5-flash",
+  "endpoint": "https://conner-unavailing-nonirately.ngrok-free.dev/api/ai/suggest-checkpoints",
+  "role": "teacher",
+  "request": {
+    "page": 4,
+    "count": 1,
+    "force": true
+  },
+  "source_page_excerpt": "1 TRANSFORM YOUR COMPANY THROUGH INNOVATION  FOLLOW US ON LINKEDIN  BECOME A CLIENT  CHAPTER 1 2 3 4 CHAPTER 01 Jobs-to-be-Done is best defined as a perspective — a new lens through which you can observe markets, customers, needs, competitors, and customer segments more insightfully. What is Jobs-to-be-Done? When you look at marketing and innovation through a Jobs-to-be-Done lens, everything looks different: • The unit of analysis is no longer the customer or the product. It’s the “job” the customer is trying to get done. • Markets aren’t defined around products. They are defined as groups of people trying to get a job done. • Customers aren’t just buyers. They also include job executors. • Needs aren’t vague, latent and unknowable. They are the metrics customers use to measure success when getting a job done. • Competitors aren’t companies that make products like yours. They are companies with any solution people use to get the job done. • Customer segments aren’t based on demographics or psychographics. They are based on how customers struggle differently to get a job done. TRANSFORM YOUR COMPANY THROUGH INNOVATION  FOLLOW US ON LINKEDIN  BECOME A CLIENT ",
+  "response_status": 200,
+  "response": {
+    "page": 4,
+    "suggestions": [
+      {
+        "id": "sg-4-1",
+        "page": 4,
+        "prompt": "Theo góc nhìn Jobs-to-be-Done, đơn vị phân tích cốt lõi khi quan sát thị trường là gì?",
+        "options": [
+          {
+            "key": "A",
+            "text": "Công việc (job) mà khách hàng muốn hoàn thành",
+            "correct": true
+          },
+          {
+            "key": "B",
+            "text": "Khách hàng hoặc sản phẩm",
+            "correct": false,
+            "misconceptionLabel": "Nhầm lẫn với cách tiếp cận truyền thống",
+            "hints": [
+              "Hãy xem lại phần 'Unit of analysis' trong slide.",
+              "Slide khẳng định đơn vị phân tích không còn là hai yếu tố này nữa.",
+              "Tập trung vào mục đích cuối cùng của khách hàng."
+            ]
+          },
+          {
+            "key": "C",
+            "text": "Nhân khẩu học và tâm lý học",
+            "correct": false,
+            "misconceptionLabel": "Nhầm lẫn với tiêu chí phân khúc khách hàng",
+            "hints": [
+              "Đây là các yếu tố dùng để phân khúc khách hàng truyền thống.",
+              "Jobs-to-be-Done không sử dụng các yếu tố này làm đơn vị phân tích.",
+              "Hãy tìm từ khóa liên quan đến 'unit of analysis' trong slide."
+            ]
+          },
+          {
+            "key": "D",
+            "text": "Các đối thủ cạnh tranh trực tiếp",
+            "correct": false,
+            "misconceptionLabel": "Nhầm lẫn với đối tượng cạnh tranh",
+            "hints": [
+              "Đối thủ cạnh tranh là một khái niệm khác trong Jobs-to-be-Done.",
+              "Đơn vị phân tích phải là thứ khách hàng đang thực hiện.",
+              "Xem lại danh sách các thay đổi trong cách nhìn nhận thị trường."
+            ]
+          }
+        ],
+        "explain": "Jobs-to-be-Done thay đổi góc nhìn, trong đó đơn vị phân tích không còn là khách hàng hay sản phẩm mà là 'công việc' (job) mà khách hàng đang cố gắng hoàn thành.",
+        "title": "Bản chất Jobs-to-be-Done",
+        "learningOutcome": "Xác định được đơn vị phân tích chính trong lý thuyết Jobs-to-be-Done.",
+        "durationSec": 30,
+        "followUp": {
+          "prompt": "Trong Jobs-to-be-Done, thị trường được định nghĩa như thế nào?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Là nhóm người đang cố gắng hoàn thành một công việc",
+              "correct": true
+            },
+            {
+              "key": "B",
+              "text": "Là tập hợp các sản phẩm tương tự nhau",
+              "correct": false
+            },
+            {
+              "key": "C",
+              "text": "Là nhóm khách hàng có cùng nhân khẩu học",
+              "correct": false
+            },
+            {
+              "key": "D",
+              "text": "Là khu vực địa lý nơi sản phẩm được bán",
+              "correct": false
+            }
+          ],
+          "explain": "Thị trường không định nghĩa quanh sản phẩm mà là nhóm người cùng cố gắng hoàn thành một công việc."
+        },
+        "example": {
+          "title": "Ví dụ về Jobs-to-be-Done",
+          "body": "Thay vì nhìn vào 'người mua máy khoan' (sản phẩm), hãy nhìn vào 'người muốn tạo một lỗ hổng trên tường' (công việc)."
+        }
+      }
+    ]
+  },
+  "evaluation": {
+    "id": "N01",
+    "situation_type": "normal",
+    "source_type": "chatlog",
+    "expected_behavior": "Trả ít nhất một checkpoint chỉ dựa trên trang 4, có đúng bốn phương án và đúng một đáp án đúng.",
+    "http_status": 200,
+    "suggestion_count": 1,
+    "automatic_scores": [
+      {
+        "checks": {
+          "has_prompt": true,
+          "exactly_four_options": true,
+          "distinct_options": true,
+          "exactly_one_correct": true,
+          "wrong_options_have_misconceptions": true,
+          "wrong_options_have_three_hints": true,
+          "hints_do_not_reveal_answer": true,
+          "has_distinct_follow_up": true,
+          "has_usable_example": true
+        },
+        "automatic_pass": true
+      }
+    ],
+    "human_review": {
+      "grounded": false,
+      "diagnostic": false,
+      "safe": false,
+      "notes": "Ví dụ máy khoan không có trong slide; follow-up đổi learning outcome; hint gợi gần đáp án."
+    },
+    "not_auto_published": true,
+    "pass": false,
+    "failure_reasons": [
+      "human_review_failed"
+    ],
+    "latency_seconds": 5.908
+  }
+}
