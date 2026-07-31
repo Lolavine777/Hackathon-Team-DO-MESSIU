@@ -1,0 +1,134 @@
+{
+  "case_id": "N06",
+  "timestamp_utc": "2026-07-31T05:41:24.265562+00:00",
+  "model": "gemini-2.5-flash",
+  "endpoint": "http://127.0.0.1:8010/api/ai/suggest-checkpoints",
+  "role": "teacher",
+  "request": {
+    "page": 9,
+    "count": 1,
+    "force": true
+  },
+  "source_page_excerpt": "6 TRANSFORM YOUR COMPANY THROUGH INNOVATION  FOLLOW US ON LINKEDIN  BECOME A CLIENT  CHAPTER 1 2 3 4 Innovation becomes predictable when “needs” are defined as the metrics customers use to measure success when getting the job done. TENET 07 In order to determine if your new product idea will help a customer get a job done better and/or more cheaply, you must be able to evaluate competing ideas against a stable set of metrics. The metrics we use to conduct this evaluation are the customer’s desired outcomes. In other words, we define customer needs (desired outcomes) as the metrics that customers use to measure success when getting the job done. These metrics are extracted from customers through customer interviews. Customers typically use between 50 and 150 metrics to explain the successful execution of the job. Capturing all of them is the key to success. Innovation becomes predictable when “needs” are defined as the metrics customers use to measure success when getting the job done. Since the customer’s job-to-be-done is stable over time, the customer’s needs, when defined as desired outcome statements, are also stable over time. With a stable set of “needs” in hand, you can: • Quantify which needs are underserved and overserved. • Discover segments of customers with different unmet needs. • Use the metrics as a baseline against which you can test product ideas and concepts before they are developed. TENET 08 People want products and services that will help them get a job done better and/or more cheaply. We have learned that people aren’t loyal to companies or brands. They are loyal to getting a job done better (faster, more predictably, and with higher output/ throughput) and/or more cheaply. They replace existing products and services with those that help them achieve these goals. We have learned that some people are willing to pay more to get a job done better, while others are willing to pay less to get a job done worse. Knowing what types of customers exist in your market (and in what proportions) forms the foundation for a new way to think about your growth strategy. The possibilities are highlighted here in the Jobs-to-be-Done Growth Strategy Matrix: 6",
+  "response_status": 200,
+  "response": {
+    "page": 9,
+    "suggestions": [
+      {
+        "id": "sg-9-1",
+        "page": 9,
+        "prompt": "Theo Tenet 07, đâu là cách xác định nhu cầu khách hàng để đạt được sự đổi mới có thể dự đoán trước?",
+        "options": [
+          {
+            "key": "A",
+            "text": "Là các chỉ số khách hàng dùng để đo lường sự thành công khi thực hiện công việc.",
+            "correct": true
+          },
+          {
+            "key": "B",
+            "text": "Là sự trung thành của khách hàng đối với các thương hiệu cụ thể.",
+            "correct": false,
+            "misconceptionLabel": "Nhầm lẫn giữa lòng trung thành và nhu cầu",
+            "hints": [
+              "Bạn đang giả định nhu cầu gắn liền với thương hiệu.",
+              "Liệu khách hàng ưu tiên thương hiệu hay ưu tiên kết quả công việc?",
+              "Hãy xem lại Tenet 08 về sự trung thành của khách hàng."
+            ]
+          },
+          {
+            "key": "C",
+            "text": "Là các ý tưởng sản phẩm mới được công ty đề xuất.",
+            "correct": false,
+            "misconceptionLabel": "Nhầm lẫn giữa giải pháp và nhu cầu",
+            "hints": [
+              "Bạn đang giả định nhu cầu là sản phẩm của công ty.",
+              "Sản phẩm là công cụ hay là thước đo thành công?",
+              "Hãy đọc lại định nghĩa về 'customer needs' trong Tenet 07."
+            ]
+          },
+          {
+            "key": "D",
+            "text": "Là các phân khúc khách hàng khác nhau trong thị trường.",
+            "correct": false,
+            "misconceptionLabel": "Nhầm lẫn giữa phân khúc và nhu cầu",
+            "hints": [
+              "Bạn đang giả định nhu cầu là nhóm đối tượng khách hàng.",
+              "Phân khúc khách hàng có phải là thước đo để thực hiện công việc không?",
+              "Hãy xem lại phần giải thích về 'customer needs' tại Tenet 07."
+            ]
+          }
+        ],
+        "explain": "Nhu cầu khách hàng (desired outcomes) được định nghĩa là các chỉ số mà khách hàng sử dụng để đo lường sự thành công khi thực hiện công việc.",
+        "title": "Định nghĩa nhu cầu khách hàng",
+        "learningOutcome": "Học viên xác định được nhu cầu khách hàng là các chỉ số đo lường sự thành công khi thực hiện công việc.",
+        "durationSec": 30,
+        "followUp": {
+          "prompt": "Khi nhu cầu khách hàng được định nghĩa là các chỉ số đo lường sự thành công, điều gì giúp việc đổi mới trở nên có thể dự đoán?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Việc xác định các chỉ số đo lường sự thành công khi thực hiện công việc.",
+              "correct": true
+            },
+            {
+              "key": "B",
+              "text": "Việc thay đổi các chỉ số đo lường theo thời gian.",
+              "correct": false
+            },
+            {
+              "key": "C",
+              "text": "Việc tập trung vào lòng trung thành với thương hiệu.",
+              "correct": false
+            },
+            {
+              "key": "D",
+              "text": "Việc giảm số lượng chỉ số cần thu thập.",
+              "correct": false
+            }
+          ],
+          "explain": "Đổi mới trở nên có thể dự đoán khi nhu cầu được định nghĩa là các chỉ số khách hàng dùng để đo lường sự thành công khi thực hiện công việc."
+        },
+        "example": {
+          "title": "Ví dụ về nhu cầu",
+          "body": "Nhu cầu khách hàng là các chỉ số khách hàng dùng để đo lường sự thành công khi thực hiện công việc, được trích xuất thông qua phỏng vấn khách hàng."
+        }
+      }
+    ]
+  },
+  "evaluation": {
+    "id": "N06",
+    "situation_type": "normal",
+    "source_type": "chatlog",
+    "expected_behavior": "Tạo checkpoint kiểm tra outcome được định nghĩa như metric, không thêm công thức ngoài slide.",
+    "http_status": 200,
+    "suggestion_count": 1,
+    "automatic_scores": [
+      {
+        "checks": {
+          "has_prompt": true,
+          "exactly_four_options": true,
+          "distinct_options": true,
+          "exactly_one_correct": true,
+          "wrong_options_have_misconceptions": true,
+          "wrong_options_have_three_hints": true,
+          "hints_do_not_reveal_answer": true,
+          "has_distinct_follow_up": true,
+          "has_usable_example": true
+        },
+        "automatic_pass": true
+      }
+    ],
+    "human_review": {
+      "grounded": true,
+      "diagnostic": false,
+      "safe": true,
+      "notes": "[AI-review] Grounded: Tenet 07 và 08 đều nằm trên trang 9, không còn dẫn nội dung trang khác. Diagnostic không đạt: câu dẫn của follow-up đã chứa sẵn đáp án ('Khi nhu cầu khách hàng được định nghĩa là các chỉ số đo lường sự thành công…'), nên follow-up không kiểm tra lại được gì."
+    },
+    "not_auto_published": true,
+    "pass": false,
+    "failure_reasons": [
+      "human_review_failed"
+    ],
+    "latency_seconds": 5.755
+  }
+}

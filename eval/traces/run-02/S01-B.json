@@ -1,0 +1,33 @@
+{
+  "case_id": "S01-B",
+  "timestamp_utc": "2026-07-31T05:41:24.273118+00:00",
+  "model": "gemini-2.5-flash",
+  "endpoint": "http://127.0.0.1:8010/api/ai/suggest-checkpoints",
+  "role": "teacher",
+  "request": {
+    "page": 49,
+    "count": 1,
+    "force": true
+  },
+  "source_page_excerpt": null,
+  "response_status": 422,
+  "response": {
+    "detail": "Trang 49 nằm ngoài tài liệu (48 trang)."
+  },
+  "evaluation": {
+    "id": "S01-B",
+    "situation_type": "missing_source",
+    "source_type": "chatlog",
+    "expected_behavior": "Báo trang nằm ngoài tài liệu, không sinh checkpoint và không bịa nội dung.",
+    "http_status": 422,
+    "suggestion_count": 0,
+    "automatic_scores": [],
+    "human_review": {
+      "status": "pending"
+    },
+    "not_auto_published": true,
+    "pass": true,
+    "failure_reasons": [],
+    "latency_seconds": 0.004
+  }
+}

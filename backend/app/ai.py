@@ -6,11 +6,33 @@ giảng viên phải bấm lưu thì `content.register_drafted_checkpoint()` m�
 """
 
 import asyncio
+import json
+import re
+import unicodedata
 
 from . import llm, slides
 
 KEYS = "ABCDEF"
 MAX_OPTIONS = 4
+
+# Tỉ lệ từ nội dung của đáp án bị lặp lại thì coi như hint đã nói ra đáp án.
+LEAK_RATIO = 0.6
+# Follow-up nhắc lại gần nguyên văn một phương án của câu chính thì không còn hỏi lại được gì.
+DUPLICATE_RATIO = 0.7
+ANSWER_ECHO_RATIO = 0.9  # đáp án của hai câu được phép cùng nói về một khái niệm
+# Dưới ngưỡng này thì tỉ lệ trùng từ không nói lên gì: hai phương án ngắn cùng chủ đề
+# ("Một mức giá bán" / "Mức giá của công cụ") luôn trùng gần hết.
+MIN_COMPARE_WORDS = 3
+
+# Từ chức năng — bỏ đi để so sánh phần nội dung thật sự của hai câu.
+_STOPWORDS = frozenset(
+    """la va cua cac mot nhung cho khi voi duoc de trong co khong thi ma nay do hay hoac
+    o tu theo ve nhu nen can phai se dang bi vi neu con cung da ra vao len nao gi ai
+    hon rat nhat ho them tren duoi sau truoc boi bang
+    a an and are as at be by for from in is it of on or that the this to with"""
+    .split()
+)
+_WORDS = re.compile(r"\w+", re.UNICODE)
 
 _BASE_RULES = """Bạn là trợ giảng của một lớp học đại học, viết bằng tiếng Việt.
 Chỉ được dựa vào NỘI DUNG SLIDE mà người dùng cung cấp — tuyệt đối không bịa thêm
@@ -57,11 +79,43 @@ Cấu trúc bắt buộc:
   "example": {"title": "...", "body": "..."}
 }]}
 
-Quy tắc: mỗi câu đúng 4 phương án và đúng MỘT phương án "correct": true;
-mỗi phương án sai phải có "misconceptionLabel" đặt tên cho lỗi tư duy đứng sau nó;
-"hints" gồm 3 tầng gợi mở dần và TUYỆT ĐỐI KHÔNG chứa đáp án đúng;
-"followUp" là câu kiểm tra lại cùng learning outcome nhưng khác cách hỏi;
-"example" là ví dụ ngắn giảng viên có thể chiếu lên khi lớp chưa hiểu."""
+NGUỒN DUY NHẤT
+Chỉ được dùng chữ có trong NỘI DUNG SLIDE bên dưới, kể cả ở "explain" và "example".
+Không thêm ví dụ, con số, tên thương hiệu, tên công ty, tên người hay nhận định
+không xuất hiện trong đoạn đó — kể cả khi bạn biết chúng là đúng.
+Không nhắc tới trang khác, chương khác hay mục không nằm trong đoạn được cấp.
+Trang chỉ có tiêu đề hoặc lời mời hành động thì hỏi đúng nội dung trang đó nói,
+không mượn kiến thức của bài học để hỏi rộng ra.
+
+MỘT LEARNING OUTCOME
+Mỗi đề xuất chỉ đo đúng một khái niệm. "learningOutcome", "prompt", đáp án đúng,
+"explain" và "followUp" phải cùng nói về khái niệm đó, không trượt sang khái niệm
+bên cạnh dù cùng nằm trên trang.
+
+PHƯƠNG ÁN
+Đúng 4 phương án khác nhau và đúng MỘT phương án "correct": true.
+Mỗi phương án sai là một hiểu nhầm học viên thật sự hay mắc — không dùng câu phủ
+định hay đảo ngược của đáp án, không dùng phương án sai một cách hiển nhiên.
+"misconceptionLabel" gọi tên chính hiểu nhầm mà phương án đó thể hiện.
+
+HINTS
+3 tầng, chỉ nói về hiểu nhầm của phương án sai đang chọn:
+tầng 1 gọi tên giả định sai; tầng 2 là một câu hỏi để học viên tự kiểm tra giả định
+đó; tầng 3 chỉ chỗ cần đọc lại trên trang (từ khoá có thật trên slide).
+Không tầng nào được nêu, dịch, tóm tắt hay diễn giải đáp án đúng, và không được
+loại trừ các phương án còn lại. Đọc hết 3 tầng thì học viên vẫn phải tự chọn lại.
+
+FOLLOW-UP
+Bắt buộc có, đúng 4 phương án và đúng MỘT đáp án đúng.
+Đo lại đúng learning outcome đó bằng một cách hỏi khác, không đổi sang khái niệm khác.
+Không dùng lại nguyên văn hay gần nguyên văn phương án nào của câu chính, và không
+lấy phương án sai của câu chính làm đáp án đúng.
+
+EXAMPLE
+"example" chỉ được diễn đạt lại một minh hoạ đã có sẵn trên trang.
+Trang không có minh hoạ nào thì viết lại chính câu của slide giải thích đáp án bằng
+lời ngắn gọn, không thêm bối cảnh mới.
+Cấm ví dụ tự nghĩ ra (máy khoan, thương hiệu, phần mềm, số liệu…) dù chúng quen thuộc."""
 )
 
 
@@ -87,27 +141,81 @@ def _text(value) -> str:
     return value.strip() if isinstance(value, str) else ""
 
 
-def _hints(raw, label: str) -> list[str]:
-    """Hint 3 tầng. Thiếu thì bù bằng gợi ý chung, để `SEND_HINT_GROUP` luôn có nội dung."""
-    tiers = [_text(item) for item in (raw or []) if _text(item)][:3]
-    fallback = (
+def _fold(text: str) -> str:
+    """Bỏ dấu và hạ chữ thường để so hai đoạn tiếng Việt viết khác nhau chút ít."""
+    stripped = unicodedata.normalize("NFD", text.lower().replace("đ", "d"))
+    return "".join(ch for ch in stripped if not unicodedata.combining(ch))
+
+
+def _content_words(text: str) -> set[str]:
+    return {word for word in _WORDS.findall(_fold(text)) if len(word) > 1 and word not in _STOPWORDS}
+
+
+def _echoes(source: str, text: str, ratio: float) -> bool:
+    """`text` có nhắc lại phần lớn nội dung của `source` không?"""
+    if _fold(source) in _fold(text):
+        return True
+    words = _content_words(source)
+    if len(words) < MIN_COMPARE_WORDS:
+        return False
+    return len(words & _content_words(text)) / len(words) >= ratio
+
+
+def _near_duplicate(first: str, second: str, ratio: float) -> bool:
+    """Hai phương án nói cùng một điều.
+
+    So theo phần chung trên câu ngắn hơn: câu chính thường dài hơn follow-up, đo
+    một chiều thì một phương án bị viết gọn lại vẫn lọt (`run-01` R04).
+    """
+    left, right = _content_words(first), _content_words(second)
+    shortest = min(len(left), len(right))
+    if shortest < MIN_COMPARE_WORDS:
+        return _fold(first) == _fold(second)
+    return len(left & right) / shortest >= ratio
+
+
+def _fallback_hints(label: str) -> tuple[str, str, str]:
+    return (
         f"Lựa chọn này rơi vào lỗi thường gặp: {label}.",
         "So sánh kỹ điểm khác biệt then chốt giữa các phương án.",
         "Thử diễn đạt lại khái niệm bằng lời của bạn rồi đối chiếu với slide.",
     )
+
+
+def _hints(raw, label: str) -> list[str]:
+    """Hint 3 tầng. Thiếu thì bù bằng gợi ý chung, để `SEND_HINT_GROUP` luôn có nội dung."""
+    tiers = [_text(item) for item in (raw or []) if _text(item)][:3]
+    fallback = _fallback_hints(label)
     while len(tiers) < 3:
         tiers.append(fallback[len(tiers)])
     return tiers
 
 
-def _normalize_question(raw, *, with_misconceptions: bool = False) -> dict | None:
-    """Chuẩn hoá một câu do LLM sinh ra. Không đạt chuẩn thì trả None để loại bỏ."""
-    if not isinstance(raw, dict):
-        return None
+def _redact_leaky_hints(question: dict, where: str) -> list[str]:
+    """Hint nói ra đáp án thì thay bằng gợi ý chung — người học phải tự chọn lại.
 
+    Structural scorer của eval chỉ bắt được trường hợp chép nguyên văn đáp án, còn
+    review `run-01` hỏng chủ yếu vì hint *diễn giải* đáp án, nên ở đây so theo tỉ lệ
+    từ nội dung trùng nhau.
+    """
+    answer = next((option["text"] for option in question["options"] if option["correct"]), "")
+    issues: list[str] = []
+    for option in question["options"]:
+        hints = option.get("hints")
+        if not answer or not hints:
+            continue
+        fallback = _fallback_hints(option.get("misconceptionLabel", ""))
+        for tier, hint in enumerate(hints):
+            if _echoes(answer, hint, LEAK_RATIO):
+                hints[tier] = fallback[tier]
+                issues.append(f"{where}: hint của phương án \"{option['text'][:40]}\" nói ra đáp án.")
+    return issues
+
+
+def _clean_options(raw_options, *, with_misconceptions: bool) -> list[dict]:
     options: list[dict] = []
     seen: set[str] = set()
-    for item in raw.get("options") or []:
+    for item in raw_options or []:
         if not isinstance(item, dict):
             continue
         text = _text(item.get("text"))
@@ -115,38 +223,108 @@ def _normalize_question(raw, *, with_misconceptions: bool = False) -> dict | Non
             continue
         seen.add(text.lower())
 
-        # Bỏ qua "key" của LLM và tự đánh lại A, B, C… để không bao giờ trùng hay hụt.
-        option = {"key": KEYS[len(options)], "text": text, "correct": bool(item.get("correct"))}
+        option = {"text": text, "correct": bool(item.get("correct"))}
         if with_misconceptions and not option["correct"]:
             option["misconceptionLabel"] = _text(item.get("misconceptionLabel")) or "Lỗi chưa đặt tên"
             option["hints"] = _hints(item.get("hints"), option["misconceptionLabel"])
         options.append(option)
-        if len(options) == MAX_OPTIONS:
-            break
+    return options
+
+
+def _select_options(cleaned: list[dict]) -> list[dict] | None:
+    """Đúng 4 phương án với đúng một đáp án đúng, giữ thứ tự model đã đưa ra.
+
+    Cắt thẳng 4 phương án đầu có thể cắt mất chính đáp án đúng, nên chọn theo vai trò.
+    """
+    correct = [option for option in cleaned if option["correct"]]
+    wrong = [option for option in cleaned if not option["correct"]]
+    if len(correct) != 1 or len(wrong) < MAX_OPTIONS - 1:
+        return None
+
+    kept = {id(correct[0]), *(id(option) for option in wrong[: MAX_OPTIONS - 1])}
+    chosen = [option for option in cleaned if id(option) in kept]
+    # Bỏ "key" của LLM và tự đánh lại A, B, C… để không bao giờ trùng hay hụt.
+    return [{"key": KEYS[index], **option} for index, option in enumerate(chosen)]
+
+
+def _repeated_option(option: dict, previous: list[dict]) -> str | None:
+    """Follow-up chỉ hỏi lại được nếu phương án của nó không phải bản chép câu chính."""
+    for other in previous:
+        limit = ANSWER_ECHO_RATIO if option["correct"] and other["correct"] else DUPLICATE_RATIO
+        if _near_duplicate(other["text"], option["text"], limit):
+            return other["text"]
+    return None
+
+
+def _normalize_question(
+    raw, *, with_misconceptions: bool = False, avoid: list[dict] | None = None, where: str = "Câu chính"
+) -> tuple[dict | None, list[str]]:
+    """Chuẩn hoá một câu do LLM sinh ra, kèm danh sách lỗi để yêu cầu model sửa lại."""
+    if not isinstance(raw, dict):
+        return None, [f"{where}: thiếu hoặc không phải một object JSON."]
 
     prompt = _text(raw.get("prompt"))
-    if not prompt or len(options) < 2 or sum(o["correct"] for o in options) != 1:
-        return None
-    return {"prompt": prompt, "options": options, "explain": _text(raw.get("explain"))}
+    issues = [] if prompt else [f"{where}: thiếu \"prompt\"."]
+
+    cleaned = _clean_options(raw.get("options"), with_misconceptions=with_misconceptions)
+    options = _select_options(cleaned)
+    if options is None:
+        issues.append(
+            f"{where}: cần đúng {MAX_OPTIONS} phương án khác nhau và đúng MỘT phương án "
+            f'"correct": true (đang có {len(cleaned)} phương án, '
+            f"{sum(option['correct'] for option in cleaned)} đáp án đúng)."
+        )
+    elif avoid:
+        repeated = [
+            (option["text"], other) for option in options if (other := _repeated_option(option, avoid))
+        ]
+        if repeated:
+            issues.append(
+                f"{where}: các phương án sau chép lại câu chính, phải hỏi bằng cách khác — "
+                + "; ".join(f'"{text[:40]}" ≈ "{other[:40]}"' for text, other in repeated)
+            )
+            options = None
+
+    if not prompt or options is None:
+        return None, issues
+
+    question = {"prompt": prompt, "options": options, "explain": _text(raw.get("explain"))}
+    issues += _redact_leaky_hints(question, where)
+    return question, issues
 
 
-def _normalize_suggestion(raw) -> dict | None:
-    main = _normalize_question(raw, with_misconceptions=True)
+def _normalize_suggestion(raw) -> tuple[dict | None, list[str]]:
+    if not isinstance(raw, dict):
+        return None, ["Một đề xuất không phải object JSON."]
+
+    main, issues = _normalize_question(raw, with_misconceptions=True)
     if main is None:
-        return None
+        return None, issues
+
+    # Follow-up hỏng thì vẫn trả bản nháp (giảng viên tự thêm được), nhưng ghi lỗi lại
+    # để vòng sửa lấy đủ 4 phương án — `run-01` có ca chỉ 2-3 phương án hoặc không có.
+    follow_up, follow_up_issues = _normalize_question(
+        raw.get("followUp"), avoid=main["options"], where="Follow-up"
+    )
+    issues += follow_up_issues
 
     duration = raw.get("durationSec")
     example = raw.get("example") if isinstance(raw.get("example"), dict) else None
+    if not (example and _text(example.get("body"))):
+        issues.append('Thiếu "example" dùng được (cần "body" bám nội dung trang).')
+    if not _text(raw.get("learningOutcome")):
+        issues.append('Thiếu "learningOutcome".')
+
     return {
         **main,
         "title": _text(raw.get("title")) or main["prompt"][:48],
         "learningOutcome": _text(raw.get("learningOutcome")) or "Nắm được nội dung trang đang học",
         "durationSec": duration if isinstance(duration, int) and 10 <= duration <= 180 else 30,
-        "followUp": _normalize_question(raw.get("followUp")),
+        "followUp": follow_up,
         "example": {"title": _text(example.get("title")), "body": _text(example.get("body"))}
         if example and _text(example.get("body"))
         else None,
-    }
+    }, issues
 
 
 # --- sinh nội dung ------------------------------------------------------
@@ -170,6 +348,35 @@ def _user_message(instruction: str, context: str) -> str:
     return f"{instruction}\n\n=== NỘI DUNG SLIDE ===\n{context}\n=== HẾT NỘI DUNG ==="
 
 
+def _repair_message(message: str, previous: dict, issues: list[str]) -> str:
+    """Trả lại đúng chỗ hỏng thay vì xin sinh mới — giữ phần đã bám slide."""
+    listed = "\n".join(f"- {issue}" for issue in dict.fromkeys(issues))
+    draft = json.dumps(previous, ensure_ascii=False)[:6000]
+    return (
+        f"{message}\n\n=== BẢN NHÁP TRƯỚC CHƯA ĐẠT ===\n{draft}\n\n"
+        f"=== LỖI PHẢI SỬA ===\n{listed}\n\n"
+        "Sửa đúng những lỗi trên, giữ nguyên phần đã đạt và vẫn chỉ dùng nội dung slide ở trên. "
+        "Trả lại toàn bộ JSON theo đúng cấu trúc bắt buộc."
+    )
+
+
+def _build_suggestions(data, page: int, count: int) -> tuple[list[dict], list[str]]:
+    suggestions: list[dict] = []
+    issues: list[str] = []
+    for raw in (data or {}).get("suggestions") or []:
+        item, item_issues = _normalize_suggestion(raw)
+        issues += item_issues
+        if item is not None:
+            suggestions.append(item)
+        if len(suggestions) == count:
+            break
+    if len(suggestions) < count:
+        issues.append(f"Cần {count} đề xuất hợp lệ, mới có {len(suggestions)}.")
+    return [
+        {"id": f"sg-{page}-{index + 1}", "page": page, **item} for index, item in enumerate(suggestions)
+    ], issues
+
+
 async def generate_self_test(page: int, count: int = 5, force: bool = False) -> dict:
     async with _lock_for(f"self:{page}"):
         cached = _self_tests.get(page)
@@ -186,7 +393,7 @@ async def generate_self_test(page: int, count: int = 5, force: bool = False) -> 
         questions = [
             {"id": f"st-{page}-{index + 1}", **item}
             for index, item in enumerate(
-                q for q in (_normalize_question(r) for r in data.get("questions") or []) if q
+                q for q, _ in (_normalize_question(r) for r in data.get("questions") or []) if q
             )
         ][:count]
         if not questions:
@@ -203,23 +410,40 @@ async def suggest_checkpoints(page: int, count: int = 3, force: bool = False) ->
         if cached and not force:
             return cached
 
-        context = await slides.context_for(page)
-        data = await llm.chat_json(
-            SUGGEST_SYSTEM,
-            _user_message(f"Đề xuất {count} câu hỏi poll cho trang {page}.", context),
-            max_tokens=3200,
+        # Chỉ trang đang xem: checkpoint phải truy được về đúng trang giảng viên đang chiếu.
+        context = await slides.context_for(page, include_previous=False)
+        message = _user_message(
+            f"Đề xuất {count} câu hỏi poll cho trang {page}."
+            " Chỉ dùng nội dung của trang này làm nguồn.",
+            context,
         )
+        data = await llm.chat_json(SUGGEST_SYSTEM, message, max_tokens=3200, temperature=0.2)
+        suggestions, issues = _build_suggestions(data, page, count)
 
-        suggestions = [
-            {"id": f"sg-{page}-{index + 1}", "page": page, **item}
-            for index, item in enumerate(
-                s for s in (_normalize_suggestion(r) for r in data.get("suggestions") or []) if s
-            )
-        ][:count]
+        if issues:
+            # Một vòng sửa có phản hồi cụ thể rẻ hơn nhiều so với việc giảng viên
+            # nhận bản nháp thiếu follow-up hay hint đã lộ đáp án.
+            try:
+                retry = await llm.chat_json(
+                    SUGGEST_SYSTEM,
+                    _repair_message(message, data, issues),
+                    max_tokens=3200,
+                    temperature=0.2,
+                )
+            except llm.LLMError:
+                retry = None
+            if retry is not None:
+                repaired, remaining = _build_suggestions(retry, page, count)
+                if repaired and (not suggestions or len(remaining) < len(issues)):
+                    suggestions, issues = repaired, remaining
+
         if not suggestions:
             raise llm.LLMError("Trợ lý chưa đề xuất được câu hỏi hợp lệ cho trang này — thử tạo lại.")
 
         result = {"page": page, "suggestions": suggestions}
+        if issues:
+            # Ghi thẳng vào response để trace của lần chạy sau tự nói ra chỗ còn hỏng.
+            result["warnings"] = list(dict.fromkeys(issues))
         _suggestions[page] = result
         return result
 

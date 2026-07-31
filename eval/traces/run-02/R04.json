@@ -1,0 +1,132 @@
+{
+  "case_id": "R04",
+  "timestamp_utc": "2026-07-31T05:41:24.292916+00:00",
+  "model": "gemini-2.5-flash",
+  "endpoint": "http://127.0.0.1:8010/api/ai/suggest-checkpoints",
+  "role": "teacher",
+  "request": {
+    "page": 44,
+    "count": 1,
+    "force": true
+  },
+  "source_page_excerpt": "TRANSFORM YOUR COMPANY THROUGH INNOVATION  FOLLOW US ON LINKEDIN  BECOME A CLIENT  1 2 3 4CHAPTER Because each function has its own way of defining what value means for the customer, companies struggle to align around customer problems and solutions to these problems. But when you view your business through the lens of Jobs-to-be-Done, you can align your organization around its purpose, which is to help people get a job done. Breaking down the job map aligns the organization around the steps the customer goes through to get that job done. This allows your siloed teams to all view value creation—and communication —through the eyes of the customer. Coloplast offers a prime example. Their team was struggling to gain traction in the market, thanks to a lack of agreement between sales, marketing, and product development as to what they should create and communicate next in their line of wound care products. We already mentioned how under- standing their customer’s job helped Coloplast’s marketers make impactful changes to their value proposition and messaging. This simple alignment changed the trajectory of the firm for the long-term. Using Jobs-to-be-Done is a paradigm shift, helping the business to adopt an outside-in mindset that’s guided by the voice of the customer. It realigns the organization to believe that they should understand the external customer’s needs first and then work to solve them—rather than focusing internally and ideatnig around technology and solutions. This is real customer-centricity. By understanding the job map, your teams can focus on what will actually help the customer get the job done better—then go create and market these things. No failing fast necessary. Executives Benefits – 41 Most executives would claim that their businesses are customer-centric—but how many of them actually are? Most teams rely on an internally-focused approach to innovation and growth. Teams ideate around new technologies and solutions, creating prototypes, and testing them out to see how customers respond. This is not customer-centricity. It’s solution-centricity. Deliver on customer-centricity.2. But understanding their customer’s job and job map also helped the sales team to create new sales materials that pointed out exactly how their solutions addressed customer needs. The product development team knew exactly what products and features to create next in order to reinforce that new value proposition.",
+  "response_status": 200,
+  "response": {
+    "page": 44,
+    "suggestions": [
+      {
+        "id": "sg-44-1",
+        "page": 44,
+        "prompt": "Theo nội dung trang 44, thế nào là thực sự đạt được customer-centricity?",
+        "options": [
+          {
+            "key": "A",
+            "text": "Hiểu nhu cầu khách hàng trước rồi mới giải quyết, thay vì tập trung vào công nghệ và giải pháp.",
+            "correct": true
+          },
+          {
+            "key": "B",
+            "text": "Tạo ra các nguyên mẫu và thử nghiệm để xem khách hàng phản hồi thế nào.",
+            "correct": false,
+            "misconceptionLabel": "Nhầm lẫn giữa thử nghiệm giải pháp với tư duy khách hàng",
+            "hints": [
+              "Bạn đang giả định rằng việc thử nghiệm giải pháp là cốt lõi của customer-centricity.",
+              "Liệu việc tập trung vào công nghệ và giải pháp có phải là cách tiếp cận hướng ngoại?",
+              "Hãy xem lại đoạn mô tả về việc hiểu nhu cầu khách hàng trước khi ideating around technology."
+            ]
+          },
+          {
+            "key": "C",
+            "text": "Mỗi phòng ban tự định nghĩa giá trị theo cách riêng để giải quyết vấn đề khách hàng.",
+            "correct": false,
+            "misconceptionLabel": "Hiểu sai về sự liên kết tổ chức",
+            "hints": [
+              "Bạn đang giả định rằng sự độc lập của các phòng ban là cách để đạt được customer-centricity.",
+              "Việc các phòng ban có cách định nghĩa giá trị riêng có giúp tổ chức liên kết không?",
+              "Hãy xem lại đoạn nói về việc các phòng ban gặp khó khăn khi không thống nhất về vấn đề của khách hàng."
+            ]
+          },
+          {
+            "key": "D",
+            "text": "Tập trung vào việc ideating around technology để tạo ra các sản phẩm mới.",
+            "correct": false,
+            "misconceptionLabel": "Nhầm lẫn giữa solution-centricity và customer-centricity",
+            "hints": [
+              "Bạn đang giả định rằng việc tập trung vào công nghệ là cách để hiểu khách hàng.",
+              "Cách tiếp cận này được gọi là gì trong slide?",
+              "Hãy xem lại đoạn mô tả về solution-centricity."
+            ]
+          }
+        ],
+        "explain": "Customer-centricity là tư duy hướng ngoại, ưu tiên hiểu nhu cầu khách hàng trước khi tạo ra giải pháp, thay vì tập trung vào công nghệ và giải pháp từ bên trong.",
+        "title": "Bản chất của customer-centricity",
+        "learningOutcome": "Học viên phân biệt được tư duy hướng ngoại (customer-centricity) và tư duy hướng nội (solution-centricity).",
+        "durationSec": 30,
+        "followUp": {
+          "prompt": "Đâu là đặc điểm của cách tiếp cận solution-centricity?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Tập trung vào công nghệ và giải pháp từ bên trong.",
+              "correct": true
+            },
+            {
+              "key": "B",
+              "text": "Sử dụng job map để hiểu các bước khách hàng thực hiện.",
+              "correct": false
+            },
+            {
+              "key": "C",
+              "text": "Ưu tiên hiểu nhu cầu khách hàng trước khi làm bất cứ điều gì.",
+              "correct": false
+            },
+            {
+              "key": "D",
+              "text": "Áp dụng tư duy hướng ngoại để tạo ra giá trị.",
+              "correct": false
+            }
+          ],
+          "explain": "Solution-centricity là cách tiếp cận tập trung vào công nghệ và giải pháp từ bên trong, thay vì bắt đầu bằng việc hiểu nhu cầu khách hàng."
+        },
+        "example": {
+          "title": "Ví dụ về tư duy hướng ngoại",
+          "body": "Thay vì tập trung nội bộ vào công nghệ và giải pháp, doanh nghiệp cần hiểu nhu cầu của khách hàng bên ngoài trước rồi mới làm việc để giải quyết chúng."
+        }
+      }
+    ]
+  },
+  "evaluation": {
+    "id": "R04",
+    "situation_type": "rare",
+    "source_type": "observed",
+    "expected_behavior": "Không trộn nhiều đối tượng vào một câu; follow-up kiểm tra cùng learning outcome bằng cách hỏi khác.",
+    "http_status": 200,
+    "suggestion_count": 1,
+    "automatic_scores": [
+      {
+        "checks": {
+          "has_prompt": true,
+          "exactly_four_options": true,
+          "distinct_options": true,
+          "exactly_one_correct": true,
+          "wrong_options_have_misconceptions": true,
+          "wrong_options_have_three_hints": true,
+          "hints_do_not_reveal_answer": true,
+          "has_distinct_follow_up": true,
+          "has_usable_example": true
+        },
+        "automatic_pass": true
+      }
+    ],
+    "human_review": {
+      "grounded": true,
+      "diagnostic": true,
+      "safe": true,
+      "notes": "[AI-review] Coloplast, outside-in và 'no failing fast' đều có trên trang 44. Follow-up hỏi đặc điểm solution-centricity bằng bộ phương án mới, không tái sử dụng distractor của câu chính như run-01."
+    },
+    "not_auto_published": true,
+    "pass": true,
+    "failure_reasons": [],
+    "latency_seconds": 5.384
+  }
+}

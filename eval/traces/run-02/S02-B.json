@@ -1,0 +1,132 @@
+{
+  "case_id": "S02-B",
+  "timestamp_utc": "2026-07-31T05:41:24.276779+00:00",
+  "model": "gemini-2.5-flash",
+  "endpoint": "http://127.0.0.1:8010/api/ai/suggest-checkpoints",
+  "role": "teacher",
+  "request": {
+    "page": 11,
+    "count": 1,
+    "force": true
+  },
+  "source_page_excerpt": "8 TRANSFORM YOUR COMPANY THROUGH INNOVATION  FOLLOW US ON LINKEDIN  BECOME A CLIENT  CHAPTER 1 2 3 4 Summary of Insights from Jobs-to-be-Done Theory • Your focus is not on reacting to customer feedback or product trends in the market. It is to create solutions that improve people’s ability to get the core job done. • Markets are not defined as categories of products/services (e.g., the animal nutrition market). They are defined as groups of people trying to get a job done (e.g., dairy producers optimizing herd productivity). • Competitors are not only companies that make products like yours. They are any solution (paid and non-paid) that customers use to get the core job done. When your company thinks about a market from this perspective, you are much more likely to create and deliver extraordinary products and services. Product managers can more successfully conceptualize new products, improve existing products, and prioritize backlog, for example. Marketing managers can use this approach to design web pages, campaigns, and sales pitches that convert, and create content that attracts leads. Executives have the insights they need to align the organization around a common vision, inform M&A activity, and discover new markets to enter. All thanks to a new lens and a better understanding of the customer’s needs. Knowing that customers buy products to get a core job done leads to a few insights: At this point, you’re probably wondering how you can get started with applying these tenets to your own marketing and innovation practices. In the next chapter of this playbook, you’ll learn how to identify your real customer and frame their job-to-be-done — just like Arm & Hammer did. We’ll include more case examples, as well as downloadable tools to help you along in the process.  WHAT’S NEXT? LEARN WHO YOUR CUSTOMER IS THROUGH THE Jobs-to-be-Done Framework.",
+  "response_status": 200,
+  "response": {
+    "page": 11,
+    "suggestions": [
+      {
+        "id": "sg-11-1",
+        "page": 11,
+        "prompt": "Theo Jobs-to-be-Done Theory, thị trường được định nghĩa như thế nào?",
+        "options": [
+          {
+            "key": "A",
+            "text": "Nhóm người đang cố gắng hoàn thành một công việc cụ thể",
+            "correct": true
+          },
+          {
+            "key": "B",
+            "text": "Các danh mục sản phẩm hoặc dịch vụ tương đồng",
+            "correct": false,
+            "misconceptionLabel": "Nhầm lẫn giữa sản phẩm và nhu cầu",
+            "hints": [
+              "Bạn đang tập trung vào sản phẩm thay vì mục tiêu của khách hàng",
+              "Liệu khách hàng mua sản phẩm vì danh mục hay vì kết quả họ muốn đạt được?",
+              "Xem lại phần định nghĩa thị trường trong slide"
+            ]
+          },
+          {
+            "key": "C",
+            "text": "Tập hợp các đối thủ cạnh tranh trong cùng ngành",
+            "correct": false,
+            "misconceptionLabel": "Nhầm lẫn giữa cạnh tranh và thị trường",
+            "hints": [
+              "Bạn đang tập trung vào đối thủ thay vì nhóm người dùng",
+              "Thị trường có phụ thuộc vào việc ai đang bán sản phẩm không?",
+              "Xem lại phần định nghĩa thị trường trong slide"
+            ]
+          },
+          {
+            "key": "D",
+            "text": "Phản ứng của khách hàng đối với xu hướng sản phẩm",
+            "correct": false,
+            "misconceptionLabel": "Nhầm lẫn giữa phản hồi và thị trường",
+            "hints": [
+              "Bạn đang tập trung vào phản hồi thay vì nhóm người dùng",
+              "Phản hồi có phải là cách xác định một thị trường không?",
+              "Xem lại phần định nghĩa thị trường trong slide"
+            ]
+          }
+        ],
+        "explain": "Thị trường được định nghĩa là nhóm người đang cố gắng hoàn thành một công việc cụ thể, thay vì dựa trên các danh mục sản phẩm hoặc dịch vụ.",
+        "title": "Định nghĩa thị trường",
+        "learningOutcome": "Học viên xác định được cách định nghĩa thị trường dựa trên Jobs-to-be-Done Theory.",
+        "durationSec": 30,
+        "followUp": {
+          "prompt": "Khi áp dụng Jobs-to-be-Done Theory, yếu tố nào xác định thị trường?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Mục tiêu công việc của nhóm khách hàng",
+              "correct": true
+            },
+            {
+              "key": "B",
+              "text": "Các loại hình sản phẩm có sẵn",
+              "correct": false
+            },
+            {
+              "key": "C",
+              "text": "Phân khúc khách hàng theo ngành hàng",
+              "correct": false
+            },
+            {
+              "key": "D",
+              "text": "Xu hướng tiêu dùng trên thị trường",
+              "correct": false
+            }
+          ],
+          "explain": "Thị trường được xác định bởi nhóm người đang cố gắng hoàn thành một công việc, không phải bởi loại sản phẩm hay ngành hàng."
+        },
+        "example": {
+          "title": "Ví dụ về thị trường",
+          "body": "Thị trường không phải là danh mục sản phẩm như dinh dưỡng động vật, mà là nhóm người như các nhà sản xuất sữa đang tối ưu hóa năng suất đàn gia súc."
+        }
+      }
+    ]
+  },
+  "evaluation": {
+    "id": "S02-B",
+    "situation_type": "ambiguous",
+    "source_type": "observed",
+    "expected_behavior": "Tạo một checkpoint có phạm vi hẹp, một đáp án đúng và learning outcome kiểm chứng được.",
+    "http_status": 200,
+    "suggestion_count": 1,
+    "automatic_scores": [
+      {
+        "checks": {
+          "has_prompt": true,
+          "exactly_four_options": true,
+          "distinct_options": true,
+          "exactly_one_correct": true,
+          "wrong_options_have_misconceptions": true,
+          "wrong_options_have_three_hints": true,
+          "hints_do_not_reveal_answer": true,
+          "has_distinct_follow_up": true,
+          "has_usable_example": true
+        },
+        "automatic_pass": true
+      }
+    ],
+    "human_review": {
+      "grounded": true,
+      "diagnostic": true,
+      "safe": true,
+      "notes": "[AI-review] Ví dụ dinh dưỡng động vật và nhà sản xuất sữa tối ưu năng suất đàn có nguyên văn trên trang 11; run-01 dẫn nội dung trang khác. Follow-up 4 lựa chọn, bộ phương án khác câu chính."
+    },
+    "not_auto_published": true,
+    "pass": true,
+    "failure_reasons": [],
+    "latency_seconds": 5.185
+  }
+}

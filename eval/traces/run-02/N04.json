@@ -1,0 +1,132 @@
+{
+  "case_id": "N04",
+  "timestamp_utc": "2026-07-31T05:41:24.261025+00:00",
+  "model": "gemini-2.5-flash",
+  "endpoint": "http://127.0.0.1:8010/api/ai/suggest-checkpoints",
+  "role": "teacher",
+  "request": {
+    "page": 7,
+    "count": 1,
+    "force": true
+  },
+  "source_page_excerpt": "4 TRANSFORM YOUR COMPANY THROUGH INNOVATION  FOLLOW US ON LINKEDIN  BECOME A CLIENT  CHAPTER 1 2 3 4 A functional job-to-be-done is often something people have been trying to accomplish for years, decades— or even centuries. Parents, for example, have been trying to pass on life lessons to children since the beginning of humanity. TENET 03 A Job-to-be-Done is stable over time. The core functional job is solution agnostic —this means it is independent of any solutions or technologies. Innovation isn’t about “a faster horse.” A “horse” is a solution to get a job done. The job (transporting yourself from point A to point B) must be defined independently of the solution (the horse). This is how new, breakthrough solutions can be conceptualized (like the automobile). Customers don’t know what solutions will get a job done best— they couldn’t envision the car or the microwave or the smartphone. But customers do know what job they are trying to get done and can tell you all about it. TENET 04 A Job-to-be-Done is solution agnostic. Lastly, since the job-to-be-done is solution agnostic, competitors are not only companies that make products like yours. They are any solution (paid and non-paid) that customers use to get the core job done. For example, the bicycle and the car are competing solutions for the job of getting from point a to point b. A functional job is stable over time. What changes are the products and services that companies offer to help get the job done better. Because the job-to-be-done is stable over time, it is an attractive focal point around which to create customer value for many years. With this in mind, your business’ strategy should always be to help customers get the entire job done better and more cheaply on a single product platform. This is the long-term strategy that Amazon has pursued since its inception.",
+  "response_status": 200,
+  "response": {
+    "page": 7,
+    "suggestions": [
+      {
+        "id": "sg-7-1",
+        "page": 7,
+        "prompt": "Tại sao Job-to-be-Done được coi là 'solution agnostic'?",
+        "options": [
+          {
+            "key": "A",
+            "text": "Vì nó độc lập với các giải pháp hoặc công nghệ cụ thể.",
+            "correct": true
+          },
+          {
+            "key": "B",
+            "text": "Vì nó thay đổi theo thời gian cùng với sự phát triển của công nghệ.",
+            "correct": false,
+            "misconceptionLabel": "Nhầm lẫn giữa Job và Solution",
+            "hints": [
+              "Bạn đang giả định Job thay đổi theo công nghệ.",
+              "Liệu Job có phụ thuộc vào công cụ thực hiện không?",
+              "Hãy đọc lại phần định nghĩa về 'solution agnostic' trong Tenet 03."
+            ]
+          },
+          {
+            "key": "C",
+            "text": "Vì nó chỉ tập trung vào các sản phẩm của đối thủ cạnh tranh trực tiếp.",
+            "correct": false,
+            "misconceptionLabel": "Nhầm lẫn về phạm vi cạnh tranh",
+            "hints": [
+              "Bạn đang giới hạn Job trong phạm vi sản phẩm.",
+              "Đối thủ cạnh tranh được định nghĩa như thế nào trong Tenet 04?",
+              "Hãy xem lại đoạn nói về các giải pháp thay thế trong Tenet 04."
+            ]
+          },
+          {
+            "key": "D",
+            "text": "Vì khách hàng luôn biết rõ giải pháp nào tốt nhất để thực hiện công việc.",
+            "correct": false,
+            "misconceptionLabel": "Nhầm lẫn về hiểu biết của khách hàng",
+            "hints": [
+              "Bạn đang giả định khách hàng hiểu rõ về giải pháp.",
+              "Khách hàng có thể hình dung ra các giải pháp mới không?",
+              "Hãy đọc lại đoạn nói về việc khách hàng không biết giải pháp nào tốt nhất trong Tenet 03."
+            ]
+          }
+        ],
+        "explain": "Job-to-be-Done là 'solution agnostic' nghĩa là nó độc lập với bất kỳ giải pháp hay công nghệ nào, giúp tập trung vào công việc khách hàng cần hoàn thành thay vì tập trung vào sản phẩm.",
+        "title": "Tính chất solution agnostic",
+        "learningOutcome": "Học viên giải thích được ý nghĩa của tính chất solution agnostic trong Job-to-be-Done.",
+        "durationSec": 30,
+        "followUp": {
+          "prompt": "Việc xác định một công việc là 'solution agnostic' mang lại ý nghĩa gì cho doanh nghiệp?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Doanh nghiệp có thể định nghĩa công việc tách biệt khỏi các công cụ thực hiện.",
+              "correct": true
+            },
+            {
+              "key": "B",
+              "text": "Doanh nghiệp chỉ cần cải tiến sản phẩm hiện có để giữ chân khách hàng.",
+              "correct": false
+            },
+            {
+              "key": "C",
+              "text": "Doanh nghiệp không cần quan tâm đến các giải pháp của đối thủ.",
+              "correct": false
+            },
+            {
+              "key": "D",
+              "text": "Doanh nghiệp phải chờ khách hàng đề xuất giải pháp mới.",
+              "correct": false
+            }
+          ],
+          "explain": "Tính chất 'solution agnostic' khẳng định công việc độc lập với các giải pháp hoặc công nghệ, cho phép doanh nghiệp tập trung vào việc giúp khách hàng hoàn thành công việc tốt hơn."
+        },
+        "example": {
+          "title": "Ví dụ về Job và Solution",
+          "body": "Việc vận chuyển từ điểm A đến điểm B là một công việc (job), trong khi con ngựa hay chiếc ô tô là các giải pháp (solution) để thực hiện công việc đó."
+        }
+      }
+    ]
+  },
+  "evaluation": {
+    "id": "N04",
+    "situation_type": "normal",
+    "source_type": "chatlog",
+    "expected_behavior": "Tạo checkpoint kiểm tra khái niệm functional job, distractor hợp lý và không lộ đáp án trong hint.",
+    "http_status": 200,
+    "suggestion_count": 1,
+    "automatic_scores": [
+      {
+        "checks": {
+          "has_prompt": true,
+          "exactly_four_options": true,
+          "distinct_options": true,
+          "exactly_one_correct": true,
+          "wrong_options_have_misconceptions": true,
+          "wrong_options_have_three_hints": true,
+          "hints_do_not_reveal_answer": true,
+          "has_distinct_follow_up": true,
+          "has_usable_example": true
+        },
+        "automatic_pass": true
+      }
+    ],
+    "human_review": {
+      "grounded": true,
+      "diagnostic": true,
+      "safe": true,
+      "notes": "[AI-review] Ngựa và ô tô, điểm A tới điểm B đều có trên trang 7; không còn ví dụ tự thêm. Hint gán 'solution agnostic' cho Tenet 03 — đúng theo thứ tự chữ trích được của trang, giảng viên cần chỉnh lại nhãn tenet khi dùng thật."
+    },
+    "not_auto_published": true,
+    "pass": true,
+    "failure_reasons": [],
+    "latency_seconds": 13.825
+  }
+}

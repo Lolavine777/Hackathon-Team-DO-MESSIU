@@ -1,0 +1,132 @@
+{
+  "case_id": "N08",
+  "timestamp_utc": "2026-07-31T05:41:24.270319+00:00",
+  "model": "gemini-2.5-flash",
+  "endpoint": "http://127.0.0.1:8010/api/ai/suggest-checkpoints",
+  "role": "teacher",
+  "request": {
+    "page": 12,
+    "count": 1,
+    "force": true
+  },
+  "source_page_excerpt": "9 TRANSFORM YOUR COMPANY THROUGH INNOVATION  FOLLOW US ON LINKEDIN  BECOME A CLIENT  1 2 3 4CHAPTER CHAPTER 02 Companies often define the markets they serve around the technology in their product offerings— a technology that one day will become obsolete. Define Your Market Clearly, this is a mistake, but it’s one that has been repeated by hundreds of companies over the decades. And where are Blockbuster and Kodak now? Where are the companies that defined themselves around CDs? They spiraled to their death when MP3 technology came along. Many companies today find themselves in this same situation. A market, which is the focal point of everything a company does, should not be defined around something so unstable that it is only valid until the next product iteration. Instead, you should define your market around something that is stable for decades, making long-term strategic investments more attractive and providing the company with a vision for the future.. The customer’s job-to-be-done provides that stable focal point around which you can create value—and define your market. More specifically, you should define your market as a group of people and the job they are trying to get done TRANSFORM YOUR COMPANY THROUGH INNOVATION  FOLLOW US ON LINKEDIN  BECOME A CLIENT ",
+  "response_status": 200,
+  "response": {
+    "page": 12,
+    "suggestions": [
+      {
+        "id": "sg-12-1",
+        "page": 12,
+        "prompt": "Theo nội dung trang 12, đâu là cách xác định thị trường giúp doanh nghiệp có tầm nhìn dài hạn?",
+        "options": [
+          {
+            "key": "A",
+            "text": "Dựa trên công việc khách hàng cần thực hiện (job-to-be-done)",
+            "correct": true
+          },
+          {
+            "key": "B",
+            "text": "Dựa trên công nghệ hiện có trong sản phẩm",
+            "correct": false,
+            "misconceptionLabel": "Nhầm lẫn giữa công nghệ và thị trường",
+            "hints": [
+              "Bạn đang tập trung vào yếu tố dễ lỗi thời.",
+              "Công nghệ trong sản phẩm có phải là thứ ổn định trong nhiều thập kỷ?",
+              "Hãy xem lại phần nói về sự lỗi thời của công nghệ trên slide."
+            ]
+          },
+          {
+            "key": "C",
+            "text": "Dựa trên các sản phẩm sắp ra mắt",
+            "correct": false,
+            "misconceptionLabel": "Nhầm lẫn giữa sản phẩm và thị trường",
+            "hints": [
+              "Bạn đang tập trung vào các vòng lặp sản phẩm.",
+              "Liệu các phiên bản sản phẩm có phải là điểm tựa ổn định?",
+              "Hãy xem lại định nghĩa về thị trường không nên dựa vào điều gì trên slide."
+            ]
+          },
+          {
+            "key": "D",
+            "text": "Dựa trên các đối thủ cạnh tranh hiện tại",
+            "correct": false,
+            "misconceptionLabel": "Nhầm lẫn giữa đối thủ và thị trường",
+            "hints": [
+              "Bạn đang tập trung vào các công ty khác.",
+              "Việc định nghĩa theo đối thủ có giúp tạo ra giá trị bền vững không?",
+              "Hãy xem lại phần nói về điểm tập trung của mọi hoạt động công ty."
+            ]
+          }
+        ],
+        "explain": "Thị trường nên được định nghĩa là một nhóm người và công việc họ đang cố gắng thực hiện (job-to-be-done), vì đây là yếu tố ổn định trong nhiều thập kỷ.",
+        "title": "Xác định thị trường bền vững",
+        "learningOutcome": "Học viên xác định được yếu tố cốt lõi để định nghĩa thị trường một cách bền vững.",
+        "durationSec": 30,
+        "followUp": {
+          "prompt": "Yếu tố nào sau đây cung cấp điểm tựa ổn định để doanh nghiệp tạo ra giá trị?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Công việc khách hàng cần hoàn thành",
+              "correct": true
+            },
+            {
+              "key": "B",
+              "text": "Sự thay đổi của công nghệ mới",
+              "correct": false
+            },
+            {
+              "key": "C",
+              "text": "Các phiên bản sản phẩm kế tiếp",
+              "correct": false
+            },
+            {
+              "key": "D",
+              "text": "Sự tồn tại của các công ty cũ",
+              "correct": false
+            }
+          ],
+          "explain": "Công việc khách hàng cần thực hiện (job-to-be-done) là điểm tựa ổn định giúp doanh nghiệp định nghĩa thị trường và tạo ra giá trị."
+        },
+        "example": {
+          "title": "Định nghĩa thị trường",
+          "body": "Thay vì định nghĩa thị trường dựa trên công nghệ dễ lỗi thời, hãy định nghĩa thị trường là một nhóm người và công việc họ đang cố gắng thực hiện."
+        }
+      }
+    ]
+  },
+  "evaluation": {
+    "id": "N08",
+    "situation_type": "normal",
+    "source_type": "chatlog",
+    "expected_behavior": "Tạo checkpoint chẩn đoán cách định nghĩa market theo job executor và job.",
+    "http_status": 200,
+    "suggestion_count": 1,
+    "automatic_scores": [
+      {
+        "checks": {
+          "has_prompt": true,
+          "exactly_four_options": true,
+          "distinct_options": true,
+          "exactly_one_correct": true,
+          "wrong_options_have_misconceptions": true,
+          "wrong_options_have_three_hints": true,
+          "hints_do_not_reveal_answer": true,
+          "has_distinct_follow_up": true,
+          "has_usable_example": true
+        },
+        "automatic_pass": true
+      }
+    ],
+    "human_review": {
+      "grounded": true,
+      "diagnostic": true,
+      "safe": true,
+      "notes": "[AI-review] Bám đoạn nói công nghệ sẽ lỗi thời và market phải ổn định hàng thập kỷ trên trang 12. Follow-up hỏi điểm tựa ổn định, cùng learning outcome, 4 lựa chọn."
+    },
+    "not_auto_published": true,
+    "pass": true,
+    "failure_reasons": [],
+    "latency_seconds": 5.7
+  }
+}
