@@ -43,7 +43,7 @@ export default function UnderstandingCard() {
         className="mt-3"
         onClick={() => {
           resetPulse()
-          toast(`Đã gửi lại Learning Pulse tới ${online} học viên đang trong lớp.`)
+          toast(`Đã gửi lại Learning Pulse của trang ${page} tới ${online} học viên đang trong lớp.`)
         }}
       >
         Gửi lại Learning Pulse

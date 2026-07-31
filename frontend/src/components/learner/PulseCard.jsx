@@ -32,12 +32,13 @@ const MESSAGES = {
 
 /** Nhịp hiểu bài — học viên tự đánh giá, giảng viên thấy tổng hợp realtime. */
 export default function PulseCard() {
-  const { pulse, myPulse, sendPulse } = useSession()
+  const { pulse, myPulse, page, sendPulse } = useSession()
   const toast = useToast()
 
   return (
     <Card>
-      <CardTitle eyebrow="Pulse">Bạn hiểu phần này thế nào?</CardTitle>
+      {/* Phiếu gắn với đúng trang đang xem, nên nói rõ là trang nào. */}
+      <CardTitle eyebrow={`Pulse · Trang ${page}`}>Bạn hiểu phần này thế nào?</CardTitle>
 
       <div className="grid grid-cols-3 gap-2">
         {OPTIONS.map((o) => (

@@ -1,0 +1,136 @@
+{
+  "case_id": "R01",
+  "timestamp_utc": "2026-07-31T06:38:03.892479+00:00",
+  "model": "gemini-2.5-flash",
+  "endpoint": "https://conner-unavailing-nonirately.ngrok-free.dev/api/ai/suggest-checkpoints",
+  "role": "teacher",
+  "request": {
+    "page": 14,
+    "count": 1,
+    "force": true
+  },
+  "source_page_excerpt": "TRANSFORM YOUR COMPANY THROUGH INNOVATION\u0000 FOLLOW US ON LINKEDIN\u0000 BECOME A CLIENT\u0000 CHAPTER 1 2 3 4 11 What is the product/service/idea you seek to innovate? The market definition exercise starts with something you’re familiar with — a product focus. What is the product, service, or idea you’re looking to inno- vate around? Use this as your grounding point. The subsequent steps will help transition you from a product view to a Jobs-to-be-Done view of your market. KEY CONCEPT The transformation begins with this step. Who’s using the product to get a job done? What overarching term can be used to classify all the categories of people using the product to get a job done? Keep in mind, we are focused here on stating the job executors. Do not list out influencers, economic buyers, people who support the product throughout its lifecycle, or other customer types, just job executors. Ask yourself (or your sales and marketing teams), who’s using your product to get a job done? The goal of this step is to reveal the diverse set of potential product users. List all the categories of people who use or would use the product of interest to extract its value. Remember, we are defining a market as a group of people + the job-to-be-done. When de- fining the group of people, try not to use an actual job title. Instead, look for an all-inclusive term that encapsulates all job executors, usually a higher-level, generic term. With a list of all the distinct categories of people using, or potentially using, your product, next, you want to define the one overarching term that can be used to classify or describe all these people as a single group. 01 02Validate the job executor 03Abstracted job executor Traditional market definition The job executor uses a product or service to get the core functional job done. They are the reason the market exists.",
+  "response_status": 200,
+  "response": {
+    "page": 14,
+    "suggestions": [
+      {
+        "id": "sg-14-1",
+        "page": 14,
+        "prompt": "Khi xác định nhóm người dùng trong bài tập định nghĩa thị trường, đối tượng nào cần được liệt kê?",
+        "options": [
+          {
+            "key": "A",
+            "text": "Những người sử dụng sản phẩm để hoàn thành công việc.",
+            "correct": true
+          },
+          {
+            "key": "B",
+            "text": "Những người có ảnh hưởng đến quyết định mua hàng.",
+            "correct": false,
+            "misconceptionLabel": "Nhầm lẫn giữa người ảnh hưởng và người thực hiện công việc",
+            "hints": [
+              "Bạn đang giả định rằng bất kỳ ai liên quan đến sản phẩm đều là đối tượng cần liệt kê.",
+              "So sánh kỹ điểm khác biệt then chốt giữa các phương án.",
+              "Hãy xem lại phần: 'Do not list out influencers... just job executors'."
+            ]
+          },
+          {
+            "key": "C",
+            "text": "Những người mua hàng vì mục đích kinh tế.",
+            "correct": false,
+            "misconceptionLabel": "Nhầm lẫn giữa người mua kinh tế và người thực hiện công việc",
+            "hints": [
+              "Bạn đang giả định rằng người chi trả tài chính là đối tượng trọng tâm.",
+              "So sánh kỹ điểm khác biệt then chốt giữa các phương án.",
+              "Hãy xem lại phần: 'Do not list out... economic buyers... just job executors'."
+            ]
+          },
+          {
+            "key": "D",
+            "text": "Những người hỗ trợ sản phẩm trong suốt vòng đời.",
+            "correct": false,
+            "misconceptionLabel": "Nhầm lẫn giữa người hỗ trợ và người thực hiện công việc",
+            "hints": [
+              "Bạn đang giả định rằng mọi người tham gia vào vòng đời sản phẩm đều là job executor.",
+              "So sánh kỹ điểm khác biệt then chốt giữa các phương án.",
+              "Hãy xem lại phần: 'Do not list out... people who support the product throughout its lifecycle'."
+            ]
+          }
+        ],
+        "explain": "Job executor là những người sử dụng sản phẩm hoặc dịch vụ để hoàn thành công việc chức năng cốt lõi. Họ là lý do thị trường tồn tại, vì vậy chỉ nên liệt kê nhóm này.",
+        "title": "Xác định đối tượng Job Executor",
+        "learningOutcome": "Học viên xác định đúng đối tượng là job executor thay vì các vai trò khác trong quy trình mua hàng.",
+        "durationSec": 30,
+        "followUp": {
+          "prompt": "Trong các nhóm sau, nhóm nào phù hợp nhất để mô tả job executor?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Một thuật ngữ chung bao quát tất cả người thực hiện công việc.",
+              "correct": true
+            },
+            {
+              "key": "B",
+              "text": "Danh sách các chức danh công việc cụ thể.",
+              "correct": false
+            },
+            {
+              "key": "C",
+              "text": "Tên riêng của từng khách hàng tiềm năng.",
+              "correct": false
+            },
+            {
+              "key": "D",
+              "text": "Các nhóm người mua hàng theo phân khúc địa lý.",
+              "correct": false
+            }
+          ],
+          "explain": "Khi định nghĩa nhóm người, cần tránh dùng chức danh công việc thực tế mà nên dùng thuật ngữ chung bao quát (all-inclusive term) để mô tả tất cả job executor."
+        },
+        "example": {
+          "title": "Ví dụ về Job Executor",
+          "body": "Job executor là người sử dụng sản phẩm hoặc dịch vụ để hoàn thành công việc chức năng cốt lõi và là lý do thị trường tồn tại."
+        }
+      }
+    ],
+    "warnings": [
+      "Câu chính: hint của phương án \"Những người có ảnh hưởng đến quyết định \" nói ra đáp án.",
+      "Câu chính: hint của phương án \"Những người mua hàng vì mục đích kinh tế\" nói ra đáp án.",
+      "Câu chính: hint của phương án \"Những người hỗ trợ sản phẩm trong suốt v\" nói ra đáp án."
+    ]
+  },
+  "evaluation": {
+    "id": "R01",
+    "situation_type": "rare",
+    "source_type": "observed",
+    "expected_behavior": "Làm sạch ký tự nhiễu và vẫn trả checkpoint JSON hợp lệ, hoặc báo thiếu căn cứ thay vì bịa.",
+    "http_status": 200,
+    "suggestion_count": 1,
+    "automatic_scores": [
+      {
+        "checks": {
+          "has_prompt": true,
+          "exactly_four_options": true,
+          "distinct_options": true,
+          "exactly_one_correct": true,
+          "wrong_options_have_misconceptions": true,
+          "wrong_options_have_three_hints": true,
+          "hints_do_not_reveal_answer": true,
+          "has_distinct_follow_up": true,
+          "has_usable_example": true
+        },
+        "automatic_pass": true
+      }
+    ],
+    "human_review": {
+      "status": "pending"
+    },
+    "not_auto_published": true,
+    "pass": false,
+    "failure_reasons": [
+      "human_review_incomplete"
+    ],
+    "latency_seconds": 9.217
+  }
+}

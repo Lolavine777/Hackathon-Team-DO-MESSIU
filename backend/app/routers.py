@@ -283,19 +283,20 @@ def report(x_vlearn_role: str | None = Header(default=None)):
 
 
 @router.get("/pulse")
-def get_pulse():
-    return {"pulse": live.pulse}
+def get_pulse(page: int | None = None):
+    target = live.page if page is None else page
+    return {"page": target, "pulse": live.pulse_for(target)}
 
 
 @router.post("/pulse")
 def send_pulse(payload: PulseRequest):
-    return live.send_pulse(payload.value)
+    return live.send_pulse(payload.value, payload.user_id, payload.page)
 
 
 @router.post("/pulse/reset")
-def reset_pulse(x_vlearn_role: str | None = Header(default=None)):
+def reset_pulse(page: int | None = None, x_vlearn_role: str | None = Header(default=None)):
     require_teacher(x_vlearn_role)
-    return live.reset_pulse()
+    return live.reset_pulse(page)
 
 
 @router.get("/questions")

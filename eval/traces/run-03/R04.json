@@ -1,0 +1,110 @@
+{
+  "case_id": "R04",
+  "timestamp_utc": "2026-07-31T06:38:23.861193+00:00",
+  "model": "gemini-2.5-flash",
+  "endpoint": "https://conner-unavailing-nonirately.ngrok-free.dev/api/ai/suggest-checkpoints",
+  "role": "teacher",
+  "request": {
+    "page": 44,
+    "count": 1,
+    "force": true
+  },
+  "source_page_excerpt": "TRANSFORM YOUR COMPANY THROUGH INNOVATION  FOLLOW US ON LINKEDIN  BECOME A CLIENT  1 2 3 4CHAPTER Because each function has its own way of defining what value means for the customer, companies struggle to align around customer problems and solutions to these problems. But when you view your business through the lens of Jobs-to-be-Done, you can align your organization around its purpose, which is to help people get a job done. Breaking down the job map aligns the organization around the steps the customer goes through to get that job done. This allows your siloed teams to all view value creation—and communication —through the eyes of the customer. Coloplast offers a prime example. Their team was struggling to gain traction in the market, thanks to a lack of agreement between sales, marketing, and product development as to what they should create and communicate next in their line of wound care products. We already mentioned how under- standing their customer’s job helped Coloplast’s marketers make impactful changes to their value proposition and messaging. This simple alignment changed the trajectory of the firm for the long-term. Using Jobs-to-be-Done is a paradigm shift, helping the business to adopt an outside-in mindset that’s guided by the voice of the customer. It realigns the organization to believe that they should understand the external customer’s needs first and then work to solve them—rather than focusing internally and ideatnig around technology and solutions. This is real customer-centricity. By understanding the job map, your teams can focus on what will actually help the customer get the job done better—then go create and market these things. No failing fast necessary. Executives Benefits – 41 Most executives would claim that their businesses are customer-centric—but how many of them actually are? Most teams rely on an internally-focused approach to innovation and growth. Teams ideate around new technologies and solutions, creating prototypes, and testing them out to see how customers respond. This is not customer-centricity. It’s solution-centricity. Deliver on customer-centricity.2. But understanding their customer’s job and job map also helped the sales team to create new sales materials that pointed out exactly how their solutions addressed customer needs. The product development team knew exactly what products and features to create next in order to reinforce that new value proposition.",
+  "response_status": 200,
+  "response": {
+    "page": 44,
+    "suggestions": [
+      {
+        "id": "sg-44-1",
+        "page": 44,
+        "prompt": "Theo nội dung trang 44, thế nào là thực sự đạt được customer-centricity?",
+        "options": [
+          {
+            "key": "A",
+            "text": "Hiểu nhu cầu khách hàng trước khi giải quyết chúng.",
+            "correct": true
+          },
+          {
+            "key": "B",
+            "text": "Tập trung tạo ra công nghệ và giải pháp mới.",
+            "correct": false,
+            "misconceptionLabel": "Nhầm lẫn với solution-centricity",
+            "hints": [
+              "Bạn đang tập trung vào hoạt động nội bộ.",
+              "Việc tạo ra công nghệ có phải là bước đầu tiên để hiểu khách hàng không?",
+              "Hãy xem lại đoạn mô tả về tư duy outside-in và việc tập trung vào công nghệ."
+            ]
+          },
+          {
+            "key": "C",
+            "text": "Thử nghiệm các nguyên mẫu để xem phản ứng khách hàng.",
+            "correct": false,
+            "misconceptionLabel": "Nhầm lẫn với quy trình thử nghiệm",
+            "hints": [
+              "Đây là cách tiếp cận dựa trên giải pháp.",
+              "Việc thử nghiệm nguyên mẫu có đảm bảo bạn đã hiểu nhu cầu khách hàng từ đầu chưa?",
+              "Hãy xem lại phần phân biệt giữa customer-centricity và solution-centricity."
+            ]
+          },
+          {
+            "key": "D",
+            "text": "Đảm bảo các phòng ban tự định nghĩa giá trị riêng.",
+            "correct": false,
+            "misconceptionLabel": "Nhầm lẫn về sự phối hợp phòng ban",
+            "hints": [
+              "Mỗi phòng ban tự định nghĩa giá trị sẽ gây ra khó khăn gì?",
+              "Sự thiếu đồng nhất có giúp tổ chức hướng về khách hàng không?",
+              "Hãy xem lại đoạn nói về việc các phòng ban gặp khó khăn khi tự định nghĩa giá trị."
+            ]
+          }
+        ],
+        "explain": "Customer-centricity là việc áp dụng tư duy outside-in, hiểu nhu cầu khách hàng trước rồi mới làm việc để giải quyết chúng.",
+        "title": "Bản chất của customer-centricity",
+        "learningOutcome": "Học viên phân biệt được tư duy customer-centricity và solution-centricity.",
+        "durationSec": 30,
+        "followUp": null,
+        "example": {
+          "title": "Ví dụ về customer-centricity",
+          "body": "Thay vì tập trung nội bộ vào công nghệ và giải pháp, doanh nghiệp áp dụng tư duy outside-in để hiểu nhu cầu khách hàng trước rồi mới làm việc để giải quyết chúng."
+        }
+      }
+    ],
+    "warnings": [
+      "Follow-up: các phương án sau chép lại câu chính, phải hỏi bằng cách khác — \"Tập trung vào việc tạo ra các tính năng \" ≈ \"Tập trung tạo ra công nghệ và giải pháp \""
+    ]
+  },
+  "evaluation": {
+    "id": "R04",
+    "situation_type": "rare",
+    "source_type": "observed",
+    "expected_behavior": "Không trộn nhiều đối tượng vào một câu; follow-up kiểm tra cùng learning outcome bằng cách hỏi khác.",
+    "http_status": 200,
+    "suggestion_count": 1,
+    "automatic_scores": [
+      {
+        "checks": {
+          "has_prompt": true,
+          "exactly_four_options": true,
+          "distinct_options": true,
+          "exactly_one_correct": true,
+          "wrong_options_have_misconceptions": true,
+          "wrong_options_have_three_hints": true,
+          "hints_do_not_reveal_answer": true,
+          "has_distinct_follow_up": false,
+          "has_usable_example": true
+        },
+        "automatic_pass": false
+      }
+    ],
+    "human_review": {
+      "status": "pending"
+    },
+    "not_auto_published": true,
+    "pass": false,
+    "failure_reasons": [
+      "structural_check_failed",
+      "human_review_incomplete"
+    ],
+    "latency_seconds": 9.726
+  }
+}

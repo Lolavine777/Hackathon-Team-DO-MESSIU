@@ -9,7 +9,10 @@ const SessionContext = createContext(null)
 export const useSession = () => useContext(SessionContext)
 
 const EMPTY = {
-  pulse: {},
+  // Trang chưa ai bấm vẫn phải hiện số 0 chứ không phải ô trống.
+  pulse: { understand: 0, unclear: 0, stuck: 0 },
+  pulses: {},
+  myPulses: {},
   questions: [],
   clarifications: [],
   hints: [],
@@ -26,8 +29,8 @@ export function SessionProvider({ children }) {
 
   const { config, live, error, reloadConfig } = useLectureState({ role, uid, enabled: Boolean(user) })
 
-  // Trạng thái chỉ thuộc về người dùng này, không cần đẩy lên lớp.
-  const [myPulse, setMyPulse] = useState(null)
+  // Phiếu pulse vừa bấm, giữ tại chỗ trong lúc chờ snapshot SSE bắt kịp.
+  const [draftPulse, setDraftPulse] = useState(null)
 
   const call = useCallback((path, options) => api(path, { role, ...options }), [role])
   const aiActions = useAiActions(call, reloadConfig)
@@ -79,6 +82,7 @@ export function SessionProvider({ children }) {
   const classPage = live?.page ?? 1
   const [localPage, setLocalPage] = useState(null)
   useEffect(() => setLocalPage(null), [classPage])
+  const page = localPage ?? classPage
 
   // Đổi trang phải thấy ngay tại chỗ: khung slide bám theo `page`, nếu chờ server
   // trả về thì lượt kéo tiếp theo bị chính giá trị cũ kéo ngược lại.
@@ -93,17 +97,29 @@ export function SessionProvider({ children }) {
 
   // --- pulse & hỏi đáp -------------------------------------------------
 
+  // Server đếm theo trang, nên phiếu phải nói rõ nó thuộc trang nào và của máy nào —
+  // thiếu `user_id` thì mỗi lần đổi lựa chọn lại thành một phiếu mới.
   const sendPulse = useCallback(
     (value) => {
-      setMyPulse(value)
-      return call('/pulse', { method: 'POST', body: { value } })
+      setDraftPulse({ page, value })
+      return call('/pulse', { method: 'POST', body: { value, page, user_id: uid } }).catch((err) => {
+        setDraftPulse(null) // gửi hỏng thì đừng để nút sáng như đã ghi nhận
+        throw err
+      })
     },
-    [call]
+    [call, page, uid]
   )
   const resetPulse = useCallback(() => {
-    setMyPulse(null)
-    return call('/pulse/reset', { method: 'POST' })
-  }, [call])
+    setDraftPulse(null)
+    return call(`/pulse/reset?page=${page}`, { method: 'POST' })
+  }, [call, page])
+
+  // Nút sáng ngay khi bấm, rồi nhường lại cho snapshot của server ngay khi hai bên khớp.
+  const myPulses = live?.myPulses ?? EMPTY.myPulses
+  useEffect(() => {
+    setDraftPulse((draft) => (draft && myPulses[draft.page] === draft.value ? null : draft))
+  }, [myPulses])
+  const myPulse = draftPulse?.page === page ? draftPulse.value : (myPulses[page] ?? null)
 
   const questions = live?.questions ?? EMPTY.questions
   const helpActions = useHelpActions({ call, uid, page: live?.page ?? 1, questions })
@@ -126,7 +142,7 @@ export function SessionProvider({ children }) {
     actionCatalog: config?.actionCatalog ?? {},
     thresholds: config?.thresholds ?? {},
 
-    page: localPage ?? classPage,
+    page,
     classPage,
     setPage,
     // Sĩ số thật do server đếm từ số máy học viên đang mở lớp.
@@ -149,7 +165,8 @@ export function SessionProvider({ children }) {
     sendFeedback,
     respond,
 
-    pulse: live?.pulse ?? EMPTY.pulse,
+    // Số hiển thị luôn là số của trang đang xem, không phải tổng của cả buổi.
+    pulse: (live?.pulses ?? EMPTY.pulses)[page] ?? EMPTY.pulse,
     myPulse,
     sendPulse,
     resetPulse,

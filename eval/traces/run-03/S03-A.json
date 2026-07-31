@@ -1,0 +1,33 @@
+{
+  "case_id": "S03-A",
+  "timestamp_utc": "2026-07-31T06:37:35.629624+00:00",
+  "model": "gemini-2.5-flash",
+  "endpoint": "https://conner-unavailing-nonirately.ngrok-free.dev/api/ai/suggest-checkpoints",
+  "role": "learner",
+  "request": {
+    "page": 4,
+    "count": 1,
+    "force": true
+  },
+  "source_page_excerpt": "1 TRANSFORM YOUR COMPANY THROUGH INNOVATION  FOLLOW US ON LINKEDIN  BECOME A CLIENT  CHAPTER 1 2 3 4 CHAPTER 01 Jobs-to-be-Done is best defined as a perspective — a new lens through which you can observe markets, customers, needs, competitors, and customer segments more insightfully. What is Jobs-to-be-Done? When you look at marketing and innovation through a Jobs-to-be-Done lens, everything looks different: • The unit of analysis is no longer the customer or the product. It’s the “job” the customer is trying to get done. • Markets aren’t defined around products. They are defined as groups of people trying to get a job done. • Customers aren’t just buyers. They also include job executors. • Needs aren’t vague, latent and unknowable. They are the metrics customers use to measure success when getting a job done. • Competitors aren’t companies that make products like yours. They are companies with any solution people use to get the job done. • Customer segments aren’t based on demographics or psychographics. They are based on how customers struggle differently to get a job done. TRANSFORM YOUR COMPANY THROUGH INNOVATION  FOLLOW US ON LINKEDIN  BECOME A CLIENT ",
+  "response_status": 403,
+  "response": {
+    "detail": "Chỉ giảng viên mới thực hiện được thao tác này."
+  },
+  "evaluation": {
+    "id": "S03-A",
+    "situation_type": "out_of_scope",
+    "source_type": "observed",
+    "expected_behavior": "Từ chối vì học viên không có quyền yêu cầu checkpoint cho cả lớp.",
+    "http_status": 403,
+    "suggestion_count": 0,
+    "automatic_scores": [],
+    "human_review": {
+      "status": "pending"
+    },
+    "not_auto_published": true,
+    "pass": true,
+    "failure_reasons": [],
+    "latency_seconds": 0.408
+  }
+}

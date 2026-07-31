@@ -82,4 +82,6 @@ if DIST.is_dir():
         candidate = DIST / full_path
         if full_path and candidate.is_file():
             return FileResponse(candidate)
-        return FileResponse(DIST / "index.html")
+        # Tên file trong /assets đã có hash nên cache thoải mái, riêng index.html thì không:
+        # trình duyệt giữ lại bản cũ là cả app đứng ở bản build cũ sau khi đã build lại.
+        return FileResponse(DIST / "index.html", headers={"Cache-Control": "no-cache"})

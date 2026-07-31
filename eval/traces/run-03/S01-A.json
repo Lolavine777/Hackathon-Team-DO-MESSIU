@@ -1,0 +1,33 @@
+{
+  "case_id": "S01-A",
+  "timestamp_utc": "2026-07-31T06:37:25.182877+00:00",
+  "model": "gemini-2.5-flash",
+  "endpoint": "https://conner-unavailing-nonirately.ngrok-free.dev/api/ai/suggest-checkpoints",
+  "role": "teacher",
+  "request": {
+    "page": 0,
+    "count": 1,
+    "force": true
+  },
+  "source_page_excerpt": null,
+  "response_status": 422,
+  "response": {
+    "detail": "Input should be greater than or equal to 1"
+  },
+  "evaluation": {
+    "id": "S01-A",
+    "situation_type": "missing_source",
+    "source_type": "chatlog",
+    "expected_behavior": "Từ chối input ngoài phạm vi tài liệu, không sinh checkpoint và không bịa nội dung.",
+    "http_status": 422,
+    "suggestion_count": 0,
+    "automatic_scores": [],
+    "human_review": {
+      "status": "pending"
+    },
+    "not_auto_published": true,
+    "pass": true,
+    "failure_reasons": [],
+    "latency_seconds": 0.404
+  }
+}

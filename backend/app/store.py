@@ -30,7 +30,10 @@ class LectureSession:
         self.recoveries: dict[str, dict] = {}  # primary_run_id -> recovery result
 
         self.seen: dict[str, float] = {}  # user_id học viên -> lần cuối máy còn nói chuyện
-        self.pulse = dict(EMPTY_PULSE)
+        # Pulse ghi theo trang và theo máy: page -> {user_id: value}. Đếm bằng số phiếu
+        # đang giữ chứ không cộng dồn số lần bấm, nên đổi lựa chọn là thay phiếu cũ;
+        # và số của trang này không dính sang trang khác.
+        self.pulses: dict[int, dict[str, str]] = {}
         self.questions: list[dict] = []
         self.clarifications: list[dict] = []
         self.hints: list[dict] = []  # hint gửi tới nhóm chọn cùng một đáp án sai
@@ -205,15 +208,33 @@ class LectureSession:
 
     # --- pulse & hỏi đáp -------------------------------------------------
 
-    def send_pulse(self, value: str) -> dict:
-        self.pulse[value] = self.pulse.get(value, 0) + 1
-        self._emit("pulse.updated")
-        return self.pulse
+    def pulse_for(self, page: int) -> dict:
+        counts = dict(EMPTY_PULSE)
+        for value in self.pulses.get(page, {}).values():
+            counts[value] = counts.get(value, 0) + 1
+        return counts
 
-    def reset_pulse(self) -> dict:
-        self.pulse = dict(EMPTY_PULSE)
+    def my_pulses(self, user_id: str | None) -> dict[str, str]:
+        """Phiếu của riêng một máy, theo trang — để nút trên máy đó sáng đúng chỗ."""
+        if not user_id:
+            return {}
+        return {str(page): votes[user_id] for page, votes in self.pulses.items() if user_id in votes}
+
+    def send_pulse(self, value: str, user_id: str | None = None, page: int | None = None) -> dict:
+        """Một máy giữ đúng một phiếu cho mỗi trang: bấm lại là thay, không cộng thêm."""
+        target = self.page if page is None else page
+        # Không biết ai bấm thì không thể thay phiếu cũ; cấp một chỗ riêng để phiếu đó
+        # vẫn được đếm mà không đè lên phiếu của người khác.
+        self.pulses.setdefault(target, {})[user_id or f"anon_{uuid.uuid4().hex[:8]}"] = value
+        self._emit("pulse.updated")
+        return self.pulse_for(target)
+
+    def reset_pulse(self, page: int | None = None) -> dict:
+        """Gửi lại pulse cho trang đang dạy; phiếu của các trang khác giữ nguyên."""
+        target = self.page if page is None else page
+        self.pulses.pop(target, None)
         self._emit("pulse.reset")
-        return self.pulse
+        return self.pulse_for(target)
 
     def ask(
         self,
@@ -472,7 +493,11 @@ class LectureSession:
             "recoveries": self.recoveries,
             "hints": self._visible_hints(role, user_id),
             "report": self.report() if role == "teacher" else None,
-            "pulse": self.pulse,
+            # `pulse` là số của trang lớp đang dạy; `pulses` để máy nào đang xem trang nào
+            # thì đọc đúng số của trang đó (học viên được tự lật xem lại).
+            "pulse": self.pulse_for(self.page),
+            "pulses": {str(page): self.pulse_for(page) for page in self.pulses},
+            "myPulses": self.my_pulses(user_id),
             "questions": self._visible_questions(role, user_id),
             # Nhóm câu hỏi là công cụ của trợ giảng; không đẩy sang máy học viên.
             "clusters": self.clusters if role == "teacher" else [],

@@ -1,0 +1,131 @@
+{
+  "case_id": "N04",
+  "timestamp_utc": "2026-07-31T06:37:01.529800+00:00",
+  "model": "gemini-2.5-flash",
+  "endpoint": "https://conner-unavailing-nonirately.ngrok-free.dev/api/ai/suggest-checkpoints",
+  "role": "teacher",
+  "request": {
+    "page": 7,
+    "count": 1,
+    "force": true
+  },
+  "source_page_excerpt": "4 TRANSFORM YOUR COMPANY THROUGH INNOVATION  FOLLOW US ON LINKEDIN  BECOME A CLIENT  CHAPTER 1 2 3 4 A functional job-to-be-done is often something people have been trying to accomplish for years, decades— or even centuries. Parents, for example, have been trying to pass on life lessons to children since the beginning of humanity. TENET 03 A Job-to-be-Done is stable over time. The core functional job is solution agnostic —this means it is independent of any solutions or technologies. Innovation isn’t about “a faster horse.” A “horse” is a solution to get a job done. The job (transporting yourself from point A to point B) must be defined independently of the solution (the horse). This is how new, breakthrough solutions can be conceptualized (like the automobile). Customers don’t know what solutions will get a job done best— they couldn’t envision the car or the microwave or the smartphone. But customers do know what job they are trying to get done and can tell you all about it. TENET 04 A Job-to-be-Done is solution agnostic. Lastly, since the job-to-be-done is solution agnostic, competitors are not only companies that make products like yours. They are any solution (paid and non-paid) that customers use to get the core job done. For example, the bicycle and the car are competing solutions for the job of getting from point a to point b. A functional job is stable over time. What changes are the products and services that companies offer to help get the job done better. Because the job-to-be-done is stable over time, it is an attractive focal point around which to create customer value for many years. With this in mind, your business’ strategy should always be to help customers get the entire job done better and more cheaply on a single product platform. This is the long-term strategy that Amazon has pursued since its inception.",
+  "response_status": 200,
+  "response": {
+    "page": 7,
+    "suggestions": [
+      {
+        "id": "sg-7-1",
+        "page": 7,
+        "prompt": "Tại sao Job-to-be-Done được coi là 'solution agnostic'?",
+        "options": [
+          {
+            "key": "A",
+            "text": "Công việc độc lập với các giải pháp hoặc công nghệ.",
+            "correct": true
+          },
+          {
+            "key": "B",
+            "text": "Khách hàng có khả năng hình dung ra các giải pháp đột phá.",
+            "correct": false,
+            "misconceptionLabel": "Nhầm lẫn về khả năng khách hàng",
+            "hints": [
+              "Bạn đang giả định khách hàng có thể dự đoán giải pháp.",
+              "Khách hàng có thể hình dung ra ô tô hay điện thoại thông minh không?",
+              "Hãy đọc lại đoạn: 'Customers don’t know what solutions will get a job done best'."
+            ]
+          },
+          {
+            "key": "C",
+            "text": "Đối thủ cạnh tranh chỉ là các công ty sản xuất sản phẩm tương tự.",
+            "correct": false,
+            "misconceptionLabel": "Nhầm lẫn về phạm vi cạnh tranh",
+            "hints": [
+              "Bạn đang giới hạn đối thủ trong cùng loại sản phẩm.",
+              "Xe đạp và ô tô có phải là các giải pháp cạnh tranh cho cùng một công việc không?",
+              "Hãy đọc lại đoạn: 'competitors are not only companies that make products like yours'."
+            ]
+          },
+          {
+            "key": "D",
+            "text": "Công việc thay đổi liên tục theo các sản phẩm và dịch vụ.",
+            "correct": false,
+            "misconceptionLabel": "Nhầm lẫn về tính ổn định",
+            "hints": [
+              "Bạn đang giả định công việc biến đổi theo sản phẩm.",
+              "Công việc có tính chất gì theo thời gian?",
+              "Hãy đọc lại đoạn: 'A functional job is stable over time'."
+            ]
+          }
+        ],
+        "explain": "Job-to-be-Done là solution agnostic nghĩa là công việc đó độc lập với bất kỳ giải pháp hay công nghệ nào được sử dụng để thực hiện nó.",
+        "title": "Bản chất của Job-to-be-Done",
+        "learningOutcome": "Học viên giải thích được ý nghĩa của tính chất solution agnostic trong Job-to-be-Done.",
+        "durationSec": 30,
+        "followUp": {
+          "prompt": "Khi một công việc được xác định là 'solution agnostic', điều nào sau đây là đúng?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Nhiều loại sản phẩm khác nhau có thể cùng thực hiện một công việc.",
+              "correct": true
+            },
+            {
+              "key": "B",
+              "text": "Sản phẩm mới sẽ làm thay đổi bản chất của công việc đó.",
+              "correct": false
+            },
+            {
+              "key": "C",
+              "text": "Chỉ những sản phẩm cùng công nghệ mới cạnh tranh với nhau.",
+              "correct": false
+            },
+            {
+              "key": "D",
+              "text": "Khách hàng phải biết rõ giải pháp trước khi xác định công việc.",
+              "correct": false
+            }
+          ],
+          "explain": "Vì công việc là solution agnostic, các sản phẩm khác nhau (như xe đạp và ô tô) đều có thể là giải pháp cạnh tranh để thực hiện cùng một công việc."
+        },
+        "example": {
+          "title": "Ví dụ về Job-to-be-Done",
+          "body": "Việc di chuyển từ điểm A đến điểm B là công việc, còn con ngựa hay ô tô là các giải pháp để thực hiện công việc đó."
+        }
+      }
+    ]
+  },
+  "evaluation": {
+    "id": "N04",
+    "situation_type": "normal",
+    "source_type": "chatlog",
+    "expected_behavior": "Tạo checkpoint kiểm tra khái niệm functional job, distractor hợp lý và không lộ đáp án trong hint.",
+    "http_status": 200,
+    "suggestion_count": 1,
+    "automatic_scores": [
+      {
+        "checks": {
+          "has_prompt": true,
+          "exactly_four_options": true,
+          "distinct_options": true,
+          "exactly_one_correct": true,
+          "wrong_options_have_misconceptions": true,
+          "wrong_options_have_three_hints": true,
+          "hints_do_not_reveal_answer": true,
+          "has_distinct_follow_up": true,
+          "has_usable_example": true
+        },
+        "automatic_pass": true
+      }
+    ],
+    "human_review": {
+      "status": "pending"
+    },
+    "not_auto_published": true,
+    "pass": false,
+    "failure_reasons": [
+      "human_review_incomplete"
+    ],
+    "latency_seconds": 8.805
+  }
+}
