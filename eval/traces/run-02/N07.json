@@ -1,0 +1,132 @@
+{
+  "case_id": "N07",
+  "timestamp_utc": "2026-07-31T05:41:24.268043+00:00",
+  "model": "gemini-2.5-flash",
+  "endpoint": "http://127.0.0.1:8010/api/ai/suggest-checkpoints",
+  "role": "teacher",
+  "request": {
+    "page": 10,
+    "count": 1,
+    "force": true
+  },
+  "source_page_excerpt": "7 TRANSFORM YOUR COMPANY THROUGH INNOVATION  FOLLOW US ON LINKEDIN  BECOME A CLIENT  CHAPTER 1 2 3 4 TENET 09 People seek out products and services that enable them to get the entire job done on a single platform. There are many products and services available in the market that only get part of a job done. Customers are left to cobble together solutions in order to get the entire job done. But customers don’t want to cobble together the solution. They want a complete solution presented to them. Your goal should therefore always be to help your customers get their entire job done on a single platform. And you can accelerate this process once you know exactly what steps the customer goes through to complete the job. Nespresso is a great example. The company worked for years with a single strategy in mind: to enable customers to get the job of “preparing a hot beverage for consumption” done on a single platform. “We started to see results from our new messaging and positioning strategy almost immediately. It contributed to an outstanding year. In the end, we grew greater than 30%…. Every one of our products had double-digit growth. We far outpaced our competitors.” Let’s jump back to the animal nutrition team at Arm & Hammer. This business provides animal nutrition, animal productivity, food processing, and safety solutions. Just like other businesses in the industry, they had been relying on animal nutrition consultants to inform their product innovations. But when they applied Jobs Theory , they realized they were looking at their market and customers all wrong. First, their real customer was the dairy producer, not the nutritionist. By shifting the focus to this customer, Arm & Hammer was able to understand the “job” the dairy producer was trying to get done had little to do with nutrition — and was squarely focused on optimizing dairy herd productivity. The market they were in was dairy producers (a group of people) trying to optimize dairy herd productivity (job-to-be-done). CAS E S T U DY E X A M P L E : Arm & Hammer Animal Nutrition Grows Y2Y Revenue 30%+ With this new insight, Arm & Hammer interviewed a dozen dairy producers and uncovered 165 unique desired outcome statements the dairy producer was trying to satisfy. The team then surveyed more dairy herd producers to quantify the degree to which each outcome was under- or overserved by existing products in the market. This was the data they needed to guide their decision making around their new p",
+  "response_status": 200,
+  "response": {
+    "page": 10,
+    "suggestions": [
+      {
+        "id": "sg-10-1",
+        "page": 10,
+        "prompt": "Theo Tenet 09, mục tiêu của doanh nghiệp khi phát triển sản phẩm là gì?",
+        "options": [
+          {
+            "key": "A",
+            "text": "Giúp khách hàng hoàn thành toàn bộ công việc trên một nền tảng duy nhất.",
+            "correct": true
+          },
+          {
+            "key": "B",
+            "text": "Cung cấp các sản phẩm chuyên biệt để giải quyết từng phần nhỏ của công việc.",
+            "correct": false,
+            "misconceptionLabel": "Nhầm lẫn giữa giải pháp bộ phận và giải pháp hoàn chỉnh",
+            "hints": [
+              "Bạn đang giả định rằng việc chia nhỏ công việc là mục tiêu của doanh nghiệp.",
+              "Liệu khách hàng có muốn tự mình kết hợp nhiều sản phẩm để hoàn thành công việc không?",
+              "Hãy xem lại đoạn mô tả về việc khách hàng không muốn cobble together các giải pháp."
+            ]
+          },
+          {
+            "key": "C",
+            "text": "Tập trung vào việc cải tiến các sản phẩm hiện có trên thị trường.",
+            "correct": false,
+            "misconceptionLabel": "Nhầm lẫn về trọng tâm đổi mới",
+            "hints": [
+              "Bạn đang giả định rằng đổi mới chỉ là cải tiến sản phẩm hiện tại.",
+              "Việc cải tiến sản phẩm có giúp khách hàng tránh được việc phải tự kết hợp các giải pháp không?",
+              "Hãy đọc lại phần nói về mục tiêu của doanh nghiệp đối với khách hàng."
+            ]
+          },
+          {
+            "key": "D",
+            "text": "Tăng cường sự phối hợp giữa các chuyên gia tư vấn và khách hàng.",
+            "correct": false,
+            "misconceptionLabel": "Nhầm lẫn về vai trò của tư vấn",
+            "hints": [
+              "Bạn đang giả định rằng sự phối hợp tư vấn là yếu tố then chốt.",
+              "Việc tư vấn có thay thế được nhu cầu về một nền tảng hoàn chỉnh của khách hàng không?",
+              "Hãy xem lại phần nói về việc chuyển đổi trọng tâm từ tư vấn sang hiểu công việc của khách hàng."
+            ]
+          }
+        ],
+        "explain": "Tenet 09 khẳng định khách hàng không muốn tự kết hợp các giải pháp, họ muốn một giải pháp hoàn chỉnh trên một nền tảng duy nhất để hoàn thành toàn bộ công việc.",
+        "title": "Mục tiêu của Tenet 09",
+        "learningOutcome": "Xác định được mục tiêu cốt lõi của doanh nghiệp trong việc cung cấp giải pháp cho khách hàng theo Tenet 09.",
+        "durationSec": 30,
+        "followUp": {
+          "prompt": "Để đạt được mục tiêu giúp khách hàng hoàn thành toàn bộ công việc, doanh nghiệp cần làm gì?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Hiểu rõ các bước khách hàng thực hiện để hoàn thành công việc.",
+              "correct": true
+            },
+            {
+              "key": "B",
+              "text": "Tăng số lượng sản phẩm cung cấp ra thị trường.",
+              "correct": false
+            },
+            {
+              "key": "C",
+              "text": "Tập trung vào việc giảm giá thành sản phẩm.",
+              "correct": false
+            },
+            {
+              "key": "D",
+              "text": "Phụ thuộc vào ý kiến của các chuyên gia tư vấn.",
+              "correct": false
+            }
+          ],
+          "explain": "Slide nêu rõ: bạn có thể đẩy nhanh quá trình này khi biết chính xác các bước khách hàng thực hiện để hoàn thành công việc."
+        },
+        "example": {
+          "title": "Ví dụ về nền tảng hoàn chỉnh",
+          "body": "Nespresso là ví dụ về công ty có chiến lược giúp khách hàng hoàn thành công việc “chuẩn bị đồ uống nóng để tiêu thụ” trên một nền tảng duy nhất."
+        }
+      }
+    ]
+  },
+  "evaluation": {
+    "id": "N07",
+    "situation_type": "normal",
+    "source_type": "chatlog",
+    "expected_behavior": "Tạo checkpoint bám nội dung trang 10 và giữ job tách khỏi solution.",
+    "http_status": 200,
+    "suggestion_count": 1,
+    "automatic_scores": [
+      {
+        "checks": {
+          "has_prompt": true,
+          "exactly_four_options": true,
+          "distinct_options": true,
+          "exactly_one_correct": true,
+          "wrong_options_have_misconceptions": true,
+          "wrong_options_have_three_hints": true,
+          "hints_do_not_reveal_answer": true,
+          "has_distinct_follow_up": true,
+          "has_usable_example": true
+        },
+        "automatic_pass": true
+      }
+    ],
+    "human_review": {
+      "grounded": true,
+      "diagnostic": true,
+      "safe": true,
+      "notes": "[AI-review] Nespresso chỉ được nhắc đúng phần có trên trang 10 ('chuẩn bị đồ uống nóng', một nền tảng duy nhất), không thêm chi tiết như run-01. Distractor phản ánh hiểu nhầm giải pháp bộ phận. Hint không lộ đáp án."
+    },
+    "not_auto_published": true,
+    "pass": true,
+    "failure_reasons": [],
+    "latency_seconds": 5.727
+  }
+}

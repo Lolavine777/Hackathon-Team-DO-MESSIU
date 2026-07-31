@@ -1,0 +1,132 @@
+{
+  "case_id": "R02",
+  "timestamp_utc": "2026-07-31T05:41:24.288436+00:00",
+  "model": "gemini-2.5-flash",
+  "endpoint": "http://127.0.0.1:8010/api/ai/suggest-checkpoints",
+  "role": "teacher",
+  "request": {
+    "page": 48,
+    "count": 1,
+    "force": true
+  },
+  "source_page_excerpt": "45 TRANSFORM YOUR COMPANY THROUGH INNOVATION  FOLLOW US ON LINKEDIN  BECOME A CLIENT  TRANSFORM YOUR COMPANY THROUGH INNOVATION  • FOLLOW US ON LINKEDIN  • BECOME A CLIENT ",
+  "response_status": 200,
+  "response": {
+    "page": 48,
+    "suggestions": [
+      {
+        "id": "sg-48-1",
+        "page": 48,
+        "prompt": "Trang 48 hướng dẫn người đọc thực hiện hành động nào?",
+        "options": [
+          {
+            "key": "A",
+            "text": "Chuyển đổi công ty thông qua đổi mới",
+            "correct": true
+          },
+          {
+            "key": "B",
+            "text": "Đăng ký khóa học chuyên sâu",
+            "correct": false,
+            "misconceptionLabel": "Nhầm lẫn về nội dung trang",
+            "hints": [
+              "Bạn đang giả định trang có nội dung về đào tạo.",
+              "Nội dung trang có nhắc đến việc đăng ký khóa học không?",
+              "Hãy đọc lại tiêu đề chính trên trang 48."
+            ]
+          },
+          {
+            "key": "C",
+            "text": "Liên hệ trực tiếp với giảng viên",
+            "correct": false,
+            "misconceptionLabel": "Nhầm lẫn về đối tượng liên hệ",
+            "hints": [
+              "Bạn đang giả định trang có thông tin liên hệ cá nhân.",
+              "Trang có đề cập đến giảng viên không?",
+              "Hãy đọc lại các hành động được liệt kê trên trang 48."
+            ]
+          },
+          {
+            "key": "D",
+            "text": "Tìm kiếm việc làm tại công ty",
+            "correct": false,
+            "misconceptionLabel": "Nhầm lẫn về mục đích trang",
+            "hints": [
+              "Bạn đang giả định trang là thông báo tuyển dụng.",
+              "Trang có nhắc đến vị trí công việc nào không?",
+              "Hãy đọc lại các hành động được liệt kê trên trang 48."
+            ]
+          }
+        ],
+        "explain": "Trang 48 nêu rõ mục tiêu là chuyển đổi công ty thông qua đổi mới.",
+        "title": "Mục tiêu của trang 48",
+        "learningOutcome": "Xác định được các hành động được đề xuất trên trang 48.",
+        "durationSec": 30,
+        "followUp": {
+          "prompt": "Ngoài việc chuyển đổi công ty, trang 48 còn mời gọi người đọc thực hiện hành động nào?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Theo dõi trên LinkedIn và trở thành khách hàng",
+              "correct": true
+            },
+            {
+              "key": "B",
+              "text": "Gửi phản hồi về nội dung slide",
+              "correct": false
+            },
+            {
+              "key": "C",
+              "text": "Chia sẻ slide cho đồng nghiệp",
+              "correct": false
+            },
+            {
+              "key": "D",
+              "text": "Đăng ký nhận bản tin hàng tuần",
+              "correct": false
+            }
+          ],
+          "explain": "Trang 48 yêu cầu người đọc theo dõi trên LinkedIn và trở thành khách hàng."
+        },
+        "example": {
+          "title": "Ví dụ về hành động",
+          "body": "Chuyển đổi công ty thông qua đổi mới là hành động chính được nêu trên trang 48."
+        }
+      }
+    ]
+  },
+  "evaluation": {
+    "id": "R02",
+    "situation_type": "rare",
+    "source_type": "observed",
+    "expected_behavior": "Nếu sinh checkpoint thì chỉ hỏi nội dung CTA có trên trang; không tự thêm kiến thức JTBD từ trang trước.",
+    "http_status": 200,
+    "suggestion_count": 1,
+    "automatic_scores": [
+      {
+        "checks": {
+          "has_prompt": true,
+          "exactly_four_options": true,
+          "distinct_options": true,
+          "exactly_one_correct": true,
+          "wrong_options_have_misconceptions": true,
+          "wrong_options_have_three_hints": true,
+          "hints_do_not_reveal_answer": true,
+          "has_distinct_follow_up": true,
+          "has_usable_example": true
+        },
+        "automatic_pass": true
+      }
+    ],
+    "human_review": {
+      "grounded": true,
+      "diagnostic": true,
+      "safe": true,
+      "notes": "[AI-review] Đúng hành vi mong đợi: trang 48 chỉ có CTA nên checkpoint chỉ hỏi nội dung CTA, không mượn kiến thức JTBD của trang trước như run-01. Follow-up hỏi các lời mời còn lại trên chính trang đó."
+    },
+    "not_auto_published": true,
+    "pass": true,
+    "failure_reasons": [],
+    "latency_seconds": 4.903
+  }
+}

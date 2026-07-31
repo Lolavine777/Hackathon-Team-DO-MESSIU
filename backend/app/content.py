@@ -1,7 +1,9 @@
 """Nội dung đã được đội ngũ học thuật soạn và duyệt trước.
 
-Trong bản MVP đây là dữ liệu tĩnh; khi tích hợp thật, phần này đến từ
-ngân hàng câu hỏi + learning outcome của VLearn.
+Đây là *nội dung bài học* (câu hỏi, learning outcome, taxonomy hiểu nhầm), không
+phải dữ liệu hoạt động của lớp: mọi con số về sinh viên đều đến từ tương tác thật
+và nằm trong `store.py`. Khi tích hợp thật, phần này đến từ ngân hàng câu hỏi +
+learning outcome của VLearn.
 """
 
 SESSION = {
@@ -10,8 +12,6 @@ SESSION = {
     "course": "PROD3010 · Jobs-To-Be-Done Discovery",
     "title": "Day 01 · JTBD Foundation",
     "instructor": "Giảng viên A",
-    "enrolled": 160,
-    "online": 147,
 }
 
 MATERIAL = {
@@ -21,10 +21,9 @@ MATERIAL = {
     "pages": 48,
 }
 
-ACCOUNTS = {
-    "learner": {"role": "learner", "name": "Học viên demo", "email": "learner@vlearn.edu.vn"},
-    "teacher": {"role": "teacher", "name": "Giảng viên demo", "email": "teacher@vlearn.edu.vn"},
-}
+# Chỉ là nhãn vai trò. Tên hiển thị do chính người dùng nhập lúc đăng nhập —
+# không có tài khoản dựng sẵn nào trong hệ thống.
+ROLE_LABELS = {"learner": "Học viên", "teacher": "Giảng viên"}
 
 CONFIDENCE_LEVELS = [
     {"value": "sure", "label": "Chắc chắn"},
@@ -282,59 +281,13 @@ CHECKPOINTS = [
     },
 ]
 
-PULSE = {"understand": 86, "unclear": 41, "stuck": 20}
-
-TOPICS = [
-    {"id": "c1", "label": "Job Statement", "votes": 24},
-    {"id": "c2", "label": "Outcome vs. Feature", "votes": 18},
-    {"id": "c3", "label": "Job Map 8 bước", "votes": 11},
-    {"id": "c4", "label": "Opportunity Score", "votes": 7},
-]
-
-QUESTIONS = [
-    {
-        "id": "qs1",
-        "page": 1,
-        "scope": "group",
-        "author": "Nhóm 12 câu tương tự",
-        "text": "Job statement khác gì với user story ạ?",
-        "echo": 12,
-        "status": "pending",
-        "time": "Vừa xong",
-    },
-    {
-        "id": "qs2",
-        "page": 2,
-        "scope": "anonymous",
-        "author": "Ẩn danh · 5 người đồng ý",
-        "text": "Làm sao biết mình đã tách đủ nhỏ một job?",
-        "echo": 5,
-        "status": "pending",
-        "time": "2 phút trước",
-    },
-    {
-        "id": "qs3",
-        "page": 3,
-        "scope": "private",
-        "author": "Riêng tư",
-        "text": "Outcome score tính bằng công thức nào ạ?",
-        "echo": 0,
-        "status": "pending",
-        "time": "4 phút trước",
-    },
-]
-
-CLARIFICATIONS = [
-    {
-        "id": "cl1",
-        "page": 1,
-        "title": "Phân biệt Job và Solution",
-        "body": (
-            "Job là tiến bộ người dùng muốn đạt được; solution là cách hiện tại họ đang dùng "
-            "để đạt tiến bộ đó. Job bền vững, solution thay đổi liên tục."
-        ),
-    }
-]
+# Ba loại vướng mắc học viên tự chọn khi bấm "Cần hỗ trợ". Giữ đúng ba loại này
+# để trợ giảng phân loại được ngay từ hàng đợi mà không phải đọc hết nội dung.
+HELP_CATEGORIES = {
+    "code": {"label": "Lỗi code", "tone": "hot"},
+    "concept": {"label": "Không hiểu khái niệm", "tone": "warning"},
+    "start": {"label": "Không biết bắt đầu", "tone": "default"},
+}
 
 
 def checkpoint(checkpoint_id: str) -> dict | None:

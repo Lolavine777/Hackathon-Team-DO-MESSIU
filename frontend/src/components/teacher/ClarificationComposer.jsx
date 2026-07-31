@@ -8,7 +8,7 @@ import { useToast } from '../ui/Toast.jsx'
 
 /** Soạn thẻ giải thích và đăng cho học viên đang xem trang hiện tại. */
 export default function ClarificationComposer() {
-  const { page, publishClarification, session } = useSession()
+  const { page, publishClarification, online } = useSession()
   const toast = useToast()
   const [title, setTitle] = useState('Phân biệt Job và Solution')
   const [body, setBody] = useState(
@@ -43,7 +43,7 @@ export default function ClarificationComposer() {
 
       {sent ? (
         <Callout tone="success" className="mt-3">
-          Giải thích đã được gửi đến {session.online} học viên đang theo dõi Trang {page}.
+          Giải thích đã được ghim lên Trang {page} cho {online} học viên đang trong lớp.
         </Callout>
       ) : null}
     </Card>

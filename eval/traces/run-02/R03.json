@@ -1,0 +1,132 @@
+{
+  "case_id": "R03",
+  "timestamp_utc": "2026-07-31T05:41:24.290573+00:00",
+  "model": "gemini-2.5-flash",
+  "endpoint": "http://127.0.0.1:8010/api/ai/suggest-checkpoints",
+  "role": "teacher",
+  "request": {
+    "page": 38,
+    "count": 1,
+    "force": true
+  },
+  "source_page_excerpt": "TRANSFORM YOUR COMPANY THROUGH INNOVATION  FOLLOW US ON LINKEDIN  BECOME A CLIENT  1 2 3 4CHAPTER In late 2001, Kroll Ontrack was faced with a strategic opportunity— and a challenge. The opportunity lay in the potential market for an electronic document discovery solution for the legal industry (until then, everything had been done on paper). Ben’s team found the answers in the job map. First, they defined their market around the job-to-be-done and the people executing that job. For Kroll, they focused on lawyers who were trying to find information (evidence) that would support or refute a case. Then they created a job map describing the perfect execution of this job-to-be-done. A real-world product management success story The challenge? Creating an effective market strategy for a business still in its infancy. They had failed on their first two attempts at market entry. As Ben Allen, CEO of Kroll and former Kroll Ontrack president, explained: \"All of the underlying foundational elements suggested that this would be an important industry opportunity. What we didn’t know was how to understand what clients wanted to achieve in a way that could be translated into an efficient and effective strategy for growth. The electronic discovery market was so new that if you asked clients what features they wanted, they didn’t know what you were talking about.” CASE STUDY With this approach, Kroll discovered 9 opportunities to help their customer better complete job steps related to information management during the litigation process. They also found 11 opportunities related to extant electronic discovery approaches. They built their product strategy and product roadmap accordingly—which worked out pretty well for them. Andrea Johnson, VP of Marketing & Communications, explained: \"Kroll Ontrack leapfrogged the competition with a revolutionary innovation, because it added capabilities based on the job that customers were trying to get done rather than seeking to improve the current solution platform.\" Innovate with confidence Like Kroll, once you have determined where the opportunities exist, you can begin solutioning with confidence. It’s easy to see which products and features to prioritize when you know exactly what your customers are trying to get done. Product Team Benefits – 35",
+  "response_status": 200,
+  "response": {
+    "page": 38,
+    "suggestions": [
+      {
+        "id": "sg-38-1",
+        "page": 38,
+        "prompt": "Theo nội dung trang 38, cách tiếp cận nào giúp Kroll Ontrack tạo ra sự đổi mới mang tính cách mạng?",
+        "options": [
+          {
+            "key": "A",
+            "text": "Tập trung vào công việc khách hàng cần hoàn thành thay vì cải thiện nền tảng giải pháp hiện tại.",
+            "correct": true
+          },
+          {
+            "key": "B",
+            "text": "Hỏi khách hàng về các tính năng họ mong muốn để phát triển sản phẩm.",
+            "correct": false,
+            "misconceptionLabel": "Nhầm lẫn về phương pháp thu thập yêu cầu",
+            "hints": [
+              "Bạn đang giả định rằng khách hàng biết rõ họ cần tính năng gì.",
+              "Liệu khách hàng có thể mô tả tính năng cho một thị trường hoàn toàn mới không?",
+              "Xem lại đoạn trích dẫn của Ben Allen về việc khách hàng không biết họ đang nói về điều gì."
+            ]
+          },
+          {
+            "key": "C",
+            "text": "Tập trung vào việc cải thiện các giải pháp điện tử hiện có trên thị trường.",
+            "correct": false,
+            "misconceptionLabel": "Nhầm lẫn về mục tiêu đổi mới",
+            "hints": [
+              "Bạn đang giả định rằng việc cải thiện giải pháp cũ là ưu tiên hàng đầu.",
+              "Liệu việc cải thiện giải pháp hiện tại có giúp công ty vượt qua đối thủ cạnh tranh không?",
+              "Xem lại lời giải thích của Andrea Johnson về việc không tìm cách cải thiện nền tảng giải pháp hiện tại."
+            ]
+          },
+          {
+            "key": "D",
+            "text": "Dựa vào các yếu tố nền tảng ban đầu để dự đoán nhu cầu thị trường.",
+            "correct": false,
+            "misconceptionLabel": "Nhầm lẫn về vai trò của dữ liệu nền tảng",
+            "hints": [
+              "Bạn đang giả định rằng các yếu tố nền tảng là đủ để xây dựng chiến lược.",
+              "Các yếu tố nền tảng có giúp công ty hiểu được điều khách hàng muốn đạt được không?",
+              "Xem lại đoạn Ben Allen nói về việc các yếu tố nền tảng không giúp dịch chuyển thành chiến lược tăng trưởng."
+            ]
+          }
+        ],
+        "explain": "Kroll Ontrack đã đổi mới bằng cách tập trung vào công việc khách hàng cần hoàn thành (job-to-be-done) thay vì chỉ cải thiện giải pháp hiện có.",
+        "title": "Xác định cơ hội đổi mới",
+        "learningOutcome": "Học viên xác định được căn cứ để xây dựng chiến lược sản phẩm hiệu quả.",
+        "durationSec": 30,
+        "followUp": {
+          "prompt": "Yếu tố nào là chìa khóa để Kroll Ontrack xây dựng lộ trình sản phẩm thành công?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Hiểu rõ công việc khách hàng đang cố gắng thực hiện.",
+              "correct": true
+            },
+            {
+              "key": "B",
+              "text": "Thực hiện nhiều lần thử nghiệm gia nhập thị trường.",
+              "correct": false
+            },
+            {
+              "key": "C",
+              "text": "Tập trung vào các tính năng của đối thủ cạnh tranh.",
+              "correct": false
+            },
+            {
+              "key": "D",
+              "text": "Phân tích các tài liệu giấy truyền thống.",
+              "correct": false
+            }
+          ],
+          "explain": "Khi biết chính xác khách hàng đang cố gắng hoàn thành công việc gì, công ty có thể ưu tiên sản phẩm và tính năng một cách tự tin."
+        },
+        "example": {
+          "title": "Ví dụ về đổi mới",
+          "body": "Kroll Ontrack đã vượt qua đối thủ bằng cách thêm các khả năng dựa trên công việc mà khách hàng cần hoàn thành thay vì chỉ tìm cách cải thiện nền tảng giải pháp hiện tại."
+        }
+      }
+    ]
+  },
+  "evaluation": {
+    "id": "R03",
+    "situation_type": "rare",
+    "source_type": "observed",
+    "expected_behavior": "Rút một learning outcome rõ, không tạo câu hỏi có nhiều đáp án cùng đúng.",
+    "http_status": 200,
+    "suggestion_count": 1,
+    "automatic_scores": [
+      {
+        "checks": {
+          "has_prompt": true,
+          "exactly_four_options": true,
+          "distinct_options": true,
+          "exactly_one_correct": true,
+          "wrong_options_have_misconceptions": true,
+          "wrong_options_have_three_hints": true,
+          "hints_do_not_reveal_answer": true,
+          "has_distinct_follow_up": true,
+          "has_usable_example": true
+        },
+        "automatic_pass": true
+      }
+    ],
+    "human_review": {
+      "grounded": true,
+      "diagnostic": true,
+      "safe": true,
+      "notes": "[AI-review] Kroll Ontrack, trích dẫn Ben Allen và Andrea Johnson đều nằm trên trang 38. Một learning outcome rõ, chỉ một đáp án đúng, follow-up cùng learning outcome."
+    },
+    "not_auto_published": true,
+    "pass": true,
+    "failure_reasons": [],
+    "latency_seconds": 5.976
+  }
+}

@@ -1,0 +1,132 @@
+{
+  "case_id": "N05",
+  "timestamp_utc": "2026-07-31T05:41:24.263031+00:00",
+  "model": "gemini-2.5-flash",
+  "endpoint": "http://127.0.0.1:8010/api/ai/suggest-checkpoints",
+  "role": "teacher",
+  "request": {
+    "page": 8,
+    "count": 1,
+    "force": true
+  },
+  "source_page_excerpt": "5 TRANSFORM YOUR COMPANY THROUGH INNOVATION  FOLLOW US ON LINKEDIN  BECOME A CLIENT  CHAPTER 1 2 3 4 Making the job-to-be-done the unit of analysis means it is the job — not the product, the customer, the circumstance, the purchase process or customer demographics — that you need to study, dissect and understand at a granular level of detail. A deep understanding of the customer’s job makes marketing more effective — and innovation far more predictable. TENET 05 TENET 06 Henry Ford said it best, “If I had asked people what they wanted, they would have said a faster horse.” The point Ford is making is that innovators cannot simply ask customers what solutions they want, because customers rarely know — and why should they? They are not engineers, scientists and technolo- gists. We cannot expect them to tell us the solution. Success comes from making the job the unit of analysis, rather than the product or the customer. A deep understanding of the customer’s job makes marketing more effective — and innovation far more predictable. That’s why as innovators we must change the unit of analysis when talking to customers. While they often do not know what solutions will best satisfy their needs, customers do know what they are trying to accomplish as it relates to getting a job done. They know what aspects of the job are time consuming, unpredictable and ineffective. They can define their needs around the job-to-be-done. The fundamentals of marketing and innovation are straightforward. With a focus on the customer’s job-to-be-done, you are able to: 1. Identify where and why customers are struggling to get the job done. 2. Brainstorm ideas for new offerings 3. Determine in advance of development which ideas will help customers get the job done best. When you define a market this way, you clarify your target customer and the job you are going to help the customer accomplish with your product or service offering If your team can agree on what a customer need is, what the customer’s needs are, and which customer needs are unmet or underserved, you are able to: 1. Better position and sell more of the company’s existing products. 2. Improve existing products and services. 3. Create new products and services. Jobs-to-be-Done Theory makes this possible. With a deep understanding of the custom- er’s needs for any given job, you can finally know—maybe for the first time—all of the customer’s needs. This is truly transforma- tional as most product teams (and most VoC prac",
+  "response_status": 200,
+  "response": {
+    "page": 8,
+    "suggestions": [
+      {
+        "id": "sg-8-1",
+        "page": 8,
+        "prompt": "Theo nội dung trang 8, đâu là đơn vị phân tích mà các nhà đổi mới cần tập trung nghiên cứu để đạt được thành công?",
+        "options": [
+          {
+            "key": "A",
+            "text": "Công việc (job) mà khách hàng cần hoàn thành",
+            "correct": true
+          },
+          {
+            "key": "B",
+            "text": "Sản phẩm hoặc dịch vụ hiện có của công ty",
+            "correct": false,
+            "misconceptionLabel": "Nhầm lẫn giữa giải pháp và công việc",
+            "hints": [
+              "Bạn đang tập trung vào kết quả đầu ra thay vì mục tiêu của khách hàng.",
+              "Liệu sản phẩm có phải là thứ khách hàng thực sự muốn hay chỉ là phương tiện?",
+              "Hãy xem lại phần định nghĩa về đơn vị phân tích trong đoạn đầu trang 8."
+            ]
+          },
+          {
+            "key": "C",
+            "text": "Nhân khẩu học và quy trình mua hàng của khách hàng",
+            "correct": false,
+            "misconceptionLabel": "Nhầm lẫn giữa đối tượng và công việc",
+            "hints": [
+              "Bạn đang tập trung vào đặc điểm khách hàng thay vì hành động họ cần thực hiện.",
+              "Việc phân tích các yếu tố này có giúp hiểu được mục tiêu thực sự của khách hàng không?",
+              "Hãy đọc lại danh sách các yếu tố cần loại trừ khi chọn đơn vị phân tích ở đầu trang."
+            ]
+          },
+          {
+            "key": "D",
+            "text": "Các giải pháp kỹ thuật do khách hàng đề xuất",
+            "correct": false,
+            "misconceptionLabel": "Nhầm lẫn giữa nhu cầu và giải pháp",
+            "hints": [
+              "Bạn đang tin rằng khách hàng biết rõ giải pháp kỹ thuật họ cần.",
+              "Liệu khách hàng có phải là kỹ sư hay nhà khoa học để đưa ra giải pháp?",
+              "Hãy xem lại trích dẫn về 'faster horse' và vai trò của khách hàng trong đổi mới."
+            ]
+          }
+        ],
+        "explain": "Trang 8 khẳng định việc lấy 'job-to-be-done' làm đơn vị phân tích là chìa khóa để đổi mới có thể dự đoán được, thay vì tập trung vào sản phẩm, khách hàng hay quy trình mua hàng.",
+        "title": "Đơn vị phân tích cốt lõi",
+        "learningOutcome": "Xác định được 'job-to-be-done' là đơn vị phân tích chính trong đổi mới sáng tạo.",
+        "durationSec": 30,
+        "followUp": {
+          "prompt": "Việc chuyển đổi sang 'job-to-be-done' làm đơn vị phân tích cho phép nhà đổi mới thực hiện điều gì?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Đánh giá trước các ý tưởng giúp khách hàng hoàn thành công việc tốt nhất",
+              "correct": true
+            },
+            {
+              "key": "B",
+              "text": "Yêu cầu khách hàng mô tả chi tiết các thông số kỹ thuật sản phẩm",
+              "correct": false
+            },
+            {
+              "key": "C",
+              "text": "Thay đổi phân khúc khách hàng dựa trên dữ liệu nhân khẩu học",
+              "correct": false
+            },
+            {
+              "key": "D",
+              "text": "Tập trung vào việc bán các sản phẩm hiện có mà không cần cải tiến",
+              "correct": false
+            }
+          ],
+          "explain": "Tập trung vào 'job-to-be-done' giúp xác định nơi và lý do khách hàng gặp khó khăn, từ đó giúp brainstorm ý tưởng và đánh giá ý tưởng trước khi phát triển."
+        },
+        "example": {
+          "title": "Ví dụ về đơn vị phân tích",
+          "body": "Thay vì hỏi khách hàng muốn giải pháp gì, nhà đổi mới cần nghiên cứu công việc mà khách hàng đang cố gắng hoàn thành vì khách hàng thường không biết rõ giải pháp nào sẽ đáp ứng tốt nhất nhu cầu của họ."
+        }
+      }
+    ]
+  },
+  "evaluation": {
+    "id": "N05",
+    "situation_type": "normal",
+    "source_type": "chatlog",
+    "expected_behavior": "Tạo checkpoint phân biệt job với product hoặc customer làm unit of analysis.",
+    "http_status": 200,
+    "suggestion_count": 1,
+    "automatic_scores": [
+      {
+        "checks": {
+          "has_prompt": true,
+          "exactly_four_options": true,
+          "distinct_options": true,
+          "exactly_one_correct": true,
+          "wrong_options_have_misconceptions": true,
+          "wrong_options_have_three_hints": true,
+          "hints_do_not_reveal_answer": true,
+          "has_distinct_follow_up": true,
+          "has_usable_example": true
+        },
+        "automatic_pass": true
+      }
+    ],
+    "human_review": {
+      "grounded": true,
+      "diagnostic": true,
+      "safe": true,
+      "notes": "[AI-review] Faster horse, 'không phải kỹ sư hay nhà khoa học' và ba việc làm được đều nằm trên trang 8. Follow-up 4 lựa chọn, cùng learning outcome (run-01 chỉ có 2). Hint không nêu đáp án."
+    },
+    "not_auto_published": true,
+    "pass": true,
+    "failure_reasons": [],
+    "latency_seconds": 11.88
+  }
+}

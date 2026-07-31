@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { Brand } from '../components/layout/BrandMark.jsx'
 import Button from '../components/ui/Button.jsx'
 import { TextField } from '../components/ui/Field.jsx'
-import { ACCOUNTS, CLASS_INFO } from '../data/mockData.js'
 import { useAuth } from '../state/AuthContext.jsx'
 import { IconCheck } from '../lib/icons.js'
 
@@ -12,7 +11,7 @@ const ROLES = [
 ]
 
 const PRINCIPLES = [
-  ['Nhìn thấy', 'Toàn bộ 160 học viên đều phản hồi, không chỉ 10–15 bạn xung phong.'],
+  ['Nhìn thấy', 'Cả lớp đều phản hồi được, không chỉ vài bạn xung phong.'],
   ['Hiểu đúng', 'Tỷ lệ tham gia, phân bố đáp án và tỷ lệ đúng ngay trong buổi học.'],
   ['Hành động kịp thời', 'Trợ lý đề xuất nên tiếp tục hay giải thích lại.'],
 ]
@@ -20,16 +19,16 @@ const PRINCIPLES = [
 export default function LoginPage() {
   const { login } = useAuth()
   const [role, setRole] = useState('learner')
+  const [name, setName] = useState('')
   const [error, setError] = useState(null)
   const [busy, setBusy] = useState(false)
-  const account = ACCOUNTS.find((a) => a.role === role)
 
   const submit = async (e) => {
     e.preventDefault()
     setBusy(true)
     setError(null)
     try {
-      await login(role)
+      await login(role, name)
     } catch {
       setError('Không kết nối được tới máy chủ lớp học. Kiểm tra backend đang chạy ở cổng 8000.')
     } finally {
@@ -57,7 +56,7 @@ export default function LoginPage() {
 
         <div className="relative max-w-lg">
           <h1 className="text-[40px] font-extrabold leading-[1.15]">
-            Vòng phản hồi realtime cho lớp {CLASS_INFO.enrolled} học viên
+            Vòng phản hồi realtime cho lớp đông
           </h1>
           <p className="mt-4 leading-relaxed text-white/75">
             Quiz do đội ngũ giảng dạy soạn sẵn, gắn với từng slide. Giảng viên kích hoạt đúng lúc —
@@ -74,15 +73,15 @@ export default function LoginPage() {
           </div>
         </div>
 
-        <div className="relative text-xs text-white/50">Tích hợp vào LMS · MVP demo</div>
+        <div className="relative text-xs text-white/50">Tích hợp vào LMS</div>
       </section>
 
       <section className="flex items-center justify-center bg-canvas px-6 py-12">
         <form onSubmit={submit} className="w-full max-w-md">
           <Brand className="mb-8 lg:hidden" />
 
-          <h2 className="text-2xl font-extrabold">Đăng nhập</h2>
-          <p className="mt-1.5 text-sm text-muted">Chọn vai trò để vào phòng học {CLASS_INFO.code}.</p>
+          <h2 className="text-2xl font-extrabold">Vào lớp</h2>
+          <p className="mt-1.5 text-sm text-muted">Chọn vai trò của bạn trong buổi học này.</p>
 
           <div className="mt-6 grid gap-2.5">
             {ROLES.map((r) => (
@@ -113,13 +112,18 @@ export default function LoginPage() {
             ))}
           </div>
 
-          <div className="mt-5 grid gap-3">
-            <TextField label="Email" value={account.email} readOnly />
-            <TextField label="Mật khẩu" type="password" defaultValue="demo1234" readOnly />
+          <div className="mt-5">
+            <TextField
+              label="Tên hiển thị"
+              value={name}
+              maxLength={60}
+              placeholder={role === 'teacher' ? 'Giảng viên' : 'Học viên'}
+              onChange={(e) => setName(e.target.value)}
+            />
           </div>
 
           <Button type="submit" size="lg" className="mt-6 w-full" disabled={busy}>
-            {busy ? 'Đang vào lớp…' : 'Sign in'}
+            {busy ? 'Đang vào lớp…' : 'Vào lớp'}
           </Button>
 
           {error ? (
@@ -129,7 +133,7 @@ export default function LoginPage() {
           ) : null}
 
           <p className="mt-4 text-center text-[12px] text-muted">
-            Bản demo — tài khoản được điền sẵn theo vai trò.
+            Tên chỉ hiện cho chính bạn — câu hỏi gửi lên lớp luôn ẩn danh.
           </p>
         </form>
       </section>

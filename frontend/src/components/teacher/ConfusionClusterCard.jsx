@@ -3,37 +3,57 @@ import Chip from '../ui/Chip.jsx'
 import Callout from '../ui/Callout.jsx'
 import { useSession } from '../../state/SessionContext.jsx'
 
-/** Các chủ đề khó được trợ lý gom nhóm từ câu hỏi và phản hồi của lớp. */
+const OPEN = ['pending', 'claimed', 'escalated']
+
+/**
+ * Điểm khó đang nổi lên, đọc từ dữ liệu thật: nhóm câu hỏi do trợ lý gom (tab Hỗ trợ)
+ * và số học viên đã bấm "Tôi cũng gặp" trên từng câu.
+ */
 export default function ConfusionClusterCard() {
-  const { topics, questions } = useSession()
-  const hottest = [...topics].sort((a, b) => b.votes - a.votes)[0]
-  const grouped = questions.find((q) => q.scope === 'group')
+  const { clusters, questions } = useSession()
+  const open = questions.filter((q) => OPEN.includes(q.status))
+  const echoed = open.filter((q) => q.echo > 0).sort((a, b) => b.echo - a.echo).slice(0, 3)
+  const hottest = clusters[0]
 
   return (
     <Card tone="accent">
       <CardTitle eyebrow="AI gom nhóm">Điểm khó đang nổi lên</CardTitle>
 
-      <div className="flex flex-wrap gap-2">
-        {[...topics]
-          .sort((a, b) => b.votes - a.votes)
-          .map((t, i) => (
-            <Chip key={t.id} tone={i === 0 ? 'hot' : 'default'}>
-              {t.label} · {t.votes}
+      {!open.length && !clusters.length ? (
+        <p className="text-[13px] leading-relaxed text-muted">
+          Chưa có vướng mắc nào đang mở. Câu hỏi của học viên sẽ hiện ở đây ngay khi được gửi lên.
+        </p>
+      ) : null}
+
+      {clusters.length ? (
+        <div className="flex flex-wrap gap-2">
+          {clusters.slice(0, 4).map((c, i) => (
+            <Chip key={c.id} tone={i === 0 ? 'hot' : 'default'}>
+              {c.topic || c.summary.slice(0, 32)} · {c.count}
             </Chip>
           ))}
-      </div>
-
-      {grouped ? (
-        <Callout tone="info" className="mt-3">
-          {grouped.echo} câu hỏi tương tự đã được gom thành:{' '}
-          <strong>“{grouped.text}”</strong>
-        </Callout>
+        </div>
+      ) : open.length ? (
+        <p className="text-[12px] leading-relaxed text-muted">
+          {open.length} câu đang chờ xử lý — mở tab <strong>Hỗ trợ</strong> để trợ lý gom thành nhóm.
+        </p>
       ) : null}
 
       {hottest ? (
-        <p className="mt-2.5 text-[12px] text-muted">
-          Chủ đề cần ưu tiên làm rõ: <strong className="text-secondary">{hottest.label}</strong>
-        </p>
+        <Callout tone="info" className="mt-3">
+          {hottest.count} câu hỏi cùng một vấn đề: <strong>“{hottest.summary}”</strong>
+        </Callout>
+      ) : null}
+
+      {echoed.length ? (
+        <ul className="mt-3 space-y-1.5 text-[12px] text-muted">
+          {echoed.map((q) => (
+            <li key={q.id} className="flex gap-2">
+              <strong className="shrink-0 text-secondary">{q.echo} bạn</strong>
+              <span className="truncate">cũng gặp: “{q.text}”</span>
+            </li>
+          ))}
+        </ul>
       ) : null}
     </Card>
   )

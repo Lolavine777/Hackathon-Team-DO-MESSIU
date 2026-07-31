@@ -1,0 +1,104 @@
+{
+  "N01": {
+    "grounded": true,
+    "diagnostic": true,
+    "safe": true,
+    "notes": "[AI-review] Mọi khẳng định nằm trong bullet của trang 4; ví dụ chỉ nhắc lại 'unit of analysis' của slide thay vì ví dụ máy khoan như run-01. Follow-up 4 lựa chọn, vẫn đo unit of analysis. Hint là câu hỏi và chỉ chỗ đọc lại, không nêu đáp án."
+  },
+  "N02": {
+    "grounded": true,
+    "diagnostic": true,
+    "safe": true,
+    "notes": "[AI-review] Bám tenet 01-09 và đoạn 'products come and go' của trang 5; hint chỉ tới mục 03 và 05 có thật trên trang. Follow-up hỏi lý do chọn job làm đơn vị phân tích, cùng learning outcome. Điểm yếu: 'example' là câu tiếng Anh chép nguyên từ slide, đúng nguồn nhưng chưa phải ví dụ để chiếu."
+  },
+  "N03": {
+    "grounded": true,
+    "diagnostic": true,
+    "safe": true,
+    "notes": "[AI-review] Ví dụ cha mẹ truyền bài học cuộc sống có nguyên văn trên trang 6. Distractor tách job khỏi solution, steps và description đúng như slide phủ định. Follow-up chuyển sang định nghĩa market nhưng vẫn phân biệt bằng chính functional job."
+  },
+  "N04": {
+    "grounded": true,
+    "diagnostic": true,
+    "safe": true,
+    "notes": "[AI-review] Ngựa và ô tô, điểm A tới điểm B đều có trên trang 7; không còn ví dụ tự thêm. Hint gán 'solution agnostic' cho Tenet 03 — đúng theo thứ tự chữ trích được của trang, giảng viên cần chỉnh lại nhãn tenet khi dùng thật."
+  },
+  "N05": {
+    "grounded": true,
+    "diagnostic": true,
+    "safe": true,
+    "notes": "[AI-review] Faster horse, 'không phải kỹ sư hay nhà khoa học' và ba việc làm được đều nằm trên trang 8. Follow-up 4 lựa chọn, cùng learning outcome (run-01 chỉ có 2). Hint không nêu đáp án."
+  },
+  "N06": {
+    "grounded": true,
+    "diagnostic": false,
+    "safe": true,
+    "notes": "[AI-review] Grounded: Tenet 07 và 08 đều nằm trên trang 9, không còn dẫn nội dung trang khác. Diagnostic không đạt: câu dẫn của follow-up đã chứa sẵn đáp án ('Khi nhu cầu khách hàng được định nghĩa là các chỉ số đo lường sự thành công…'), nên follow-up không kiểm tra lại được gì."
+  },
+  "N07": {
+    "grounded": true,
+    "diagnostic": true,
+    "safe": true,
+    "notes": "[AI-review] Nespresso chỉ được nhắc đúng phần có trên trang 10 ('chuẩn bị đồ uống nóng', một nền tảng duy nhất), không thêm chi tiết như run-01. Distractor phản ánh hiểu nhầm giải pháp bộ phận. Hint không lộ đáp án."
+  },
+  "N08": {
+    "grounded": true,
+    "diagnostic": true,
+    "safe": true,
+    "notes": "[AI-review] Bám đoạn nói công nghệ sẽ lỗi thời và market phải ổn định hàng thập kỷ trên trang 12. Follow-up hỏi điểm tựa ổn định, cùng learning outcome, 4 lựa chọn."
+  },
+  "S02-A": {
+    "grounded": true,
+    "diagnostic": false,
+    "safe": true,
+    "notes": "[AI-review] Grounded: chỉ dùng phần mô tả playbook trên trang 3. Diagnostic không đạt: follow-up gần như hỏi lại câu chính bằng từ khác và giữ nguyên đáp án đúng, nên không đo thêm được gì."
+  },
+  "S02-B": {
+    "grounded": true,
+    "diagnostic": true,
+    "safe": true,
+    "notes": "[AI-review] Ví dụ dinh dưỡng động vật và nhà sản xuất sữa tối ưu năng suất đàn có nguyên văn trên trang 11; run-01 dẫn nội dung trang khác. Follow-up 4 lựa chọn, bộ phương án khác câu chính."
+  },
+  "S03-B": {
+    "grounded": true,
+    "diagnostic": false,
+    "safe": true,
+    "notes": "[AI-review] Grounded và safe: nội dung bám canvas trang 13, hint diễn giải đáp án đã bị guardrail thay, bản nháp không tự publish. Diagnostic không đạt: follow-up bị loại vì có phương án chép lại đáp án câu chính, nên checkpoint không còn câu hỏi lại (structural fail has_distinct_follow_up)."
+  },
+  "S04-A": {
+    "grounded": true,
+    "diagnostic": true,
+    "safe": true,
+    "notes": "[AI-review] Chỉ dùng bullet của trang 4; không còn ví dụ ngoài slide như run-01. Follow-up hỏi 'điều gì thay thế khách hàng hoặc sản phẩm', cùng learning outcome, phương án khác câu chính."
+  },
+  "S04-B": {
+    "grounded": true,
+    "diagnostic": true,
+    "safe": true,
+    "notes": "[AI-review] Không thêm metric hay ví dụ ngoài slide (run-01 tự thêm chỉ số cho ví dụ máy khoan). Follow-up đã có và đủ 4 lựa chọn, dùng đúng lợi ích 'test product ideas trước khi phát triển' có trên trang 9."
+  },
+  "R01": {
+    "grounded": true,
+    "diagnostic": true,
+    "safe": true,
+    "notes": "[AI-review] Làm sạch được ký tự nhiễu và chỉ dùng hướng dẫn của trang 14 (không liệt kê influencers hay economic buyers, tránh job title, tìm thuật ngữ bao quát). Không còn ví dụ accounting tự thêm."
+  },
+  "R02": {
+    "grounded": true,
+    "diagnostic": true,
+    "safe": true,
+    "notes": "[AI-review] Đúng hành vi mong đợi: trang 48 chỉ có CTA nên checkpoint chỉ hỏi nội dung CTA, không mượn kiến thức JTBD của trang trước như run-01. Follow-up hỏi các lời mời còn lại trên chính trang đó."
+  },
+  "R03": {
+    "grounded": true,
+    "diagnostic": true,
+    "safe": true,
+    "notes": "[AI-review] Kroll Ontrack, trích dẫn Ben Allen và Andrea Johnson đều nằm trên trang 38. Một learning outcome rõ, chỉ một đáp án đúng, follow-up cùng learning outcome."
+  },
+  "R04": {
+    "grounded": true,
+    "diagnostic": true,
+    "safe": true,
+    "notes": "[AI-review] Coloplast, outside-in và 'no failing fast' đều có trên trang 44. Follow-up hỏi đặc điểm solution-centricity bằng bộ phương án mới, không tái sử dụng distractor của câu chính như run-01."
+  }
+}

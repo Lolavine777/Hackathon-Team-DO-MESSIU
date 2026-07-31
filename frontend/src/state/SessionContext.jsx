@@ -1,13 +1,22 @@
-import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react'
+import { createContext, useCallback, useContext, useEffect, useState } from 'react'
 import { api, clientResponseId } from '../lib/api.js'
 import { useAuth } from './AuthContext.jsx'
 import useAiActions from './useAiActions.js'
+import useHelpActions from './useHelpActions.js'
 import useLectureState from './useLectureState.js'
 
 const SessionContext = createContext(null)
 export const useSession = () => useContext(SessionContext)
 
-const EMPTY = { pulse: {}, topics: [], questions: [], clarifications: [], hints: [], history: [] }
+const EMPTY = {
+  pulse: {},
+  questions: [],
+  clarifications: [],
+  hints: [],
+  history: [],
+  clusters: [],
+  pins: [],
+}
 const AI_OFF = { enabled: false, model: null, reason: 'Đang kết nối tới máy chủ…' }
 
 export function SessionProvider({ children }) {
@@ -19,8 +28,6 @@ export function SessionProvider({ children }) {
 
   // Trạng thái chỉ thuộc về người dùng này, không cần đẩy lên lớp.
   const [myPulse, setMyPulse] = useState(null)
-  const [votedTopics, setVotedTopics] = useState([])
-  const [askedIds, setAskedIds] = useState([])
 
   const call = useCallback((path, options) => api(path, { role, ...options }), [role])
   const aiActions = useAiActions(call, reloadConfig)
@@ -73,9 +80,12 @@ export function SessionProvider({ children }) {
   const [localPage, setLocalPage] = useState(null)
   useEffect(() => setLocalPage(null), [classPage])
 
+  // Đổi trang phải thấy ngay tại chỗ: khung slide bám theo `page`, nếu chờ server
+  // trả về thì lượt kéo tiếp theo bị chính giá trị cũ kéo ngược lại.
   const setPage = useCallback(
     (page) => {
-      if (role !== 'teacher') return setLocalPage(page)
+      setLocalPage(page)
+      if (role !== 'teacher') return Promise.resolve()
       return call(`/session/page/${page}`, { method: 'PUT' })
     },
     [call, role]
@@ -95,47 +105,8 @@ export function SessionProvider({ children }) {
     return call('/pulse/reset', { method: 'POST' })
   }, [call])
 
-  const voteTopic = useCallback(
-    (topicId) => {
-      if (votedTopics.includes(topicId)) return Promise.resolve()
-      setVotedTopics((v) => [...v, topicId])
-      return call(`/topics/${topicId}/vote`, { method: 'POST' })
-    },
-    [call, votedTopics]
-  )
-
-  const askQuestion = useCallback(
-    async ({ text, scope }) => {
-      const item = await call('/questions', {
-        method: 'POST',
-        body: { text, scope, page: live?.page ?? 1 },
-      })
-      setAskedIds((ids) => [item.id, ...ids])
-      return item
-    },
-    [call, live?.page]
-  )
-
-  const answerQuestion = useCallback(
-    (questionId, text, share = false) =>
-      call(`/questions/${questionId}/answer`, {
-        method: 'POST',
-        body: { text, share_with_class: share },
-      }),
-    [call]
-  )
-
-  const publishClarification = useCallback(
-    ({ title, body }) =>
-      call('/clarifications', { method: 'POST', body: { title, body, page: live?.page ?? 1 } }),
-    [call, live?.page]
-  )
-
   const questions = live?.questions ?? EMPTY.questions
-  const myQuestions = useMemo(
-    () => questions.filter((q) => askedIds.includes(q.id)),
-    [questions, askedIds]
-  )
+  const helpActions = useHelpActions({ call, uid, page: live?.page ?? 1, questions })
 
   const checkpoints = config?.checkpoints ?? []
   const checkpointsForPage = useCallback(
@@ -158,6 +129,8 @@ export function SessionProvider({ children }) {
     page: localPage ?? classPage,
     classPage,
     setPage,
+    // Sĩ số thật do server đếm từ số máy học viên đang mở lớp.
+    online: live?.online ?? 0,
     lastEvent: live?.lastEvent ?? null,
     revision: live?.revision ?? 0,
 
@@ -180,15 +153,13 @@ export function SessionProvider({ children }) {
     myPulse,
     sendPulse,
     resetPulse,
-    topics: live?.topics ?? EMPTY.topics,
-    votedTopics,
-    voteTopic,
     questions,
-    myQuestions,
-    askQuestion,
-    answerQuestion,
     clarifications: live?.clarifications ?? EMPTY.clarifications,
-    publishClarification,
+    pins: live?.pins ?? EMPTY.pins,
+    helpCategories: config?.helpCategories ?? {},
+    clusters: live?.clusters ?? EMPTY.clusters,
+    clustersStale: Boolean(live?.clustersStale),
+    ...helpActions,
 
     ...aiActions,
     ai: config?.ai ?? AI_OFF,

@@ -5,7 +5,6 @@ import LiveDot from '../ui/LiveDot.jsx'
 import LiveQuizCard from './LiveQuizCard.jsx'
 import HintCard from './HintCard.jsx'
 import PulseCard from './PulseCard.jsx'
-import ConfusionCloudCard from './ConfusionCloudCard.jsx'
 import ClarificationCard from './ClarificationCard.jsx'
 import AskAssistantCard from './AskAssistantCard.jsx'
 import MyQuestionsPane from './MyQuestionsPane.jsx'
@@ -45,7 +44,7 @@ export default function LearnerPanel() {
         onChange={setTab}
         items={[
           { id: 'class', label: 'Tương tác lớp' },
-          { id: 'mine', label: 'Câu hỏi của tôi', badge: myQuestions.length || null },
+          { id: 'mine', label: 'Yêu cầu hỗ trợ', badge: myQuestions.length || null },
           { id: 'selftest', label: 'Tự kiểm tra' },
         ]}
       />
@@ -58,7 +57,6 @@ export default function LearnerPanel() {
               <HintCard key={hint.id} hint={hint} />
             ))}
             <PulseCard />
-            <ConfusionCloudCard />
             {clarifications.map((c) => (
               <ClarificationCard key={c.id} item={c} onGoToSlide={setPage} />
             ))}

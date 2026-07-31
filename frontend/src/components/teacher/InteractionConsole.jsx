@@ -22,7 +22,7 @@ export default function InteractionConsole() {
   const [tab, setTab] = useState('live')
   const [answering, setAnswering] = useState(null)
 
-  const pending = questions.filter((q) => q.status !== 'answered').length
+  const pending = questions.filter((q) => !['answered', 'resolved'].includes(q.status)).length
 
   return (
     <aside className="grid min-h-0 grid-rows-[auto_auto_1fr] overflow-hidden rounded-[22px] border border-line bg-white shadow-card">
@@ -46,7 +46,7 @@ export default function InteractionConsole() {
         onChange={setTab}
         items={[
           { id: 'live', label: 'Trực tiếp' },
-          { id: 'questions', label: 'Câu hỏi', badge: pending || null },
+          { id: 'questions', label: 'Hỗ trợ', badge: pending || null },
           { id: 'bank', label: 'Checkpoint' },
           { id: 'report', label: 'Báo cáo' },
         ]}

@@ -7,11 +7,12 @@ from pydantic import BaseModel, Field, field_validator
 Role = Literal["learner", "teacher"]
 Confidence = Literal["sure", "unsure", "guess"]
 PulseValue = Literal["understand", "unclear", "stuck"]
+HelpCategory = Literal["code", "concept", "start"]
 
 
 class LoginRequest(BaseModel):
     role: Role
-    email: str | None = None
+    name: str | None = Field(default=None, max_length=60)
     user_id: str | None = None
 
 
@@ -39,9 +40,11 @@ class PulseRequest(BaseModel):
 
 
 class QuestionRequest(BaseModel):
-    text: str
+    text: str = Field(min_length=1, max_length=600)
     page: int
     scope: Literal["private", "anonymous"] = "private"
+    category: HelpCategory | None = None
+    user_id: str | None = None
 
 
 class AnswerQuestionRequest(BaseModel):
@@ -49,10 +52,33 @@ class AnswerQuestionRequest(BaseModel):
     share_with_class: bool = False
 
 
+class ResolveQuestionRequest(BaseModel):
+    """Người hỏi tự chốt: hiểu rồi thì đóng, còn kẹt thì chuyển lên giảng viên."""
+
+    understood: bool
+    user_id: str | None = None
+
+
+class GroupQuestionsRequest(BaseModel):
+    force: bool = False
+
+
+class BroadcastRequest(BaseModel):
+    title: str = Field(min_length=1, max_length=160)
+    body: str = Field(min_length=1, max_length=2000)
+    page: int | None = None
+
+
 class ClarificationRequest(BaseModel):
     title: str
     body: str
     page: int
+
+
+class EchoRequest(BaseModel):
+    """Học viên bấm 'Tôi cũng gặp' trên câu hỏi đang ghim ở slide."""
+
+    user_id: str | None = None
 
 
 # --- trợ lý AI -----------------------------------------------------------

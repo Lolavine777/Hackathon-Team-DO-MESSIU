@@ -69,12 +69,18 @@ async def page_text(page: int) -> str:
     return text
 
 
-async def context_for(page: int, budget: int = 6000) -> str:
+async def context_for(page: int, budget: int = 6000, *, include_previous: bool = True) -> str:
     """Toàn bộ trang đang xem + tóm lược các trang trước, xếp theo thứ tự bài giảng.
 
     Ưu tiên các trang gần nhất khi ngân sách ký tự đã cạn.
+
+    `include_previous=False` khi output phải truy được về đúng một trang: review
+    `run-01` cho thấy trang trước có mặt trong ngữ cảnh là bị model lấy làm nguồn
+    dữ kiện (checkpoint trang 48 nói về JTBD, hint trỏ "xem lại trang 8"…).
     """
     current = f"[Trang {page} — đang xem]\n{(await page_text(page))[:PAGE_BUDGET]}"
+    if not include_previous:
+        return current
     all_pages = await pages()
 
     earlier: list[str] = []

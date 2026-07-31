@@ -8,7 +8,7 @@ import { IconLaunch, IconNoCheckpoint } from '../../lib/icons.js'
 
 /** Checkpoint đã soạn sẵn cho trang đang chiếu — một click để mở cho cả lớp. */
 export default function CheckpointLauncher() {
-  const { checkpointsForPage, page, run, launchCheckpoint, session, history } = useSession()
+  const { checkpointsForPage, page, run, launchCheckpoint, online, history } = useSession()
   const toast = useToast()
   const list = checkpointsForPage(page)
   const busy = run?.status === 'running'
@@ -17,7 +17,7 @@ export default function CheckpointLauncher() {
   const launch = async (checkpoint) => {
     try {
       await launchCheckpoint(checkpoint.id)
-      toast(`Đã mở checkpoint #${checkpoint.order} cho ${session.enrolled} học viên.`)
+      toast(`Đã mở checkpoint #${checkpoint.order} cho ${online} học viên đang trong lớp.`)
     } catch (err) {
       toast(err.message ?? 'Không mở được checkpoint.')
     }

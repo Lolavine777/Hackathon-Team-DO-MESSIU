@@ -1,0 +1,132 @@
+{
+  "case_id": "N03",
+  "timestamp_utc": "2026-07-31T05:41:24.258857+00:00",
+  "model": "gemini-2.5-flash",
+  "endpoint": "http://127.0.0.1:8010/api/ai/suggest-checkpoints",
+  "role": "teacher",
+  "request": {
+    "page": 6,
+    "count": 1,
+    "force": true
+  },
+  "source_page_excerpt": "3 TRANSFORM YOUR COMPANY THROUGH INNOVATION  FOLLOW US ON LINKEDIN  BECOME A CLIENT  CHAPTER 1 2 3 4 People have underlying problems they are trying to resolve. They have goals they are trying to achieve and tasks and activities they are trying to complete. They may be faced with situations they are trying to avoid. In each of these cases, people often turn to products and services to help them get a “job” done. TENET 01 TENET 02 A job is not a description of what the customer is doing, the solution they are using, or the steps they are taking to get a job done. Rather, the job is what the customer is ultimately trying to accomplish. The core job-to-be-done is defined as a “functional job.” With this in mind, you can define your market as a group of people and the functional job they are trying to get done. • Parents (a group of people) who are trying to “pass on life lessons to children” (the functional job-to-be-done) constitute a market. • Surgeons (a group of people) who are trying to “repair a torn rotator cuff” (the functional job-to-be-done) constitute a market. • Music enthusiasts (a group of people) who are trying to “listen to music” (the functional job-to-be-done) constitute a market. When you define a market this way, you clarify your target customer and the job you are going to help the customer accomplish with your product or service offering People buy products and services to get a “job” done. Jobs are functional— with emotional and social components. As a customer uses a product or service to get a functional job done, they often want to feel a certain way or be perceived in a certain light by their peers, friends or others. The ways they want to feel and be perceived are called emotional and social jobs-to-be-done. For example, when parents are trying to pass on life lessons to children (the functional job-to-be-done), they may also want to feel like they are contributing to the advancement of society or want to be perceived as good parents by their peers. Understanding the emotional and social components of the functional job brings rich insights that can lead to the creation of a value proposition that highly resonates with customers — at both a functional and emotional level. For example:",
+  "response_status": 200,
+  "response": {
+    "page": 6,
+    "suggestions": [
+      {
+        "id": "sg-6-1",
+        "page": 6,
+        "prompt": "Theo nội dung trang 6, yếu tố nào sau đây mô tả chính xác nhất bản chất của một 'job' mà khách hàng muốn thực hiện?",
+        "options": [
+          {
+            "key": "A",
+            "text": "Điều khách hàng đang cố gắng đạt được cuối cùng.",
+            "correct": true
+          },
+          {
+            "key": "B",
+            "text": "Các bước cụ thể khách hàng thực hiện để hoàn thành công việc.",
+            "correct": false,
+            "misconceptionLabel": "Nhầm lẫn giữa quy trình và mục tiêu",
+            "hints": [
+              "Bạn đang giả định rằng các bước thực hiện chính là bản chất của công việc.",
+              "Liệu các bước thực hiện có phải là mục đích cuối cùng mà khách hàng hướng tới không?",
+              "Hãy xem lại phần định nghĩa 'A job is not... the steps they are taking'."
+            ]
+          },
+          {
+            "key": "C",
+            "text": "Giải pháp hoặc sản phẩm mà khách hàng đang sử dụng.",
+            "correct": false,
+            "misconceptionLabel": "Nhầm lẫn giữa giải pháp và mục tiêu",
+            "hints": [
+              "Bạn đang giả định rằng sản phẩm chính là công việc cần làm.",
+              "Liệu sản phẩm có phải là thứ khách hàng muốn đạt được hay chỉ là công cụ?",
+              "Hãy xem lại phần định nghĩa 'A job is not... the solution they are using'."
+            ]
+          },
+          {
+            "key": "D",
+            "text": "Mô tả chi tiết về những gì khách hàng đang làm.",
+            "correct": false,
+            "misconceptionLabel": "Nhầm lẫn giữa hành động và mục tiêu",
+            "hints": [
+              "Bạn đang giả định rằng hành động hiện tại của khách hàng là công việc cần làm.",
+              "Liệu việc mô tả hành động có phản ánh được mục đích cuối cùng không?",
+              "Hãy xem lại phần định nghĩa 'A job is not a description of what the customer is doing'."
+            ]
+          }
+        ],
+        "explain": "Job là điều khách hàng đang cố gắng đạt được cuối cùng, không phải là mô tả hành động, giải pháp hay các bước thực hiện.",
+        "title": "Bản chất của job",
+        "learningOutcome": "Học viên phân biệt được 'job' với các mô tả về giải pháp hoặc hành động cụ thể.",
+        "durationSec": 30,
+        "followUp": {
+          "prompt": "Khi định nghĩa một thị trường, sự kết hợp nào sau đây là đúng?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Một nhóm người và công việc chức năng họ muốn hoàn thành.",
+              "correct": true
+            },
+            {
+              "key": "B",
+              "text": "Một nhóm người và các sản phẩm họ dùng để giải quyết vấn đề.",
+              "correct": false
+            },
+            {
+              "key": "C",
+              "text": "Một nhóm người và các tình huống họ đang cố gắng tránh né.",
+              "correct": false
+            },
+            {
+              "key": "D",
+              "text": "Một nhóm người và các thành phần cảm xúc, xã hội của công việc.",
+              "correct": false
+            }
+          ],
+          "explain": "Thị trường được định nghĩa là một nhóm người và công việc chức năng (functional job) mà họ đang cố gắng hoàn thành."
+        },
+        "example": {
+          "title": "Ví dụ về thị trường",
+          "body": "Nhóm người là các bậc cha mẹ đang cố gắng 'truyền đạt bài học cuộc sống cho con cái' (công việc chức năng) tạo thành một thị trường."
+        }
+      }
+    ]
+  },
+  "evaluation": {
+    "id": "N03",
+    "situation_type": "normal",
+    "source_type": "chatlog",
+    "expected_behavior": "Tạo checkpoint phân biệt vấn đề, mục tiêu và giải pháp theo nội dung trang 6.",
+    "http_status": 200,
+    "suggestion_count": 1,
+    "automatic_scores": [
+      {
+        "checks": {
+          "has_prompt": true,
+          "exactly_four_options": true,
+          "distinct_options": true,
+          "exactly_one_correct": true,
+          "wrong_options_have_misconceptions": true,
+          "wrong_options_have_three_hints": true,
+          "hints_do_not_reveal_answer": true,
+          "has_distinct_follow_up": true,
+          "has_usable_example": true
+        },
+        "automatic_pass": true
+      }
+    ],
+    "human_review": {
+      "grounded": true,
+      "diagnostic": true,
+      "safe": true,
+      "notes": "[AI-review] Ví dụ cha mẹ truyền bài học cuộc sống có nguyên văn trên trang 6. Distractor tách job khỏi solution, steps và description đúng như slide phủ định. Follow-up chuyển sang định nghĩa market nhưng vẫn phân biệt bằng chính functional job."
+    },
+    "not_auto_published": true,
+    "pass": true,
+    "failure_reasons": [],
+    "latency_seconds": 11.454
+  }
+}
