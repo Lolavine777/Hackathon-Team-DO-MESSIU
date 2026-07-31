@@ -6,6 +6,9 @@
 > **Ngày:** 30/07/2026  
 > **Phạm vi:** MVP cho lớp học trực tiếp/hybrid khoảng 160 sinh viên  
 > **Nguồn nghiên cứu:** [Google Sheet “Phản hồi khảo sát VLearn – AI Teaching Assistant”](https://docs.google.com/spreadsheets/d/139-qYT-JIRfX4vuYilSku1ZNVmDf0LPvayUvSRebf7M/edit#gid=1973924481), tab `Form Responses 1`, 36 phản hồi không rỗng.
+>
+> **Quy ước checkpoint:** PRD này là snapshot phân tích mở rộng 36 phản hồi.
+> `spec.md` và biểu mẫu CP4 dùng snapshot đã đóng tại 31 phản hồi đầu tiên để giữ mẫu số nhất quán với thời điểm nộp.
 
 ---
 
