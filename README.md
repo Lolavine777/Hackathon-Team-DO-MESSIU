@@ -2,6 +2,25 @@
 
 **SPEC → Prototype → Demo.** Đây không phải cuộc thi code — đây là cuộc thi **tư duy sản phẩm AI**.
 
+## Thông tin bài nộp của nhóm
+
+- Sản phẩm: VLearn Lecture Pulse.
+- Lớp: D305.
+- Khóa: `[XÁC NHẬN KHÓA 3 HOẶC KHÓA 4]`.
+- Nhóm trưởng: Nguyễn Đăng Long - 2A202601934.
+- Bản deploy: <https://conner-unavailing-nonirately.ngrok-free.dev>.
+
+| Thành viên | Mã HV | Phân công |
+|---|---|---|
+| Nguyễn Đăng Long | 2A202601934 | Quản lý deliverable, spec và eval |
+| `[PLACEHOLDER - thành viên 2]` | `[MÃ HV]` | `[PHÂN CÔNG]` |
+| `[PLACEHOLDER - thành viên 3]` | `[MÃ HV]` | `[PHÂN CÔNG]` |
+| `[PLACEHOLDER - thành viên 4]` | `[MÃ HV]` | `[PHÂN CÔNG]` |
+
+Prototype hiện nằm trong `frontend/` và `backend/`.
+AI Spec nằm tại `spec.md`.
+Bộ kiểm thử và kết quả lần chạy đầu nằm tại `eval/`.
+
 - Thời lượng: **1,5 ngày** (một ngày build + một buổi demo)
 - Nhóm: **4-5 người** · zone tối đa 5 nhóm · thi theo lớp
 

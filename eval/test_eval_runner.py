@@ -10,6 +10,7 @@ RUNNER = ROOT / "run_eval.py"
 RESULTS = ROOT / "results" / "run-01.jsonl"
 SUMMARY = ROOT / "results" / "run-01-summary.json"
 TRACES = ROOT / "traces" / "run-01"
+SPEC = ROOT.parent / "spec.md"
 
 
 def load_jsonl(path: Path) -> list[dict]:
@@ -63,6 +64,15 @@ class FirstRunIntegrityTest(unittest.TestCase):
         self.assertEqual(sum(result["pass"] for result in results), summary["passed"])
         self.assertEqual(3, summary["passed"])
         self.assertTrue(summary["human_review_complete"])
+
+    def test_spec_contains_required_sections_and_frozen_quality_bar(self):
+        spec = SPEC.read_text(encoding="utf-8")
+
+        for section in range(1, 10):
+            self.assertIn(f"§{section}.", spec)
+        self.assertIn("ít nhất 80%", spec)
+        self.assertIn("không được bịa kiến thức ngoài nội dung slide", spec)
+        self.assertIn("3/20", spec)
 
 
 class SuggestionScoringTest(unittest.TestCase):
