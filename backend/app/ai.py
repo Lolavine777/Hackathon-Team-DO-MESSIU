@@ -65,6 +65,24 @@ mỗi phương án sai phải có "misconceptionLabel" đặt tên cho lỗi tư
 )
 
 
+GROUP_SYSTEM = """Bạn là trợ giảng của một lớp học đại học, viết bằng tiếng Việt.
+Bạn nhận DANH SÁCH CÂU HỎI mà học viên vừa gửi trong giờ học.
+
+Nhiệm vụ: gom những câu đang hỏi về CÙNG MỘT vướng mắc vào một nhóm, kể cả khi
+chúng dùng từ ngữ khác nhau. Câu nào không giống câu nào thì để riêng một nhóm.
+Tuyệt đối không bịa thêm câu hỏi và không đổi ý câu hỏi của học viên.
+
+Cấu trúc bắt buộc:
+{"groups": [{"topic": "1-4 từ khoá",
+  "summary": "một câu hỏi đại diện, viết lại cho rõ ràng",
+  "questionIds": ["qs_1", "qs_2"],
+  "suggestedAnswer": "2-3 câu trợ giảng có thể dùng để trả lời cả nhóm"}]}
+
+Quy tắc: mỗi id chỉ được xuất hiện ở đúng MỘT nhóm; chỉ dùng đúng các id đã cho;
+"summary" phải phản ánh điều cả nhóm đang hỏi, không thêm nội dung mới;
+"suggestedAnswer" là bản nháp cho trợ giảng sửa lại, không phải câu trả lời cuối cùng."""
+
+
 def _text(value) -> str:
     return value.strip() if isinstance(value, str) else ""
 
@@ -136,6 +154,7 @@ def _normalize_suggestion(raw) -> dict | None:
 
 _self_tests: dict[int, dict] = {}
 _suggestions: dict[int, dict] = {}
+_groupings: dict[frozenset, dict] = {}
 _locks: dict[str, asyncio.Lock] = {}
 
 
@@ -202,4 +221,83 @@ async def suggest_checkpoints(page: int, count: int = 3, force: bool = False) ->
 
         result = {"page": page, "suggestions": suggestions}
         _suggestions[page] = result
+        return result
+
+
+# --- gom câu hỏi tương tự ------------------------------------------------
+
+
+def _group_payload(questions: list[dict], ids: list[str], raw: dict | None) -> dict:
+    by_id = {q["id"]: q for q in questions}
+    members = [by_id[qid] for qid in ids]
+    first = members[0]
+    return {
+        "topic": _text((raw or {}).get("topic"))[:48],
+        "summary": _text((raw or {}).get("summary")) or first["text"],
+        "questionIds": ids,
+        "count": len(ids),
+        "pages": sorted({q["page"] for q in members}),
+        "categories": sorted({q["category"] for q in members if q.get("category")}),
+        "suggestedAnswer": _text((raw or {}).get("suggestedAnswer")),
+    }
+
+
+def _normalize_groups(data, questions: list[dict]) -> list[dict]:
+    """Chỉ giữ id có thật, mỗi id đúng một nhóm; câu bị bỏ sót thì tự đứng riêng."""
+    known = {q["id"] for q in questions}
+    taken: set[str] = set()
+    groups: list[dict] = []
+
+    for raw in (data or {}).get("groups") or []:
+        if not isinstance(raw, dict):
+            continue
+        ids = []
+        for qid in raw.get("questionIds") or []:
+            if isinstance(qid, str) and qid in known and qid not in taken:
+                taken.add(qid)
+                ids.append(qid)
+        if ids:
+            groups.append(_group_payload(questions, ids, raw))
+
+    # Không bao giờ để rơi câu hỏi của học viên vì trợ lý quên xếp nhóm cho nó.
+    for question in questions:
+        if question["id"] not in taken:
+            groups.append(_group_payload(questions, [question["id"]], None))
+
+    groups.sort(key=lambda g: (-g["count"], g["summary"]))
+    return [{**group, "id": f"cl-{index + 1}"} for index, group in enumerate(groups)]
+
+
+async def _slide_hint(page: int | None) -> str:
+    """Ngữ cảnh slide là *tuỳ chọn*: gom câu hỏi vẫn phải chạy khi PDF không đọc được."""
+    if not page:
+        return ""
+    try:
+        return f"\n\n=== NỘI DUNG SLIDE ĐANG CHIẾU ===\n{await slides.context_for(page, budget=2000)}"
+    except slides.SlideTextError:
+        return ""
+
+
+async def group_questions(questions: list[dict], page: int | None = None, force: bool = False) -> dict:
+    """Gom câu hỏi mở thành từng nhóm cùng vấn đề để trợ giảng xử lý một lần."""
+    ids = frozenset(q["id"] for q in questions)
+    if not ids:
+        return {"clusters": [], "questionCount": 0}
+
+    async with _lock_for("group"):
+        cached = _groupings.get(ids)
+        if cached and not force:
+            return cached
+
+        listing = "\n".join(f'{q["id"]} (trang {q["page"]}): {q["text"]}' for q in questions)
+        data = await llm.chat_json(
+            GROUP_SYSTEM,
+            f"Gom {len(questions)} câu hỏi sau thành các nhóm cùng vấn đề."
+            f"\n\n=== DANH SÁCH CÂU HỎI ===\n{listing}"[:8000] + await _slide_hint(page),
+            max_tokens=2000,
+        )
+
+        clusters = _normalize_groups(data, questions)
+        result = {"clusters": clusters, "questionCount": len(questions)}
+        _groupings[ids] = result
         return result
