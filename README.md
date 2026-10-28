@@ -10,7 +10,7 @@
 - Khóa: 4.
 - Zone: Chưa được ban tổ chức phân.
 - Nhóm trưởng: Nguyễn Đăng Long - 2A202601934.
-- Bản deploy: <https://conner-unavailing-nonirately.ngrok-free.dev>.
+- Bản deploy: chỉ chạy qua ngrok trong buổi demo và đã tắt; xem [slide demo](demo-slides.pdf) và cách chạy local trong `codebase/`.
 
 | Thành viên | Mã HV | Vai trò | Deliverable và phần chịu trách nhiệm |
 |---|---|---|---|
